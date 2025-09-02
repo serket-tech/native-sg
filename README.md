@@ -55,8 +55,8 @@ Check these out here: [YOLO-NAS](YOLONAS.md) & [YOLO-NAS-POSE](YOLONAS-POSE.md).
 
 ```python
 # Load model with pretrained weights
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg.training import models
+from native_sg.common.object_names import Models
 
 model = models.get(Models.YOLO_NAS_M, pretrained_weights="coco")
 ```
@@ -91,7 +91,7 @@ For more information on how to do it go to [Getting Started](#getting-started)
 
 #### Plug and play recipes
 ```bash
-python -m super_gradients.train_from_recipe architecture=regnetY800 dataset_interface.data_dir=<YOUR_Imagenet_LOCAL_PATH> ckpt_root_dir=<CHEKPOINT_DIRECTORY>
+python -m native_sg.train_from_recipe architecture=regnetY800 dataset_interface.data_dir=<YOUR_Imagenet_LOCAL_PATH> ckpt_root_dir=<CHEKPOINT_DIRECTORY>
 ```
 More examples on how and why to use recipes can be found in [Recipes](#recipes)
 
@@ -100,8 +100,8 @@ More examples on how and why to use recipes can be found in [Recipes](#recipes)
 All SuperGradients models’ are production ready in the sense that they are compatible with deployment tools such as TensorRT (Nvidia) and OpenVINO (Intel) and can be easily taken into production. With a few lines of code you can easily integrate the models into your codebase.
 ```python
 # Load model with pretrained weights
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg.training import models
+from native_sg.common.object_names import Models
 
 model = models.get(Models.YOLO_NAS_M, pretrained_weights="coco")
 
@@ -126,6 +126,19 @@ ________________________________________________________________________________
 pip install super-gradients
 ```
 
+## Installation from Source
+
+__________________________________________________________________________________________________________
+
+ 
+```bash
+pip install -r requirements.txt -r requirements.dev.txt
+pip install -e .
+# no clue why but this is the only way the --no-cache-dir installation works
+pip uninstall -y pycocotools
+pip install --no-cache-dir pycocotools
+```
+
 ## What's New
 
 __________________________________________________________________________________________________________
@@ -139,7 +152,7 @@ ________________________________________________________________________________
 Version 3.1.3 (July 19, 2023)
 
 * [Pose Estimation Task Support](https://docs.deci.ai/super-gradients/documentation/source/PoseEstimation.html) - Check out fine-tuning [notebook example](https://colab.research.google.com/drive/1NMGzx8NdycIZqnRlZKJZrIOqyj0MFzJE#scrollTo=3UZJqTehg0On) 
-* Pre-trained modified [DEKR](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/coco2017_pose_dekr_w32_no_dc.yaml) model for pose estimation (TensorRT-compatible)
+* Pre-trained modified [DEKR](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/coco2017_pose_dekr_w32_no_dc.yaml) model for pose estimation (TensorRT-compatible)
 * Support for Python 3.10
 * Support for torch.compile
 * Other bugfixes & minor improvements. Check out [release notes](https://github.com/Deci-AI/super-gradients/releases/tag/3.1.3)
@@ -184,10 +197,10 @@ ________________________________________________________________________________
 ### Start Training with Just 1 Command Line
 The most simple and straightforward way to start training SOTA performance models with SuperGradients reproducible recipes. Just define your dataset path and where you want your checkpoints to be saved and you are good to go from your terminal!
 
-Just make sure that you [setup your dataset](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/Dataset_Setup_Instructions.md) according to the data dir specified in the recipe.
+Just make sure that you [setup your dataset](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/Dataset_Setup_Instructions.md) according to the data dir specified in the recipe.
 
 ```bash
-python -m super_gradients.train_from_recipe --config-name=imagenet_regnetY architecture=regnetY800 dataset_interface.data_dir=<YOUR_Imagenet_LOCAL_PATH> ckpt_root_dir=<CHEKPOINT_DIRECTORY>
+python -m native_sg.train_from_recipe --config-name=imagenet_regnetY architecture=regnetY800 dataset_interface.data_dir=<YOUR_Imagenet_LOCAL_PATH> ckpt_root_dir=<CHEKPOINT_DIRECTORY>
 ```
 ### Quickly Load Pre-Trained Weights for Your Desired Model with SOTA Performance
 Want to try our pre-trained models on your machine? Import SuperGradients, initialize your Trainer, and load your desired architecture and pre-trained weights from our [SOTA model zoo](http://bit.ly/41dkt89)
@@ -195,7 +208,7 @@ Want to try our pre-trained models on your machine? Import SuperGradients, initi
 ```python
 # The pretrained_weights argument will load a pre-trained architecture on the provided dataset
     
-import super_gradients
+import native_sg
 
 model = models.get("model-name", pretrained_weights="pretrained-model-name")
 
@@ -294,9 +307,9 @@ You can use SuperGradients to train your model with DDP in just a few lines.
 
 *main.py*
 ```python
-from super_gradients import init_trainer, Trainer
-from super_gradients.common import MultiGPUMode
-from super_gradients.training.utils.distributed_training_utils import setup_device
+from native_sg import init_trainer, Trainer
+from native_sg.common import MultiGPUMode
+from native_sg.training.utils.distributed_training_utils import setup_device
 
 # Initialize the environment
 init_trainer()
@@ -340,8 +353,8 @@ For example, consider the simple phase callback below, that uploads the first 3 
 the Tensorboard:
 
 ```python
-from super_gradients.training.utils.callbacks import PhaseCallback, PhaseContext, Phase
-from super_gradients.common.environment.env_helpers import multi_process_safe
+from native_sg.training.utils.callbacks import PhaseCallback, PhaseContext, Phase
+from native_sg.common.environment.env_helpers import multi_process_safe
 
 class Upload3TrainImagesCalbback(PhaseCallback):
     def __init__(
@@ -360,7 +373,7 @@ The @multi_process_safe decorator ensures that the callback will only be trigger
 be done by the SG trainer boolean attribute (which the phase context has access to), ddp_silent_mode, which is set to False
 iff the current process rank is zero (even after the process group has been killed):
 ```python
-from super_gradients.training.utils.callbacks import PhaseCallback, PhaseContext, Phase
+from native_sg.training.utils.callbacks import PhaseCallback, PhaseContext, Phase
 
 class Upload3TrainImagesCalbback(PhaseCallback):
     def __init__(
@@ -389,7 +402,7 @@ There is no clear rule, but a rule of thumb seems to be to [linearly increase th
 <summary><h3> Easily change architectures parameters </h3></summary>
 
 ```python
-from super_gradients.training import models
+from native_sg.training import models
 
 # instantiate default pretrained resnet18
 default_resnet18 = models.get(model_name="resnet18", num_classes=100, pretrained_weights="imagenet")
@@ -408,10 +421,10 @@ backbone_resnet18 = models.get(model_name="resnet18", arch_params={"backbone_mod
 <summary><h3> Using phase callbacks </h3></summary>  
   
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from super_gradients.training.utils.callbacks import Phase, LRSchedulerCallback
-from super_gradients.training.metrics.classification_metrics import Accuracy
+from native_sg.training.utils.callbacks import Phase, LRSchedulerCallback
+from native_sg.training.metrics.classification_metrics import Accuracy
 
 # define PyTorch train and validation loaders and optimizer
 
@@ -439,14 +452,14 @@ train_params = {"phase_callbacks": phase_callbacks}
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/11fW56pMpwOMHQSbQW6xxMRYvw1mEC-t-?usp=sharing) 
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 trainer = Trainer("experiment_name")
 model = ...
 
 training_params = { ...  # Your training params
-                   "sg_logger": "dagshub_sg_logger",  # DagsHub Logger, see class super_gradients.common.sg_loggers.dagshub_sg_logger.DagsHubSGLogger for details
-                   "sg_logger_params":  # Params that will be passes to __init__ of the logger super_gradients.common.sg_loggers.dagshub_sg_logger.DagsHubSGLogger
+                   "sg_logger": "dagshub_sg_logger",  # DagsHub Logger, see class native_sg.common.sg_loggers.dagshub_sg_logger.DagsHubSGLogger for details
+                   "sg_logger_params":  # Params that will be passes to __init__ of the logger native_sg.common.sg_loggers.dagshub_sg_logger.DagsHubSGLogger
                      {
                        "dagshub_repository": "<REPO_OWNER>/<REPO_NAME>", # Optional: Your DagsHub project name, consisting of the owner name, followed by '/', and the repo name. If this is left empty, you'll be prompted in your run to fill it in manually.
                        "log_mlflow_only": False, # Optional: Change to true to bypass logging to DVC, and log all artifacts only to MLflow  
@@ -465,7 +478,7 @@ training_params = { ...  # Your training params
   
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 # create a trainer object, look the declaration for more parameters
 trainer = Trainer("experiment_name")
@@ -490,7 +503,7 @@ train_params = { ... # training parameters
 
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 # create a trainer object, look the declaration for more parameters
 trainer = Trainer("experiment_name")
@@ -519,7 +532,7 @@ You can apply SuperGradients YOLO-NAS models directly to your FiftyOne dataset u
 import fiftyone as fo
 import fiftyone.zoo as foz
 
-from super_gradients.training import models
+from native_sg.training import models
 
 dataset = foz.load_zoo_dataset("quickstart", max_samples=25)
 dataset.select_fields().keep_fields()
@@ -606,45 +619,45 @@ All Computer Vision Models - Pretrained Checkpoints can be found in the [Model Z
 
 ### Image Classification
   
-- [DensNet (Densely Connected Convolutional Networks)](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/densenet.py) 
-- [DPN](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/dpn.py) 
-- [EfficientNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/efficientnet.py)
-- [LeNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/lenet.py) 
-- [MobileNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/mobilenet.py)
-- [MobileNet v2](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/mobilenetv2.py)  
-- [MobileNet v3](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/mobilenetv3.py) 
-- [PNASNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/pnasnet.py) 
-- [Pre-activation ResNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/preact_resnet.py)  
-- [RegNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/regnet.py)
-- [RepVGG](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/repvgg.py)  
-- [ResNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/resnet.py)
-- [ResNeXt](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/resnext.py) 
-- [SENet ](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/senet.py)
-- [ShuffleNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/shufflenet.py)
-- [ShuffleNet v2](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/shufflenetv2.py)
-- [VGG](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/classification_models/vgg.py)
+- [DensNet (Densely Connected Convolutional Networks)](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/classification_models/densenet.py) 
+- [DPN](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/classification_models/dpn.py) 
+- [EfficientNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/models/classification_models/efficientnet.py)
+- [LeNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/models/classification_models/lenet.py) 
+- [MobileNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/models/classification_models/mobilenet.py)
+- [MobileNet v2](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sgdels/classification_models/mobilenetv2.py)  
+- [MobileNet v3](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sgdels/classification_models/mobilenetv3.py) 
+- [PNASNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sglassification_models/pnasnet.py) 
+- [Pre-activation ResNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sgication_models/preact_resnet.py)  
+- [RegNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sgn_models/regnet.py)
+- [RepVGG](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sgls/repvgg.py)  
+- [ResNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sglassification_models/resnet.py)
+- [ResNeXt](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/classification_models/resnext.py) 
+- [SENet ](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/classification_models/senet.py)
+- [ShuffleNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/classification_models/shufflenet.py)
+- [ShuffleNet v2](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/classification_models/shufflenetv2.py)
+- [VGG](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/classification_models/vgg.py)
   
 ### Semantic Segmentation 
 
 - [PP-LiteSeg](https://bit.ly/3RrtMMO)
-- [DDRNet (Deep Dual-resolution Networks)](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/segmentation_models/ddrnet.py) 
-- [LadderNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/segmentation_models/laddernet.py)
-- [RegSeg](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/segmentation_models/regseg.py)
-- [ShelfNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/segmentation_models/shelfnet.py) 
-- [STDC](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/segmentation_models/stdc.py)
+- [DDRNet (Deep Dual-resolution Networks)](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/segmentation_models/ddrnet.py) 
+- [LadderNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/segmentation_models/laddernet.py)
+- [RegSeg](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/segmentation_models/regseg.py)
+- [ShelfNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/models/segmentation_models/shelfnet.py) 
+- [STDC](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sgdels/segmentation_models/stdc.py)
   
 
 ### Object Detection
   
-- [CSP DarkNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/detection_models/csp_darknet53.py)
-- [DarkNet-53](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/detection_models/darknet53.py)
-- [SSD (Single Shot Detector)](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/detection_models/ssd.py) 
-- [YOLOX](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/detection_models/yolox.py)
+- [CSP DarkNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/models/detection_models/csp_darknet53.py)
+- [DarkNet-53](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/models/detection_models/darknet53.py)
+- [SSD (Single Shot Detector)](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/models/detection_models/ssd.py) 
+- [YOLOX](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/models/detection_models/yolox.py)
 
 
 ### Pose Estimation
 
-- [DEKR-W32-NO-DC](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/pose_estimation_models/dekr_hrnet.py)
+- [DEKR-W32-NO-DC](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/models/pose_estimation_models/dekr_hrnet.py)
 
   
 
@@ -654,30 +667,30 @@ ________________________________________________________________________________
 __________________________________________________________________________________________________________
 
 Deci provides implementation for various datasets. If you need to download any of the dataset, you can 
-[find instructions](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/Dataset_Setup_Instructions.md). 
+[find instructions](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/datasets/Dataset_Setup_Instructions.md). 
 
 ### Image Classification
   
-- [Cifar10](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/classification_datasets/cifar.py) 
-- [ImageNet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/classification_datasets/imagenet_dataset.py) 
+- [Cifar10](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/datasets/classification_datasets/cifar.py) 
+- [ImageNet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/classification_datasets/imagenet_dataset.py) 
   
 ### Semantic Segmentation 
 
-- [Cityscapes](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/segmentation_datasets/cityscape_segmentation.py)
-- [Coco](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/segmentation_datasets/coco_segmentation.py) 
-- [PascalVOC 2012 / PascalAUG 2012](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/segmentation_datasets/pascal_voc_segmentation.py)
-- [SuperviselyPersons](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/segmentation_datasets/supervisely_persons_segmentation.py)
-- [Mapillary Vistas Dataset](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/segmentation_datasets/mapillary_dataset.py)
+- [Cityscapes](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/segmentation_datasets/cityscape_segmentation.py)
+- [Coco](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sging/datasets/segmentation_datasets/coco_segmentation.py) 
+- [PascalVOC 2012 / PascalAUG 2012](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/segmentation_datasets/pascal_voc_segmentation.py)
+- [SuperviselyPersons](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/segmentation_datasets/supervisely_persons_segmentation.py)
+- [Mapillary Vistas Dataset](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/segmentation_datasets/mapillary_dataset.py)
 
 
 ### Object Detection
   
-- [Coco](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/detection_datasets/coco_detection.py)
-- [PascalVOC 2007 & 2012](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/detection_datasets/pascal_voc_detection.py)
+- [Coco](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/detection_datasets/coco_detection.py)
+- [PascalVOC 2007 & 2012](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/detection_datasets/pascal_voc_detection.py)
   
 ### Pose Estimation
 
-- [COCO](https://github.com/Deci-AI/super-gradients/blob/cadcfdd64e7808d21cccddbfaeb26acb8267699b/src/super_gradients/recipes/dataset_params/coco_pose_estimation_dekr_dataset_params.yaml)
+- [COCO](https://github.com/Deci-AI/super-gradients/blob/cadcfdd64e7808d21cccddbfaeb26acb8267699b/src/native_sg/recipes/dataset_params/coco_pose_estimation_dekr_dataset_params.yaml)
 
 __________________________________________________________________________________________________________
 

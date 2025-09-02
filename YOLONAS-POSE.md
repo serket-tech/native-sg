@@ -35,9 +35,9 @@ That enables us to use transfer learning and fine-tune YOLO-NAS-POSE starting fr
 ### Extract predicted poses 
 
 ```python
-import super_gradients
+import native_sg
 
-yolo_nas = super_gradients.training.models.get("yolo_nas_pose_l", pretrained_weights="coco_pose").cuda()
+yolo_nas = native_sg.training.models.get("yolo_nas_pose_l", pretrained_weights="coco_pose").cuda()
 model_predictions  = yolo_nas.predict("https://deci-pretrained-models.s3.amazonaws.com/sample_images/beatles-abbeyroad.jpg", conf=0.5).show()
 
 prediction = model_predictions[0].prediction # One prediction per image - Here we work with 1 image, so we get the first.
@@ -55,10 +55,10 @@ We provide training recipies for training YOLO-NAS-POSE on COCO, CrowdPose and A
 
 #### COCO 2017
 
-* [super_gradients/recipes/coco2017_yolo_nas_pose_n.yaml](src/super_gradients/recipes/coco2017_yolo_nas_pose_n.yaml)
-* [super_gradients/recipes/coco2017_yolo_nas_pose_s.yaml](src/super_gradients/recipes/coco2017_yolo_nas_pose_s.yaml)
-* [super_gradients/recipes/coco2017_yolo_nas_pose_m.yaml](src/super_gradients/recipes/coco2017_yolo_nas_pose_m.yaml)
-* [super_gradients/recipes/coco2017_yolo_nas_pose_l.yaml](src/super_gradients/recipes/coco2017_yolo_nas_pose_l.yaml)
+* [native_sg/recipes/coco2017_yolo_nas_pose_n.yaml](src/native_sg/recipes/coco2017_yolo_nas_pose_n.yaml)
+* [native_sg/recipes/coco2017_yolo_nas_pose_s.yaml](src/native_sg/recipes/coco2017_yolo_nas_pose_s.yaml)
+* [native_sg/recipes/coco2017_yolo_nas_pose_m.yaml](src/native_sg/recipes/coco2017_yolo_nas_pose_m.yaml)
+* [native_sg/recipes/coco2017_yolo_nas_pose_l.yaml](src/native_sg/recipes/coco2017_yolo_nas_pose_l.yaml)
 
 
 ## Additional resources

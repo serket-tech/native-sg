@@ -20,8 +20,8 @@ body:
 
       ``` python
       # All necessary imports at the beginning
-      from super_gradients.common.object_names import Models
-      from super_gradients.training import models
+      from native_sg.common.object_names import Models
+      from native_sg.training import models
 
       # A succinct reproducing example trimmed down to the essential parts:
       model = models.get(Models.YOLO_NAS_L, pretrained_weights="coco")

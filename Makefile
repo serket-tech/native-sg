@@ -8,16 +8,16 @@ yolo_nas_integration_tests:
 	python -m unittest tests/integration_tests/yolo_nas_integration_test.py
 
 recipe_accuracy_tests:
-	python src/super_gradients/train_from_recipe.py --config-name=coco2017_pose_dekr_w32_no_dc experiment_name=shortened_coco2017_pose_dekr_w32_ap_test epochs=1 batch_size=4 val_batch_size=8 training_hyperparams.lr_warmup_steps=0 training_hyperparams.average_best_models=False training_hyperparams.max_train_batches=1000 training_hyperparams.max_valid_batches=100 multi_gpu=DDP num_gpus=4
-	python src/super_gradients/train_from_recipe.py --config-name=cifar10_resnet               experiment_name=shortened_cifar10_resnet_accuracy_test   epochs=100 training_hyperparams.average_best_models=False multi_gpu=DDP num_gpus=4
-	python src/super_gradients/train_from_recipe.py --config-name=coco2017_yolox               experiment_name=shortened_coco2017_yolox_n_map_test      epochs=10  architecture=yolox_n training_hyperparams.loss=YoloXFastDetectionLoss training_hyperparams.average_best_models=False multi_gpu=DDP num_gpus=4
-	python src/super_gradients/train_from_recipe.py --config-name=cityscapes_regseg48          experiment_name=shortened_cityscapes_regseg48_iou_test   epochs=10 training_hyperparams.average_best_models=False multi_gpu=DDP num_gpus=4
-	python src/super_gradients/examples/convert_recipe_example/convert_recipe_example.py --config-name=cifar10_conversion_params experiment_name=shortened_cifar10_resnet_accuracy_test
-	coverage run --source=super_gradients -m unittest tests/deci_core_recipe_test_suite_runner.py
+	python src/native_sg/train_from_recipe.py --config-name=coco2017_pose_dekr_w32_no_dc experiment_name=shortened_coco2017_pose_dekr_w32_ap_test epochs=1 batch_size=4 val_batch_size=8 training_hyperparams.lr_warmup_steps=0 training_hyperparams.average_best_models=False training_hyperparams.max_train_batches=1000 training_hyperparams.max_valid_batches=100 multi_gpu=DDP num_gpus=4
+	python src/native_sg/train_from_recipe.py --config-name=cifar10_resnet               experiment_name=shortened_cifar10_resnet_accuracy_test   epochs=100 training_hyperparams.average_best_models=False multi_gpu=DDP num_gpus=4
+	python src/native_sg/train_from_recipe.py --config-name=coco2017_yolox               experiment_name=shortened_coco2017_yolox_n_map_test      epochs=10  architecture=yolox_n training_hyperparams.loss=YoloXFastDetectionLoss training_hyperparams.average_best_models=False multi_gpu=DDP num_gpus=4
+	python src/native_sg/train_from_recipe.py --config-name=cityscapes_regseg48          experiment_name=shortened_cityscapes_regseg48_iou_test   epochs=10 training_hyperparams.average_best_models=False multi_gpu=DDP num_gpus=4
+	python src/native_sg/examples/convert_recipe_example/convert_recipe_example.py --config-name=cifar10_conversion_params experiment_name=shortened_cifar10_resnet_accuracy_test
+	coverage run --source=native_sg -m unittest tests/deci_core_recipe_test_suite_runner.py
 
 
 sweeper_test:
-	python -m super_gradients.train_from_recipe -m --config-name=cifar10_resnet \
+	python -m native_sg.train_from_recipe -m --config-name=cifar10_resnet \
 	  ckpt_root_dir=$$PWD \
 	  experiment_name=sweep_cifar10 \
 	  training_hyperparams.max_epochs=1 \
@@ -31,8 +31,8 @@ sweeper_test:
 	fi
 
 # Here you define a list of notebooks we want to execute and convert to markdown files
-NOTEBOOKS_TO_CHECK := src/super_gradients/examples/model_export/models_export.ipynb
-NOTEBOOKS_TO_CHECK += src/super_gradients/examples/model_export/models_export_pose.ipynb
+NOTEBOOKS_TO_CHECK := src/native_sg/examples/model_export/models_export.ipynb
+NOTEBOOKS_TO_CHECK += src/native_sg/examples/model_export/models_export_pose.ipynb
 NOTEBOOKS_TO_CHECK += notebooks/what_are_recipes_and_how_to_use.ipynb
 NOTEBOOKS_TO_CHECK += notebooks/transfer_learning_classification.ipynb
 NOTEBOOKS_TO_CHECK += notebooks/how_to_use_knowledge_distillation_for_classification.ipynb
