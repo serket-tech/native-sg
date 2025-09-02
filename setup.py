@@ -11,7 +11,7 @@ README_LOCATION = "README.md"
 REQ_LOCATION = "requirements.txt"
 REQ_PRO_LOCATION = "requirements.pro.txt"
 VERSION_FILE = "version.txt"
-INIT_FILE = "src/super_gradients/__init__.py"
+INIT_FILE = "src/native_sg/__init__.py"
 
 
 def readme():
@@ -45,9 +45,9 @@ def get_version():
 
 
 setup(
-    name="super-gradients",
+    name="native-sg",
     version=get_version(),
-    description="SuperGradients",
+    description="NativeSG",
     author="Deci AI",
     author_email="rnd@deci.ai",
     url="https://docs.deci.ai/super-gradients/documentation/source/welcome.html",
@@ -56,10 +56,10 @@ setup(
     packages=find_packages(where="./src"),
     package_dir={"": "src"},
     package_data={
-        "super_gradients.recipes": ["*.yaml", "**/*.yaml"],
-        "super_gradients.common": ["auto_logging/auto_logging_conf.json"],
-        "super_gradients.examples": ["*.ipynb", "**/*.ipynb"],
-        "super_gradients": ["requirements.txt", "requirements.pro.txt"],
+        "native_sg.recipes": ["*.yaml", "**/*.yaml"],
+        "native_sg.common": ["auto_logging/auto_logging_conf.json"],
+        "native_sg.examples": ["*.ipynb", "**/*.ipynb"],
+        "native_sg": ["requirements.txt", "requirements.pro.txt"],
     },
     long_description=readme(),
     long_description_content_type="text/markdown",
