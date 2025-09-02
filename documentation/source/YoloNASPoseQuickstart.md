@@ -15,8 +15,8 @@ In this tutorial, we will go over the basic functionality of the YOLO-NAS-POSE m
 ## Instantiate a YOLO-NAS-POSE Model
 
 ```python
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg.training import models
+from native_sg.common.object_names import Models
 
 yolo_nas_pose = models.get(Models.YOLO_NAS_POSE_L, pretrained_weights="coco_pose")
 ```

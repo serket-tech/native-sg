@@ -30,7 +30,7 @@ A new export API is introduced in SG 3.2.0. It is aimed to simplify the export p
 
 
 ```python
-!pip install -qq super_gradients==3.4.0
+!pip install -qq native_sg==3.4.0
 ```
 
 ### Minimalistic export example
@@ -40,8 +40,8 @@ We will use YoloNAS-S model in this example. All models that suports new export 
 
 
 ```python
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
+from native_sg.common.object_names import Models
+from native_sg.training import models
 
 model = models.get(Models.YOLO_NAS_S, pretrained_weights="coco")
 
@@ -115,7 +115,7 @@ That's it. You can now use the exported model with any ONNX-compatible runtime o
 ```python
 import cv2
 import numpy as np
-from super_gradients.training.utils.media.image import load_image
+from native_sg.training.utils.media.image import load_image
 import onnxruntime
 
 image = load_image("https://deci-pretrained-models.s3.amazonaws.com/sample_images/beatles-abbeyroad.jpg")
@@ -253,8 +253,8 @@ You can use it as a starting point for your own visualization code.
 
 
 ```python
-from super_gradients.training.datasets.datasets_conf import COCO_DETECTION_CLASSES_LIST
-from super_gradients.training.utils.detection_utils import DetectionVisualization
+from native_sg.training.datasets.datasets_conf import COCO_DETECTION_CLASSES_LIST
+from native_sg.training.utils.detection_utils import DetectionVisualization
 import matplotlib.pyplot as plt
 
 
@@ -311,7 +311,7 @@ You can explicitly specify output format of the predictions by setting the `outp
 
 
 ```python
-from super_gradients.conversion import DetectionOutputFormatMode
+from native_sg.conversion import DetectionOutputFormatMode
 
 export_result = model.export("yolo_nas_s.onnx", output_predictions_format=DetectionOutputFormatMode.FLAT_FORMAT)
 export_result
@@ -468,7 +468,7 @@ Let's see how it works:
 
 ```python
 
-from super_gradients.conversion.conversion_enums import ExportQuantizationMode
+from native_sg.conversion.conversion_enums import ExportQuantizationMode
 
 export_result = model.export(
     "yolo_nas_s_int8.onnx",
@@ -505,7 +505,7 @@ In the example below we use a dummy data-loader for sake of showing how to use t
 ```python
 import torch
 from torch.utils.data import DataLoader
-from super_gradients.conversion import ExportQuantizationMode
+from native_sg.conversion import ExportQuantizationMode
 
 # THIS IS ONLY AN EXAMPLE. YOU SHOULD USE YOUR OWN DATA-LOADER HERE
 dummy_calibration_dataset = [torch.randn((3, 640, 640), dtype=torch.float32) for _ in range(32)]
@@ -560,13 +560,13 @@ Therefore, ONNX Runtime backend is recommended for most use-cases and is used by
 You can specify the desired execution backend by setting the `execution_backend` argument of `export()` method:
 
 ```python
-from super_gradients.conversion import ExportTargetBackend
+from native_sg.conversion import ExportTargetBackend
 
 model.export(..., engine=ExportTargetBackend.ONNXRUNTIME)
 ```
 
 ```python
-from super_gradients.conversion import ExportTargetBackend
+from native_sg.conversion import ExportTargetBackend
 
 model.export(..., engine=ExportTargetBackend.TENSORRT)
 ```

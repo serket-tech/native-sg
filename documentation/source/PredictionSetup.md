@@ -39,13 +39,13 @@ Processing steps are necessary for making predictions.
 - **Image preprocessing** prepares the input data for the model by applying various transformations, such as resizing, normalization, and channel reordering. These transformations ensure the input data is compatible with the model.
 - **Image postprocessing** processes the model's output and converts it into a human-readable and interpretable format. This step may include tasks like converting class probabilities into class labels, applying non-maximum suppression to eliminate duplicate detections, and rescaling results to the original image size.
 
-The `super_gradients.training.processing` module contains a wide range of `Processing` transformations responsible for both image preprocessing and postprocessing. 
+The `native_sg.training.processing` module contains a wide range of `Processing` transformations responsible for both image preprocessing and postprocessing. 
 
 For example, `DetectionCenterPadding` applies center padding to the image while also handling the reverse transformation to remove padding from the prediction.
 
 Multiple processing transformations can be combined using `ComposeProcessing`:
 ```python
-from super_gradients.training.processing import DetectionCenterPadding, StandardizeImage, NormalizeImage, ImagePermute, ComposeProcessing, DetectionLongestMaxSizeRescale
+from native_sg.training.processing import DetectionCenterPadding, StandardizeImage, NormalizeImage, ImagePermute, ComposeProcessing, DetectionLongestMaxSizeRescale
 
 image_processor = ComposeProcessing(
     [
@@ -67,8 +67,8 @@ Default `iou` and `conf` values can be set, which will be used when calling `mod
 ## Saving your processing parameters to your model
 After defining all parameters, call `model.set_dataset_processing_params()` and then use `model.predict()`.
 ```python
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
+from native_sg.common.object_names import Models
+from native_sg.training import models
 
 model = models.get(Models.YOLO_NAS_L, checkpoint_path="/path/to/checkpoint")
 

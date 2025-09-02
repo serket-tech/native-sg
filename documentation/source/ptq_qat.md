@@ -45,10 +45,10 @@ pip install pytorch-quantization --extra-index-url https://pypi.ngc.nvidia.com
 With SuperGradients, performing hybrid quantization takes just two lines of code, except of the model definition:
 
 ```python
-import super_gradients.training.models
-from super_gradients.training.utils.quantization.selective_quantization_utils import SelectiveQuantizer
+import native_sg.training.models
+from native_sg.training.utils.quantization.selective_quantization_utils import SelectiveQuantizer
 
-model = super_gradients.training.models.get(model_name="resnet50", pretrained_weights="imagenet")
+model = native_sg.training.models.get(model_name="resnet50", pretrained_weights="imagenet")
 
 q_util = SelectiveQuantizer(
     default_quant_modules_calibrator_weights="max",
@@ -81,8 +81,8 @@ q_util.register_skip_quantization(layer_names={nn.Linear})
 You can replace modules with another type, e.g. replace `Bottleneck` with SuperGradients' `QuantBottleneck`:
 
 ```python
-from super_gradients.training.models import Bottleneck
-from super_gradients.modules.quantization import QuantBottleneck
+from native_sg.training.models import Bottleneck
+from native_sg.modules.quantization import QuantBottleneck
 
 q_util.register_quantization_mapping(layer_names={Bottleneck},
                                      quantized_target_class=QuantBottleneck,
@@ -93,8 +93,8 @@ q_util.register_quantization_mapping(layer_names={Bottleneck},
 Additionally, if you are designing your own custom block, you can register it, so it will be automatically used for replacement:
 
 ```python
-from super_gradients.training.utils.quantization.selective_quantization_utils import register_quantized_module
-from super_gradients.training.utils.quantization.selective_quantization_utils import QuantizedMetadata
+from native_sg.training.utils.quantization.selective_quantization_utils import register_quantized_module
+from native_sg.training.utils.quantization.selective_quantization_utils import QuantizedMetadata
 
 @register_quantized_module(float_source=MyNonQuantBlock,
                            action=QuantizedMetadata.ReplacementAction.REPLACE,
@@ -138,7 +138,7 @@ Use it to customize your flow. It is recommended to leave default values at leas
 To improve performance of quantized models, quantization of residuals and skip connections is performed. SuperGradients API allows you to do it. In your source code, add one of the following, depending on the type of the skip connection: 
 
 ```python
-from super_gradients.modules.skip_connections import (
+from native_sg.modules.skip_connections import (
     Residual, 
     SkipConnection, 
     CrossModelSkipConnection, 
@@ -178,7 +178,7 @@ Its quantizeable modification will look like this:
 ```python
 from torch import nn
 import torch.nn.functional as F
-from super_gradients.modules.skip_connections import Residual
+from native_sg.modules.skip_connections import Residual
 
 class ResNetLikeBlock(nn.Module):
     def __init__(self, num_channels):
@@ -204,7 +204,7 @@ class ResNetLikeBlock(nn.Module):
 And after quantization, performing calibration take another two lines of code:
 
 ```python
-from super_gradients.training.utils.quantization.calibrator import QuantizationCalibrator
+from native_sg.training.utils.quantization.calibrator import QuantizationCalibrator
 model = ... # your quantized model
 calib_dataloader = ... # your standard pytorch dataloader
 
@@ -220,7 +220,7 @@ calibrator.calibrate_model(
 
 Your model is now quantized and calibrated!
 
-Refer to `super_gradients/src/super_gradiens/examples/quantization` for more source examples that are ready-to-run!
+Refer to `native_sg/src/super_gradiens/examples/quantization` for more source examples that are ready-to-run!
 
 
 ## Quantization-Aware training
@@ -230,7 +230,7 @@ Quantization-aware training (QAT) is a method that takes into account the impact
 With SuperGradients, after you have done PTQ, you can finetune your quantized model with standard training pipeline:
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 model = ...  # your quantized and calibrated model
 train_dataloader = ... # your standard pytorch dataloader
@@ -259,7 +259,7 @@ If you prefer more of a DIY approach, here is the code sample:
 
 ```python
 import torch
-from super_gradients.training.utils.quantization.export import export_quantized_module_to_onnx
+from native_sg.training.utils.quantization.export import export_quantized_module_to_onnx
 
 onnx_filename = f"qat_model_1x3x224x224.onnx"
 
@@ -282,11 +282,11 @@ trtexec --int8 --fp16 --onnx=qat_model_1x3x224x224.onnx --saveEngine=qat_model_1
 
 The SuperGradient library provides a simple and easy-to-use API for both post-training quantization and quantization-aware training. By using the library's recipes, you can quickly and easily quantize models without having to write custom code.
 
-**Use `src/super_gradients/examples/qat_from_recipe_example/qat_from_recipe.py` to launch your QAT recipes, using `train_from_recipe.py` will lead you to wrong results!**
+**Use `src/native_sg/examples/qat_from_recipe_example/qat_from_recipe.py` to launch your QAT recipes, using `train_from_recipe.py` will lead you to wrong results!**
 
 To get a basic understanding of recipes, refer to `configuration_files.md` for more details. 
 
-You can modify an existing recipe to suit PTQ and QAT by adding `quantization_params` to it. You can find these `default_quantization_params` in  `src/super_gradients/recipes/quantization_params/default_quantization_params.yaml`
+You can modify an existing recipe to suit PTQ and QAT by adding `quantization_params` to it. You can find these `default_quantization_params` in  `src/native_sg/recipes/quantization_params/default_quantization_params.yaml`
 
 Also, you can add a sepatare calibration dataloader to your recipe , otherwise, train dataloader without augmenttations will be used for calibration:
 

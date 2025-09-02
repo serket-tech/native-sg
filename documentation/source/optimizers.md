@@ -14,7 +14,7 @@ Optimizers should be part of the training parameters.
 
 
 ```py
-from super_gradients import Trainer
+from native_sg import Trainer
 
 trainer = Trainer(...)
 
@@ -29,7 +29,7 @@ The `optimizer_params` is a dictionary of all the optimizer parameters you want 
 
 
 ## Set the optimizer in the recipes
-When working with recipes, you need to modify the [recipes/training_hyperparams](https://github.com/Deci-AI/super-gradients/tree/master/src/super_gradients/recipes/training_hyperparams) as below:
+When working with recipes, you need to modify the [recipes/training_hyperparams](https://github.com/Deci-AI/super-gradients/tree/master/src/native_sg/recipes/training_hyperparams) as below:
 
 ```yaml
 # recipes/training_hyperparams/my_training_recipe.yaml
@@ -46,7 +46,7 @@ optimizer_params:
 If your own optimizer is not natively supported by SuperGradients, you can always register it!
 
 ```py
-from super_gradients.common.registry.registry import register_optimizer
+from native_sg.common.registry.registry import register_optimizer
 
 @register_optimizer()
 class CustomOptimizer:
@@ -91,7 +91,7 @@ You first need to implement the `initialize_param_groups` and `update_param_grou
 
 ```py
 import torch
-from super_gradients.common.registry.registry import register_model
+from native_sg.common.registry.registry import register_model
 
 
 @register_model() # Required if working with recipe  

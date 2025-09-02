@@ -22,19 +22,19 @@ you won't have to worry about working with hydra to instantiate your objects and
 
 **How to get started?**
 
-1. We recommend that you would go through the [pre-defined recipes](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/)
+1. We recommend that you would go through the [pre-defined recipes](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/)
 and chose the one which seems most similar to your use case. Make sure it covers the same task as you.
 2. Copy it to a folder that will be exclusively meant for recipes, inside your project.
 3. Override the required parameters to fit your needs. Make sure to keep the same structure. Think about [registering custom objects](Recipes_Factories.md) if you need. 
-4. Copy [train_from_recipe script](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/train_from_recipe.py) to your project (see below), but think to override `<config-path>` with the path to your recipe folder.
+4. Copy [train_from_recipe script](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/train_from_recipe.py) to your project (see below), but think to override `<config-path>` with the path to your recipe folder.
  
 
 ```python
 # The code below is the same as the `train_from_recipe.py` script
-# See: https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/train_from_recipe.py
+# See: https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/train_from_recipe.py
 import hydra
 from omegaconf import DictConfig
-from super_gradients import Trainer, init_trainer
+from native_sg import Trainer, init_trainer
 
 @hydra.main(config_path="<config-path>", version_base="1.2") # TODO: overwrite `<config-path>`
 def _main(cfg: DictConfig) -> None:
@@ -61,7 +61,7 @@ SuperGradients as it would allow you to build on top of pre-defined recipes.
 **What are the recipe format constraints here ?**
 
 With this approach, you will still need to follow certain conventions
-- `training_hyperparams` should include the same required fields as with the previous approach. You can find the list [here](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/training_hyperparams/default_train_params.yaml).
+- `training_hyperparams` should include the same required fields as with the previous approach. You can find the list [here](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/training_hyperparams/default_train_params.yaml).
 - The config passed to `dataloaders.get` should still be compatible to dataset/dataloader you want to load. 
 
 Basically, the format constraints that you will face with this approach are the same as these that you would face when working exclusively with python.
@@ -77,8 +77,8 @@ Here is an example of how such a script could look like:
 import hydra
 from omegaconf import DictConfig
 
-from super_gradients import Trainer, init_trainer, setup_device
-from super_gradients.training import dataloaders, models
+from native_sg import Trainer, init_trainer, setup_device
+from native_sg.training import dataloaders, models
 
 @hydra.main(config_path="<config-path>", version_base="1.2") # TODO: overwrite `<config-path>`
 def _main(cfg: DictConfig) -> None:
@@ -146,7 +146,7 @@ In our case, this comes handy when you want to build on top of recipes that were
 
 #### Example
 
-Using `default_train_params` defined in [super_gradients/recipes/training_hyperparams/default_train_params.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/training_hyperparams/default_train_params.yaml)
+Using `default_train_params` defined in [native_sg/recipes/training_hyperparams/default_train_params.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/training_hyperparams/default_train_params.yaml)
 
 ```yaml
 defaults:
@@ -154,7 +154,7 @@ defaults:
 
 hydra:
   searchpath:
-    - pkg://super_gradients.recipes
+    - pkg://native_sg.recipes
     
 ... # Continue with your recipe
 ```

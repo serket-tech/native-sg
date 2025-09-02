@@ -4,63 +4,63 @@ Common package
 .. autosummary::
    :toctree: generated
 
-.. automodule:: super_gradients.common
+.. automodule:: native_sg.common
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: super_gradients.common.auto_logging
+.. automodule:: native_sg.common.auto_logging
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: super_gradients.common.abstraction
+.. automodule:: native_sg.common.abstraction
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: super_gradients.common.data_connection
+.. automodule:: native_sg.common.data_connection
    :members:
    :undoc-members:
    :show-inheritance:
 
 
-.. automodule:: super_gradients.common.data_interface
+.. automodule:: native_sg.common.data_interface
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: super_gradients.common.data_types
+.. automodule:: native_sg.common.data_types
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: super_gradients.common.decorators
+.. automodule:: native_sg.common.decorators
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: super_gradients.common.environment
+.. automodule:: native_sg.common.environment
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: super_gradients.common.factories
+.. automodule:: native_sg.common.factories
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: super_gradients.common.plugins
+.. automodule:: native_sg.common.plugins
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: super_gradients.common.registry
+.. automodule:: native_sg.common.registry
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: super_gradients.common.sg_loggers
+.. automodule:: native_sg.common.sg_loggers
    :members:
    :undoc-members:
    :show-inheritance:

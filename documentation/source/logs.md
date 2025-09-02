@@ -35,7 +35,7 @@ local file, providing you the convenience to review console outputs of any exper
 
 **Where is it saved?**
 - Upon importing SuperGradients, console outputs and logs will be stored in `~/sg_logs/console.log`.
-- When instantiating the `super_gradients.Trainer`, all console outputs and logs will be redirected to the experiment folder `<ckpt_root_dir>/<experiment_name>/<run_dir>/console_<date>.txt`.
+- When instantiating the `native_sg.Trainer`, all console outputs and logs will be redirected to the experiment folder `<ckpt_root_dir>/<experiment_name>/<run_dir>/console_<date>.txt`.
 
 **How to set log level?** You can filter the logs displayed on the console by setting the environment variable `CONSOLE_LOG_LEVEL=<LOG-LEVEL> # DEBUG/INFO/WARNING/ERROR`
 

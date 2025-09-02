@@ -13,22 +13,22 @@ library combined with `.yaml` recipes to allow you to easily customize the param
 
 The basic syntax to train a model from a recipe is a follows
 ```bash
-python -m super_gradients.train_from_recipe --config-name=<config-name>
+python -m native_sg.train_from_recipe --config-name=<config-name>
 ```
 With `<config-name>` corresponding to the name of the recipe.
 
-You can find all of the pre-defined recipes in [super_gradients/recipes](https://github.com/Deci-AI/super-gradients/tree/master/src/super_gradients/recipes).
+You can find all of the pre-defined recipes in [native_sg/recipes](https://github.com/Deci-AI/super-gradients/tree/master/src/native_sg/recipes).
 Recipes usually contain information about their performance, as well as the command to execute them in the header.
 
 ### Examples
-- Training of Resnet18 on Cifar10: [super_gradients/recipes/cifar10_resnet.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/cifar10_resnet.yaml) 
+- Training of Resnet18 on Cifar10: [native_sg/recipes/cifar10_resnet.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/cifar10_resnet.yaml) 
 ```bash
-python -m super_gradients.train_from_recipe --config-name=cifar10_resnet
+python -m native_sg.train_from_recipe --config-name=cifar10_resnet
 ```
 
-- Training of YoloX Small on COCO 2017 (8 GPUs): [super_gradients/recipes/coco2017_yolox](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/coco2017_yolox.yaml) 
+- Training of YoloX Small on COCO 2017 (8 GPUs): [native_sg/recipes/coco2017_yolox](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/coco2017_yolox.yaml) 
 ```bash
-python -m super_gradients.train_from_recipe --config-name=coco2017_yolox architecture=yolox_s dataset_params.data_dir=/home/coco2017
+python -m native_sg.train_from_recipe --config-name=coco2017_yolox architecture=yolox_s dataset_params.data_dir=/home/coco2017
 ```
 
 
@@ -46,7 +46,7 @@ This approach is ideal when want to quickly experiment changing a couple of para
 Here's the general syntax:
 
 ```bash
-python -m super_gradients.train_from_recipe --config-name=<config-name> param1=<val1> path.to.param2=<val2> 
+python -m native_sg.train_from_recipe --config-name=<config-name> param1=<val1> path.to.param2=<val2> 
 ```
 
 - **Parameters** - Listed without the `--` prefix.
@@ -70,12 +70,12 @@ dataset_params:
 
 Changing Epochs or Learning Rate
 ```bash
-python -m super_gradients.train_from_recipe --config-name=<config-name> training_hyperparams.max_epochs=250 training_hyperparams.initial_lr=0.03
+python -m native_sg.train_from_recipe --config-name=<config-name> training_hyperparams.max_epochs=250 training_hyperparams.initial_lr=0.03
 ```
 
 Changing the Dataset Path
 ```bash
-python -m super_gradients.train_from_recipe --config-name=<config-name> dataset_params.data_dir=<path-to-dataset>
+python -m native_sg.train_from_recipe --config-name=<config-name> dataset_params.data_dir=<path-to-dataset>
 ```
 
 > Note: Parameter names may differ between recipes, so please check the specific recipe to ensure you're using the correct names.
@@ -139,7 +139,7 @@ For **external** datasets we suggest read the [Using Custom Datasets](https://do
 If `architecture`defines the specific model architecture, then `arch_params` defines the parameters for that architecture.
 - **`checkpoint_params`** - This section contains  the parameters related to checkpoints. 
 It contains settings for loading checkpoint weights for transfer learning, controlling use of pretrained weights and more.
-See [default_checkpoint_params](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/checkpoint_params/default_checkpoint_params.yaml) for an example of what parameters are supported.
+See [default_checkpoint_params](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/checkpoint_params/default_checkpoint_params.yaml) for an example of what parameters are supported.
 - **`variable_setup`**: This section is required to enable use of shortcuts for most commonly used overrides which is covered in the [next](#Command-Line Override Shortcuts) section. Please note it `variable_setup` **must be the last item** in the defaults list.
 
 ### Understanding Override Order

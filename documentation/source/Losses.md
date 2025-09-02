@@ -40,7 +40,7 @@ trainer.train(model=model, training_params=train_params, train_loader=train_data
 Note that object names in SG are not case-sensitive nor symbol-sensitive, so `"CrossEntropy` could have been passed as well.
 Since most IDEs support auto-completion, for your convenience, you can use our object_names module:
 ```python
-from super_gradients.common.object_names import Losses
+from native_sg.common.object_names import Losses
 ```
 Then simply instead of "CrossEntropyLoss", use 
 ```python
@@ -190,7 +190,7 @@ detach loss_items from their computational graph for memory efficiency.
 When using configuration files, for example, training using train_from_recipe (or similar, when the underlying train method that is being called is Trainer.train_from_config(...)),  In your ``my_loss.py``, register your loss class by decorating the class with `register_loss`:
 ```python
 import torch.nn
-from super_gradients.common.registry import register_loss
+from native_sg.common.registry import register_loss
  
 @register_loss("my_loss")
 class MyLoss(torch.nn.Module):
@@ -214,10 +214,10 @@ from omegaconf import DictConfig
 import hydra
 import pkg_resources
 from my_loss import MyLoss
-from super_gradients import Trainer, init_trainer
+from native_sg import Trainer, init_trainer
 
 
-@hydra.main(config_path=pkg_resources.resource_filename("super_gradients.recipes", ""), version_base="1.2")
+@hydra.main(config_path=pkg_resources.resource_filename("native_sg.recipes", ""), version_base="1.2")
 def main(cfg: DictConfig) -> None:
    Trainer.train_from_config(cfg)
 

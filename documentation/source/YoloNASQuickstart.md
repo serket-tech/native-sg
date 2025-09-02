@@ -14,8 +14,8 @@ In this tutorial, we will go over the basic functionality of the YOLO-NAS model.
 ## Instantiate a YOLO-NAS Model
 
 ```python
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg.training import models
+from native_sg.common.object_names import Models
 
 net = models.get(Models.YOLO_NAS_S, pretrained_weights="coco")
 ```
@@ -64,7 +64,7 @@ We will use the ```roboflow_yolo_nas_s```configuration to train the small varian
 
 To launch training on one of the RF100 datasets, we pass it through the dataset_name argument:
 ```
-python -m super_gradients.train_from_recipe --config-name=roboflow_yolo_nas_s  dataset_name=<DATASET_NAME> dataset_params.data_dir=<PATH_TO_RF100_ROOT> ckpt_root_dir=<YOUR_CHECKPOINTS_ROOT_DIRECTORY>
+python -m native_sg.train_from_recipe --config-name=roboflow_yolo_nas_s  dataset_name=<DATASET_NAME> dataset_params.data_dir=<PATH_TO_RF100_ROOT> ckpt_root_dir=<YOUR_CHECKPOINTS_ROOT_DIRECTORY>
 ```
 
 Replace <DATASET_NAME> with any of the [RF100 datasets](https://github.com/roboflow/roboflow-100-benchmark/blob/8587f81ef282d529fe5707c0eede74fe91d472d0/metadata/datasets_stats.csv) that you wish to train on.

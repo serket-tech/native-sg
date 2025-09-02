@@ -11,15 +11,15 @@ Check out our extended tutorials on the various features you can find in SuperGr
 0. Imports:
 
 ```python
-from super_gradients.common.object_names import Models
-from super_gradients.training import Trainer, models
-from super_gradients.training.metrics.classification_metrics import Accuracy, Top5
-from super_gradients.training.dataloaders.dataloaders import cifar10_train, cifar10_val
-from super_gradients.training.utils.distributed_training_utils import setup_device
+from native_sg.common.object_names import Models
+from native_sg.training import Trainer, models
+from native_sg.training.metrics.classification_metrics import Accuracy, Top5
+from native_sg.training.dataloaders.dataloaders import cifar10_train, cifar10_val
+from native_sg.training.utils.distributed_training_utils import setup_device
 ```
 
 
-1. Call `init_trainer()` to initialize the super_gradients environment. This should be the first thing to be called by any code running super_gradients:
+1. Call `init_trainer()` to initialize the native_sg environment. This should be the first thing to be called by any code running native_sg:
 
 ```python
 init_trainer()
@@ -55,7 +55,7 @@ trainer = Trainer(experiment_name="my_cifar_experiment", ckpt_root_dir="/path/to
 model = models.get(Models.RESNET18, num_classes=10)
 ```
 
-5. Define <a href="Metrics.md">metrics</a> and other <a href="https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/training_hyperparams/default_train_params.yaml">training parameters</a>:
+5. Define <a href="Metrics.md">metrics</a> and other <a href="https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/training_hyperparams/default_train_params.yaml">training parameters</a>:
 
 ```python
 training_params = {
@@ -90,14 +90,14 @@ trainer.train(model=model, training_params=training_params, train_loader=train_l
 0. Imports:
 
 ```python
-from super_gradients.common.object_names import Models
-from super_gradients.training import Trainer, models
-from super_gradients.training.metrics.classification_metrics import Accuracy, Top5
-from super_gradients.training.dataloaders.dataloaders import cifar10_val
-from super_gradients.training.utils.distributed_training_utils import setup_device
+from native_sg.common.object_names import Models
+from native_sg.training import Trainer, models
+from native_sg.training.metrics.classification_metrics import Accuracy, Top5
+from native_sg.training.dataloaders.dataloaders import cifar10_val
+from native_sg.training.utils.distributed_training_utils import setup_device
 ```
 
-1. Call `init_trainer()` to initialize the super_gradients environment. This should be the first thing to be called by any code running super_gradients:
+1. Call `init_trainer()` to initialize the native_sg environment. This should be the first thing to be called by any code running native_sg:
 
 ```python
 init_trainer()
@@ -160,14 +160,14 @@ print(f"Test results: Accuracy: {test_results['Accuracy']}, Top5: {test_results[
 0. Imports:
 
 ```python
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
-from super_gradients.training.metrics.classification_metrics import Accuracy, Top5
-from super_gradients.training.dataloaders.dataloaders import cifar10_train, cifar10_val
-from super_gradients import Trainer, init_trainer
+from native_sg.common.object_names import Models
+from native_sg.training import models
+from native_sg.training.metrics.classification_metrics import Accuracy, Top5
+from native_sg.training.dataloaders.dataloaders import cifar10_train, cifar10_val
+from native_sg import Trainer, init_trainer
 ```
 
-1. Call `init_trainer()` to initialize the super_gradients environment. This should be the first thing to be called by any code running super_gradients:
+1. Call `init_trainer()` to initialize the native_sg environment. This should be the first thing to be called by any code running native_sg:
 
 ```python
 init_trainer()
@@ -216,14 +216,14 @@ Finetune or test your pre-trained model as done in the previous sections.
 from PIL import Image
 import numpy as np
 import requests
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg.training import models
+from native_sg.common.object_names import Models
 import torchvision.transforms as T
 import torch
-from super_gradients.training.utils.distributed_training_utils import setup_device
+from native_sg.training.utils.distributed_training_utils import setup_device
 ```
 
-1. Call `init_trainer()` to initialize the super_gradients environment. This should be the first thing to be called by any code running super_gradients:
+1. Call `init_trainer()` to initialize the native_sg environment. This should be the first thing to be called by any code running native_sg:
 
 ```python
 init_trainer()
@@ -293,10 +293,10 @@ plt.imshow(image)
     export PYTHONPATH=$PYTHONPATH:<YOUR-LOCAL-PATH>/super-gradients/
     ```
 
-1. Launch one of SG's <a href="https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes">training recipes</a>. For example, Resnet18 on Cifar10:
+1. Launch one of SG's <a href="https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes">training recipes</a>. For example, Resnet18 on Cifar10:
 
 ```shell
-python -m super_gradients.train_from_recipe --config-name=cifar10_resnet experiment_name=my_resnet18_cifar10_experiment
+python -m native_sg.train_from_recipe --config-name=cifar10_resnet experiment_name=my_resnet18_cifar10_experiment
 ```
 
 Learn more in detail on how to launch, customize, and evaluate training recipes from our <a href="configuration_files.md">training with configuration files tutorial</a>.

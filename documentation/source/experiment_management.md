@@ -57,7 +57,7 @@
 #### A. Get the absolute path of a run directory
 Manually navigate using `<ckpt_root_dir>/<experiment_name>/<run_dir>` or utilize the following programmatic approach:
 ```python
-from super_gradients.common.environment.checkpoints_dir_utils import get_checkpoints_dir_path
+from native_sg.common.environment.checkpoints_dir_utils import get_checkpoints_dir_path
 
 checkpoints_dir_path = get_checkpoints_dir_path(experiment_name="<experiment_name>", run_id="<run_id>")
 ```
@@ -65,7 +65,7 @@ checkpoints_dir_path = get_checkpoints_dir_path(experiment_name="<experiment_nam
 #### B. Get the latest run id
 
 ```python
-from super_gradients.common.environment.checkpoints_dir_utils import get_latest_run_id
+from native_sg.common.environment.checkpoints_dir_utils import get_latest_run_id
 
 run_id = get_latest_run_id(experiment_name="<experiment_name>")
 ```

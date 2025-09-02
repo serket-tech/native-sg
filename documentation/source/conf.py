@@ -14,11 +14,11 @@ import os
 import sys
 
 # Imports for auto documentation
-import super_gradients
-import super_gradients.common as common
-import super_gradients.training as training
+import native_sg
+import native_sg.common as common
+import native_sg.training as training
 
-__all__ = ["super_gradients", "common", "training"]
+__all__ = ["native_sg", "common", "training"]
 
 sys.path.insert(0, os.path.abspath("../../src"))
 

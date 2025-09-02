@@ -27,7 +27,7 @@ To initialize it, you need:
 - **Checkpoint Root Directory (`ckpt_root_dir`):** The directory where checkpoints, logs, and tensorboards are saved. While optional, if unspecified, it assumes the presence of a 'checkpoints' directory in your project's root.
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 experiment_name = "resnet18_cifar10_example"
 CHECKPOINT_DIR = '/path/to/checkpoints/root/dir'
@@ -90,7 +90,7 @@ As can be seen in the code snippet below, creating the training and validation d
 default implementation is as easy as writing two lines of code:
 
 ```
-from super_gradients.training import dataloaders
+from native_sg.training import dataloaders
 
 train_dataloader = dataloaders.get(name="cifar10_train", dataset_params={}, dataloader_params={"num_workers": 2})
 valid_dataloader = dataloaders.get(name="cifar10_val", dataset_params={}, dataloader_params={"num_workers": 2})
@@ -238,13 +238,13 @@ line of code we can define a model with the chosen architecture. A list of all a
 [here](https://github.com/Deci-AI/super-gradients).
 
 ```python
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg.training import models
+from native_sg.common.object_names import Models
 
 model = models.get(model_name=Models.RESNET18, num_classes=10)
 ```
 
-Notice that, similar to obtaining a pre-defined dataloader, here we use `super_gradients.training.models`'s `get()` 
+Notice that, similar to obtaining a pre-defined dataloader, here we use `native_sg.training.models`'s `get()` 
 function. In the above code, two parameters are passed to the function:
 
 * `model_name` - A string defining the model's architecture name, out of the list of architectures SuperGradients 
@@ -274,12 +274,12 @@ flexibility, although it is out of the scope of this example.
 We have defined the trainer, datasets, dataloaders, and model architecture. Before we can start training, we need to
 define the training parameters. As with the other parameters, SuperGradients provides training parameters optimized for 
 this use-case. For more recommended training parameters you can have a look at our recipes 
-[here](https://github.com/Deci-AI/super-gradients/tree/master/src/super_gradients/recipes).
+[here](https://github.com/Deci-AI/super-gradients/tree/master/src/native_sg/recipes).
 
 Obtaining the training parameters is as easy as writing a single line of code:
 
 ```python
-from super_gradients.training import training_hyperparams
+from native_sg.training import training_hyperparams
 
 training_params =  training_hyperparams.get(config_name="training_hyperparams/cifar10_resnet_train_params")
 ```
@@ -686,11 +686,11 @@ a saved checkpoint, and predicting with the trained model. Simply change the `CH
 script:
 
 ```python
-from super_gradients import Trainer
-from super_gradients.training import dataloaders
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
-from super_gradients.training import training_hyperparams
+from native_sg import Trainer
+from native_sg.training import dataloaders
+from native_sg.training import models
+from native_sg.common.object_names import Models
+from native_sg.training import training_hyperparams
 import os
 from torchvision import transforms as T
 from PIL import Image

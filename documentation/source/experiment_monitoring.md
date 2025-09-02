@@ -19,15 +19,15 @@ Tensorboard is natively integrated into the training and validation steps. You c
 - Adapt your code like in the following example
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 trainer = Trainer("experiment_name")
 model = ...
 
 training_params = {
     ...                               # Your training params
-    "sg_logger": "dagshub_sg_logger", # DagsHub Logger, see class super_gradients.common.sg_loggers.dagshub_sg_logger.DagsHubSGLogger for details
-    "sg_logger_params":               # Params that will be passes to __init__ of the logger super_gradients.common.sg_loggers.dagshub_sg_logger.DagsHubSGLogger
+    "sg_logger": "dagshub_sg_logger", # DagsHub Logger, see class native_sg.common.sg_loggers.dagshub_sg_logger.DagsHubSGLogger for details
+    "sg_logger_params":               # Params that will be passes to __init__ of the logger native_sg.common.sg_loggers.dagshub_sg_logger.DagsHubSGLogger
       {
         "dagshub_repository": "<REPO_OWNER>/<REPO_NAME>", # Optional: Your DagsHub project name, consisting of the owner name, followed by '/', and the repo name. If this is left empty, you'll be prompted in your run to fill it in manually.
         "log_mlflow_only": False, # Optional: Change to true to bypass logging to DVC, and log all artifacts only to MLflow
@@ -49,15 +49,15 @@ trainer.train(model=model, training_params=training_params, ...)
 - Adapt your code like in the following example
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 trainer = Trainer("experiment_name")
 model = ...
 
 training_params = {
     ...                             # Your training params
-    "sg_logger": "wandb_sg_logger", # Weights&Biases Logger, see class super_gradients.common.sg_loggers.wandb_sg_logger.WandBSGLogger for details
-    "sg_logger_params":             # Params that will be passes to __init__ of the logger super_gradients.common.sg_loggers.wandb_sg_logger.WandBSGLogger
+    "sg_logger": "wandb_sg_logger", # Weights&Biases Logger, see class native_sg.common.sg_loggers.wandb_sg_logger.WandBSGLogger for details
+    "sg_logger_params":             # Params that will be passes to __init__ of the logger native_sg.common.sg_loggers.wandb_sg_logger.WandBSGLogger
       {
         "project_name": "project_name", # W&B project name
         "save_checkpoints_remote": True,
@@ -80,15 +80,15 @@ trainer.train(model=model, training_params=training_params, ...)
 - Adapt your code like in the following example
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 trainer = Trainer("experiment_name")
 model = ...
 
 training_params = {
     ...                                 # Your training params
-    "sg_logger": "clearml_sg_logger",   # ClearML Logger, see class super_gradients.common.sg_loggers.wandb_sg_logger.ClearMLSGLogger for details
-    "sg_logger_params":                 # Params that will be passes to __init__ of the logger super_gradients.common.sg_loggers.wandb_sg_logger.ClearMLSGLogger 
+    "sg_logger": "clearml_sg_logger",   # ClearML Logger, see class native_sg.common.sg_loggers.wandb_sg_logger.ClearMLSGLogger for details
+    "sg_logger_params":                 # Params that will be passes to __init__ of the logger native_sg.common.sg_loggers.wandb_sg_logger.ClearMLSGLogger 
       {
         "project_name": "project_name", # ClearML project name
         "save_checkpoints_remote": True,
@@ -111,10 +111,10 @@ import torch
 from PIL import Image
 from typing import Union
 
-from super_gradients.common.sg_loggers.base_sg_logger import BaseSGLogger
-from super_gradients.common.environment.ddp_utils import multi_process_safe
-from super_gradients.training.params import TrainingParams
-from super_gradients.common.registry.registry import register_sg_logger
+from native_sg.common.sg_loggers.base_sg_logger import BaseSGLogger
+from native_sg.common.environment.ddp_utils import multi_process_safe
+from native_sg.training.params import TrainingParams
+from native_sg.common.registry.registry import register_sg_logger
 
 
 @register_sg_logger()
@@ -170,7 +170,7 @@ You can overwrite any method from `BaseSGLogger` to customize it to your need.
 Then, you can pass it to your `training_params` exactly like WandB and ClearML.
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 trainer = Trainer("experiment_name")
 model = ...
@@ -197,7 +197,7 @@ For more information, please check out our tutorial on [how to use callbacks in 
 
 Here is a short example of how sg_logger can be used in callbacks:
 ```python
-from super_gradients.training.utils.callbacks.base_callbacks import PhaseContext, Callback
+from native_sg.training.utils.callbacks.base_callbacks import PhaseContext, Callback
 
 def do_something(inputs, target, preds):
     pass
@@ -223,16 +223,16 @@ class DetectionVisualizationCallback2(Callback):
 
 The sg_logger can also be used to upload files, text, images, checkpoints, ...
 
-We encourage you to check out the API documentation of `super_gradients.common.sg_loggers.base_sg_logger.BaseSGLogger` to see every available method.
+We encourage you to check out the API documentation of `native_sg.common.sg_loggers.base_sg_logger.BaseSGLogger` to see every available method.
 
 
 ## Chose your monitoring tool in the recipes
-You can update a [recipe](configuration_files.md) to use the monitoring tool you want by setting the `sg_logger` and `sg_logger_params` in [recipes/training_hyperparams](https://github.com/Deci-AI/super-gradients/tree/master/src/super_gradients/recipes/training_hyperparams).
+You can update a [recipe](configuration_files.md) to use the monitoring tool you want by setting the `sg_logger` and `sg_logger_params` in [recipes/training_hyperparams](https://github.com/Deci-AI/super-gradients/tree/master/src/native_sg/recipes/training_hyperparams).
 
 Here is an example for WandB;
 ```yaml
-sg_logger: wandb_sg_logger, # Weights&Biases Logger, see class super_gradients.common.sg_loggers.wandb_sg_logger.WandBSGLogger for details
-sg_logger_params:             # Params that will be passes to __init__ of the logger super_gradients.common.sg_loggers.wandb_sg_logger.WandBSGLogger
+sg_logger: wandb_sg_logger, # Weights&Biases Logger, see class native_sg.common.sg_loggers.wandb_sg_logger.WandBSGLogger for details
+sg_logger_params:             # Params that will be passes to __init__ of the logger native_sg.common.sg_loggers.wandb_sg_logger.WandBSGLogger
   project_name: project_name, # W&B project name
   save_checkpoints_remote: True,
   save_tensorboard_remote: True,

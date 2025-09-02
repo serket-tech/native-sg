@@ -39,9 +39,9 @@ For coded training scripts (i.e., not [using configuration files](configuration_
 `train_metrics_list` and `valid_metrics_list`:
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 ...
-from super_gradients.training.metrics import Accuracy, Top5
+from native_sg.training.metrics import Accuracy, Top5
 
 trainer = Trainer("my_experiment")
 train_dataloader = ...
@@ -88,7 +88,7 @@ For [training with configuration files](configuration_files.md), first decorate 
 ```python
 from torchmetrics import Metric
 import torch
-from super_gradients.common.registry import register_metric
+from native_sg.common.registry import register_metric
 
 @register_metric("my_accuracy")
 class MyAccuracy(Metric):
@@ -133,10 +133,10 @@ from omegaconf import DictConfig
 import hydra
 import pkg_resources
 from my_accuracy import MyAccuracy
-from super_gradients import Trainer, init_trainer
+from native_sg import Trainer, init_trainer
 
 
-@hydra.main(config_path=pkg_resources.resource_filename("super_gradients.recipes", ""), version_base="1.2")
+@hydra.main(config_path=pkg_resources.resource_filename("native_sg.recipes", ""), version_base="1.2")
 def main(cfg: DictConfig) -> None:
   Trainer.train_from_config(cfg)
 

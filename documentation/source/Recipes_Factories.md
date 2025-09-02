@@ -10,9 +10,9 @@ In this tutorial, we'll cover how to use existing factories, register new ones, 
 
 ## Using Existing Factories
 
-If you had a look at the [recipes](https://github.com/Deci-AI/super-gradients/tree/master/src/super_gradients/recipes), you may have noticed that many objects are defined directly in the recipes.
+If you had a look at the [recipes](https://github.com/Deci-AI/super-gradients/tree/master/src/native_sg/recipes), you may have noticed that many objects are defined directly in the recipes.
 
-In the [Supervisely dataset recipe](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/dataset_params/supervisely_persons_dataset_params.yaml) you can see the following
+In the [Supervisely dataset recipe](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/dataset_params/supervisely_persons_dataset_params.yaml) you can see the following
 
 ```yaml
 train_dataset_params:
@@ -72,7 +72,7 @@ However, it's generally recommended to use the same name for consistency and cla
 ### Example
 
 ```python
-from super_gradients.common.registry import register_transform
+from native_sg.common.registry import register_transform
 
 @register_transform(name="MyTransformName")
 class MyTransform:
@@ -102,17 +102,17 @@ train_dataset_params:
 Final Step: Ensure that you import the module containing `MyTransformName` into your script. 
 Doing so will trigger the registration function, allowing SuperGradients to recognize it.
 
-Here is an example (adapted from the [train_from_recipe script](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/train_from_recipe.py)).
+Here is an example (adapted from the [train_from_recipe script](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/train_from_recipe.py)).
 
 ```python
 from .my_module import MyTransform # Importing the module is enough as it will trigger the register_transform function
 
 # The code below is the same as the basic `train_from_recipe.py` script
-# See: https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/train_from_recipe.py
+# See: https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/train_from_recipe.py
 from omegaconf import DictConfig
 import hydra
 
-from super_gradients import Trainer, init_trainer
+from native_sg import Trainer, init_trainer
 
 
 @hydra.main(config_path="recipes", version_base="1.2")
@@ -138,7 +138,7 @@ In some cases, you may want to create objects that would benefit from using the 
 ### Basic
 The basic way to use factories as below.
 ```
-from super_gradients.common.factories import TransformsFactory
+from native_sg.common.factories import TransformsFactory
 factory = TransformsFactory()
 my_transform = factory.get({'MyTransformName': {'prob':  0.7}})
 ```
@@ -187,7 +187,7 @@ each with its own registering decorator.
 SuperGradients offers various types of factories, and each is associated with a specific registration decorator.
 
 ``` python
-from super_gradients.common.factories import (
+from native_sg.common.factories import (
     register_model,
     register_kd_model,
     register_detection_module,

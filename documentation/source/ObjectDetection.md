@@ -12,10 +12,10 @@ In SuperGradients, we aim to collect such models and make them very convenient a
 
 | Model                                        | Yaml                                                                                                                                                                     | Model class                                                                                                                              | Loss Class                                                                                                                                  | NMS Callback                                                                                                                                                                                       |
 |----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
-| [SSD](https://arxiv.org/abs/1512.02325)      | [ssd_lite_mobilenetv2_arch_params](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/arch_params/ssd_lite_mobilenetv2_arch_params.yaml) | [SSDLiteMobileNetV2](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/detection_models/ssd.py) | [SSDLoss](https://docs.deci.ai/super-gradients/docstring/training/losses.html#training.losses.ssd_loss.SSDLoss)                                 | [SSDPostPredictCallback](https://docs.deci.ai/super-gradients/docstring/training/utils.html#training.utils.ssd_utils.SSDPostPredictCallback)                                                           |
-| [YOLOX](https://arxiv.org/abs/2107.08430)    | [yolox_s_arch_params](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/arch_params/yolox_s_arch_params.yaml)                           | [YoloX_S](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/detection_models/yolox.py)          | [YoloXFastDetectionLoss](https://docs.deci.ai/super-gradients/docstring/training/losses.html#training.losses.yolox_loss.YoloXFastDetectionLoss) | [YoloXPostPredictionCallback](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.detection_models.yolo_base.YoloXPostPredictionCallback)                              |
-| [PPYolo](https://arxiv.org/abs/2007.12099)   | [ppyoloe_arch_params](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/arch_params/ppyoloe_arch_params.yaml)                           | [PPYoloE](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.detection_models.pp_yolo_e.pp_yolo_e.PPYoloE)  | [PPYoloELoss](https://docs.deci.ai/super-gradients/docstring/training/losses.html#training.losses.ppyolo_loss.PPYoloELoss)                      | [PPYoloEPostPredictionCallback](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.detection_models.pp_yolo_e.post_prediction_callback.PPYoloEPostPredictionCallback) |
-| YoloNAS                                      | [yolo_nas_s_arch_params](https://github.com/Deci-AI/super-gradients/blob/e1db4d99492a25f8e65b5d3e17a6ff2672c5467b/src/super_gradients/recipes/arch_params/yolo_nas_s_arch_params.yaml) | [Yolo NAS S](https://github.com/Deci-AI/super-gradients/blob/e1db4d99492a25f8e65b5d3e17a6ff2672c5467b/src/super_gradients/training/models/detection_models/yolo_nas/yolo_nas_variants.py#L16) | [PPYoloELoss](https://docs.deci.ai/super-gradients/docstring/training/losses.html#training.losses.ppyolo_loss.PPYoloELoss)                      | [PPYoloEPostPredictionCallback](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.detection_models.pp_yolo_e.post_prediction_callback.PPYoloEPostPredictionCallback) |
+| [SSD](https://arxiv.org/abs/1512.02325)      | [ssd_lite_mobilenetv2_arch_params](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/arch_params/ssd_lite_mobilenetv2_arch_params.yaml) | [SSDLiteMobileNetV2](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/detection_models/ssd.py) | [SSDLoss](https://docs.deci.ai/super-gradients/docstring/training/losses.html#training.losses.ssd_loss.SSDLoss)                                 | [SSDPostPredictCallback](https://docs.deci.ai/super-gradients/docstring/training/utils.html#training.utils.ssd_utils.SSDPostPredictCallback)                                                           |
+| [YOLOX](https://arxiv.org/abs/2107.08430)    | [yolox_s_arch_params](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/arch_params/yolox_s_arch_params.yaml)                           | [YoloX_S](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/detection_models/yolox.py)          | [YoloXFastDetectionLoss](https://docs.deci.ai/super-gradients/docstring/training/losses.html#training.losses.yolox_loss.YoloXFastDetectionLoss) | [YoloXPostPredictionCallback](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.detection_models.yolo_base.YoloXPostPredictionCallback)                              |
+| [PPYolo](https://arxiv.org/abs/2007.12099)   | [ppyoloe_arch_params](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/arch_params/ppyoloe_arch_params.yaml)                           | [PPYoloE](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.detection_models.pp_yolo_e.pp_yolo_e.PPYoloE)  | [PPYoloELoss](https://docs.deci.ai/super-gradients/docstring/training/losses.html#training.losses.ppyolo_loss.PPYoloELoss)                      | [PPYoloEPostPredictionCallback](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.detection_models.pp_yolo_e.post_prediction_callback.PPYoloEPostPredictionCallback) |
+| YoloNAS                                      | [yolo_nas_s_arch_params](https://github.com/Deci-AI/super-gradients/blob/e1db4d99492a25f8e65b5d3e17a6ff2672c5467b/src/native_sg/recipes/arch_params/yolo_nas_s_arch_params.yaml) | [Yolo NAS S](https://github.com/Deci-AI/super-gradients/blob/e1db4d99492a25f8e65b5d3e17a6ff2672c5467b/src/native_sg/training/models/detection_models/yolo_nas/yolo_nas_variants.py#L16) | [PPYoloELoss](https://docs.deci.ai/super-gradients/docstring/training/losses.html#training.losses.ppyolo_loss.PPYoloELoss)                      | [PPYoloEPostPredictionCallback](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.detection_models.pp_yolo_e.post_prediction_callback.PPYoloEPostPredictionCallback) |
 
 
 ### Datasets
@@ -26,7 +26,7 @@ and more general `DetectionDataset` implementation that you can subclass from fo
 
 If you want to load the dataset outside of a yaml training, do:
 ```python
-from super_gradients.training import dataloaders
+from native_sg.training import dataloaders
 
 
 data_dir = "/path/to/coco_dataset_dir"
@@ -137,7 +137,7 @@ training_hyperparams:
         include_classwise_ap: True       # Enables computing AP for each class (helps to find problematic classes)
         calc_best_score_thresholds: True # Enables computing optimal confidence threshold that maximizes mean F1 score
         post_prediction_callback:
-          _target_: super_gradients.training.models.detection_models.pp_yolo_e.PPYoloEPostPredictionCallback
+          _target_: native_sg.training.models.detection_models.pp_yolo_e.PPYoloEPostPredictionCallback
           score_threshold: 0.01
           nms_top_k: 1000
           max_predictions: 300
@@ -158,7 +158,7 @@ The postprocessing of all detection models involves non-maximum suppression (NMS
 based on the assumption that they likely belong to the same object. Thus, a confidence threshold and an IoU threshold must be passed into the postprocessing object.
 
 ```python
-from super_gradients.training.models.detection_models.yolo_base import YoloXPostPredictionCallback
+from native_sg.training.models.detection_models.yolo_base import YoloXPostPredictionCallback
 
 
 post_prediction_callback = YoloXPostPredictionCallback(conf=0.001, iou=0.6)
@@ -177,7 +177,7 @@ By visualizing the predicted boxes, developers and researchers can identify erro
 
 #### Extreme Batch Visualization during training
 
-SuperGradients provides an implementation of [ExtremeBatchDetectionVisualizationCallback](https://docs.deci.ai/super-gradients/docstring/training/utils.html#src.super_gradients.training.utils.callbacks.callbacks.ExtremeBatchDetectionVisualizationCallback). 
+SuperGradients provides an implementation of [ExtremeBatchDetectionVisualizationCallback](https://docs.deci.ai/super-gradients/docstring/training/utils.html#src.native_sg.training.utils.callbacks.callbacks.ExtremeBatchDetectionVisualizationCallback). 
 You can use this callback in your training pipeline to visualize best or worst batch during training. 
 This callback observes a specific metric during training epoch and logs the most extreme batch to configured logger (Default is Tensorboard). 
 The logging includes visualization of ground truth boxes and model's predictions.
@@ -195,7 +195,7 @@ training_hyperparams:
             num_cls: ${num_classes}
             normalize_targets: True
             post_prediction_callback:
-              _target_: super_gradients.training.models.detection_models.pp_yolo_e.PPYoloEPostPredictionCallback
+              _target_: native_sg.training.models.detection_models.pp_yolo_e.PPYoloEPostPredictionCallback
               score_threshold: 0.01
               nms_top_k: 1000
               max_predictions: 300
@@ -203,7 +203,7 @@ training_hyperparams:
         max: False # Indicates that we want to log batch with the lowest metric value
         metric_component_name: 'mAP@0.50'
         post_prediction_callback:
-          _target_: super_gradients.training.models.detection_models.pp_yolo_e.PPYoloEPostPredictionCallback
+          _target_: native_sg.training.models.detection_models.pp_yolo_e.PPYoloEPostPredictionCallback
           score_threshold: 0.25
           nms_top_k: 1000
           max_predictions: 300
@@ -231,9 +231,9 @@ training_hyperparams:
 import torch
 import numpy as np
 
-from super_gradients.training import models
-from super_gradients.training.utils.detection_utils import DetectionVisualization
-from super_gradients.training.datasets.datasets_conf import COCO_DETECTION_CLASSES_LIST
+from native_sg.training import models
+from native_sg.training.utils.detection_utils import DetectionVisualization
+from native_sg.training.datasets.datasets_conf import COCO_DETECTION_CLASSES_LIST
 
 
 def my_undo_image_preprocessing(im_tensor: torch.Tensor) -> np.ndarray:
@@ -279,17 +279,17 @@ defaults:
   - checkpoint_params: default_checkpoint_params
   - _self_
 ```
-These are the actual components of [coco2017_yolox.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/coco2017_yolox.yaml)
+These are the actual components of [coco2017_yolox.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/coco2017_yolox.yaml)
 The dataset parameters are defined in `dataset_params:` and are eventually passed into coco2017_train/val dataset mentioned above in the [Datasets](ObjectDetection.md#datasets) section 
 
-The metric is part of `training_hyperparams` and so it's stated in the [coco2017_yolox_train_params.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/training_hyperparams/coco2017_yolox_train_params.yaml) with:
+The metric is part of `training_hyperparams` and so it's stated in the [coco2017_yolox_train_params.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/training_hyperparams/coco2017_yolox_train_params.yaml) with:
 
 ```yaml
 valid_metrics_list:
   - DetectionMetrics:
       normalize_targets: True
       post_prediction_callback:
-        _target_: super_gradients.training.models.detection_models.yolo_base.YoloXPostPredictionCallback
+        _target_: native_sg.training.models.detection_models.yolo_base.YoloXPostPredictionCallback
         iou: 0.65
         conf: 0.01
       num_cls: 80
@@ -302,11 +302,11 @@ A visualization belongs to `training_hyperparams` as well, specifically to the `
 phase_callbacks:
   - DetectionVisualizationCallback:
       phase:
-        _target_: super_gradients.training.utils.callbacks.callbacks.Phase
+        _target_: native_sg.training.utils.callbacks.callbacks.Phase
         value: VALIDATION_EPOCH_END
       freq: 1
       post_prediction_callback:
-        _target_: super_gradients.training.models.detection_models.yolo_base.YoloXPostPredictionCallback
+        _target_: native_sg.training.models.detection_models.yolo_base.YoloXPostPredictionCallback
         iou: 0.65
         conf: 0.01
       classes: [
@@ -362,7 +362,7 @@ res = trainer.train(
     additional_configs_to_log=recipe_logged_cfg,
 )
 ```
-It is convenient to trigger it with [train_from_recipe.py](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/examples/train_from_recipe_example/train_from_recipe.py), but you can do the same in your project by constructing the desired objects directly.
+It is convenient to trigger it with [train_from_recipe.py](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/examples/train_from_recipe_example/train_from_recipe.py), but you can do the same in your project by constructing the desired objects directly.
 
 
 ## How to connect your own dataset
@@ -388,10 +388,10 @@ import os.path
 from typing import Tuple, List, Dict, Union, Any, Optional
 
 import numpy as np
-from super_gradients.common.registry.registry import register_dataset
-from super_gradients.training.datasets.detection_datasets.detection_dataset import DetectionDataset
-from super_gradients.training.transforms.transforms import DetectionTransform
-from super_gradients.training.utils.detection_utils import DetectionTargetsFormat
+from native_sg.common.registry.registry import register_dataset
+from native_sg.training.datasets.detection_datasets.detection_dataset import DetectionDataset
+from native_sg.training.transforms.transforms import DetectionTransform
+from native_sg.training.utils.detection_utils import DetectionTargetsFormat
 
 
 MY_CLASSES = ['cat', 'dog', 'donut']
@@ -498,8 +498,8 @@ train_dataloader_params:
   shuffle: True
   pin_memory: True
   worker_init_fn:
-    _target_: super_gradients.training.utils.utils.load_func
-    dotpath: super_gradients.training.datasets.datasets_utils.worker_init_reset_seed
+    _target_: native_sg.training.utils.utils.load_func
+    dotpath: native_sg.training.datasets.datasets_utils.worker_init_reset_seed
   collate_fn: DetectionCollateFN
 
 val_dataset_params:
@@ -636,18 +636,18 @@ The easiest way to start training any mode in SuperGradients is to use a pre-def
 ### Prerequisites
 
 1. You have to install SuperGradients first. Please refer to the [Installation](installation.md) section for more details.
-2. Prepare the COCO dataset as described in the [Computer Vision Datasets Setup](https://docs.deci.ai/super-gradients/src/super_gradients/training/datasets/Dataset_Setup_Instructions/) under Detection Datasets section. 
+2. Prepare the COCO dataset as described in the [Computer Vision Datasets Setup](https://docs.deci.ai/super-gradients/src/native_sg/training/datasets/Dataset_Setup_Instructions/) under Detection Datasets section. 
 
 After you meet the prerequisites, you can start training the model by running from the root of the repository:
 
 ### Training from recipe
 
 ```bash
-python -m super_gradients.train_from_recipe --config-name=coco2017_yolox multi_gpu=Off num_gpus=1
+python -m native_sg.train_from_recipe --config-name=coco2017_yolox multi_gpu=Off num_gpus=1
 ```
 
 Note, the default configuration for this recipe is to use 8 GPUs in DDP mode. This hardware configuration may not be for everyone, so in the example above we override GPU settings to use a single GPU.
-It is highly recommended to read through the recipe file [coco2017_yolox](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/coco2017_yolox.yaml) to get better understanding of the hyperparameters we use here.
+It is highly recommended to read through the recipe file [coco2017_yolox](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/coco2017_yolox.yaml) to get better understanding of the hyperparameters we use here.
 If you're unfamiliar with config files, we recommend you to read the [Configuration Files](configuration_files.md) part first.
 
 
@@ -661,6 +661,6 @@ To implement a new model, you need to add the following parts:
 For a custom model, a good starting point would be a 
 [CustomizableDetector](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.detection_models.customizable_detector.CustomizableDetector) 
 class since it allows to configure a backbone, a neck and a head separately. See an example yaml of 
-a model that uses it: [ssd_lite_mobilenetv2_arch_params](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/arch_params/ssd_lite_mobilenetv2_arch_params.yaml)
+a model that uses it: [ssd_lite_mobilenetv2_arch_params](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/arch_params/ssd_lite_mobilenetv2_arch_params.yaml)
 
 It is strongly advised to use the existing callbacks and to define your model's head such that it returns the same outputs. 

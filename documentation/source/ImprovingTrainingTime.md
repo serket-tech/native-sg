@@ -11,7 +11,7 @@ To use `AMP` in SuperGradients, you simply need to set `mixed_precision=True` in
 
 **In python script**
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 trainer = Trainer("experiment_name")
 model = ...
@@ -71,7 +71,7 @@ Improvement percentage computed as follows: `100 * (baseline_time - compile_time
 To leverage use of compiled models in SuperGradients one need to pass the `torch_compile: True` option to training hyperparameters:
 
 ```bash
-python -m super_gradients.train_from_recipe --config-name=... training_hyperparams.torch_compile=True
+python -m native_sg.train_from_recipe --config-name=... training_hyperparams.torch_compile=True
 ```
 
 In the YAML recipe:
@@ -87,7 +87,7 @@ training_hyperparams:
 Or programmatically:
 
 ```python
-from super_gradients.training import Trainer
+from native_sg.training import Trainer
 
 trainer = Trainer(
     ...,

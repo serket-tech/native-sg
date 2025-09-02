@@ -104,7 +104,7 @@ The Adapter helps us skip manual data preparations and dives right into creating
 
 
 ```python
-from super_gradients.training.dataloaders.adapters import SegmentationDataloaderAdapterFactory
+from native_sg.training.dataloaders.adapters import SegmentationDataloaderAdapterFactory
 
 train_loader = SegmentationDataloaderAdapterFactory.from_dataset(dataset=train_set, batch_size=20, shuffle=True, config_path='local_cache.json')
 
@@ -278,7 +278,7 @@ This output is all you need to get started. Now we can use the Dataloader Adapte
 
 
 ```python
-from super_gradients.training.dataloaders.adapters import DetectionDataloaderAdapterFactory
+from native_sg.training.dataloaders.adapters import DetectionDataloaderAdapterFactory
 from data_gradients.dataset_adapters.config.data_config import DetectionDataConfig
 
 
@@ -402,11 +402,11 @@ This is of course for the sake of the example, since YoloNAS was originally trai
 from omegaconf import OmegaConf
 from hydra.utils import instantiate
 
-from super_gradients import Trainer
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
-from super_gradients.training import training_hyperparams
-from super_gradients.common.environment.cfg_utils import load_recipe
+from native_sg import Trainer
+from native_sg.training import models
+from native_sg.common.object_names import Models
+from native_sg.training import training_hyperparams
+from native_sg.common.environment.cfg_utils import load_recipe
 
 trainer = Trainer(experiment_name="yolonas_training_with_adapter", ckpt_root_dir="../../scripts/")
 model = models.get(model_name=Models.YOLO_NAS_S, num_classes=adapter_config.n_classes, pretrained_weights="coco")
@@ -438,9 +438,9 @@ trainer.train(model=model, training_params=training_params, train_loader=train_l
     [2023-10-29 15:29:45] WARNING - callbacks.py - Number of warmup steps (1000) is greater than number of steps in epoch (100). Warmup steps will be capped to number of steps in epoch to avoid interfering with any pre-epoch LR schedulers.
     /usr/local/lib/python3.10/dist-packages/torchvision/transforms/functional.py:1603: UserWarning: The default value of the antialias parameter of all the resizing transforms (Resize(), RandomResizedCrop(), etc.) will change from None to True in v0.17, in order to be consistent across the PIL and Tensor backends. To suppress this warning, directly pass antialias=True (recommended, future default), antialias=None (current default, which means False for Tensors and True for PIL), or antialias=False (only works on Tensors - PIL will still use antialiasing). This also applies if you are using the inference transforms from the models weights: update the call to weights.transforms(antialias=True).
       warnings.warn(
-    /usr/local/lib/python3.10/dist-packages/super_gradients/training/utils/collate_fn/detection_collate_fn.py:29: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+    /usr/local/lib/python3.10/dist-packages/native_sg/training/utils/collate_fn/detection_collate_fn.py:29: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
       images_batch = [torch.tensor(img) for img in images_batch]
-    /usr/local/lib/python3.10/dist-packages/super_gradients/training/utils/collate_fn/detection_collate_fn.py:43: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+    /usr/local/lib/python3.10/dist-packages/native_sg/training/utils/collate_fn/detection_collate_fn.py:43: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
       labels_batch = [torch.tensor(labels) for labels in labels_batch]
     [2023-10-29 15:29:45] INFO - sg_trainer_utils.py - TRAINING PARAMETERS:
         - Mode:                         Single GPU
@@ -493,7 +493,7 @@ But you have the possibility to set these parameters in advance through the conf
 
 
 ```python
-from super_gradients.training.dataloaders.adapters import DetectionDataloaderAdapterFactory
+from native_sg.training.dataloaders.adapters import DetectionDataloaderAdapterFactory
 from data_gradients.dataset_adapters.config.data_config import DetectionDataConfig
 from data_gradients.utils.data_classes.image_channels import ImageChannels
 class_names = [category['name'] for category in train_set.coco.loadCats(train_set.coco.getCatIds())]
@@ -534,9 +534,9 @@ print(targets.shape) # [N, 6] format with 6 representing (sample_id, class_id, c
     /usr/local/lib/python3.10/dist-packages/torchvision/transforms/functional.py:1603: UserWarning: The default value of the antialias parameter of all the resizing transforms (Resize(), RandomResizedCrop(), etc.) will change from None to True in v0.17, in order to be consistent across the PIL and Tensor backends. To suppress this warning, directly pass antialias=True (recommended, future default), antialias=None (current default, which means False for Tensors and True for PIL), or antialias=False (only works on Tensors - PIL will still use antialiasing). This also applies if you are using the inference transforms from the models weights: update the call to weights.transforms(antialias=True).
       warnings.warn(
     [2023-10-29 16:15:09] INFO - detection_adapter_collate_fn.py - You are using Detection Adapter. Please note that it was designed specifically for YOLONAS, YOLOX and PPYOLOE.
-    /usr/local/lib/python3.10/dist-packages/super_gradients/training/utils/collate_fn/detection_collate_fn.py:29: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+    /usr/local/lib/python3.10/dist-packages/native_sg/training/utils/collate_fn/detection_collate_fn.py:29: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
       images_batch = [torch.tensor(img) for img in images_batch]
-    /usr/local/lib/python3.10/dist-packages/super_gradients/training/utils/collate_fn/detection_collate_fn.py:43: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+    /usr/local/lib/python3.10/dist-packages/native_sg/training/utils/collate_fn/detection_collate_fn.py:43: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
       labels_batch = [torch.tensor(labels) for labels in labels_batch]
 
 

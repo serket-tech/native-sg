@@ -15,7 +15,7 @@ It is a simple technique that can be used with any model and optimizer. Here's a
 To enable use of EMA is SuperGradients one should add following parameters to the `training_params`:
 
 ```py
-from super_gradients import Trainer
+from native_sg import Trainer
 trainer = Trainer(...)
 trainer.train(
     training_params={"ema": True, "ema_params": {"decay": 0.9999, "decay_type": "constant"}, ...}, 
@@ -41,7 +41,7 @@ It is possible to bring your own decay schedule in SuperGradients. By subclassin
 function:
 
 ```py
-from super_gradients.training.utils.ema_decay_schedules import IDecayFunction, EMA_DECAY_FUNCTIONS
+from native_sg.training.utils.ema_decay_schedules import IDecayFunction, EMA_DECAY_FUNCTIONS
 
 class LinearDecay(IDecayFunction):
     def __init__(self, **kwargs):
@@ -77,7 +77,7 @@ In case `ema_net` is in checkpoint, the model will be initialized using EMA weig
 EMA is also supported in knowledge distillation. To enable it one should add following parameters to the `training_params` similar to the above example:
 
 ```py
-from super_gradients import KDTrainer
+from native_sg import KDTrainer
 trainer = KDTrainer(...)
 trainer.train(
     training_params={"ema": True, "ema_params": {"decay": 0.9999, "decay_type": "constant"}, ...}, 

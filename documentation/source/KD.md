@@ -25,7 +25,7 @@ trainer.train(model=model, training_params=train_params, train_loader=train_data
 Then for training with knowledge distillation, the general flow is:
 ```python
 
-from super_gradients.training.kd_trainer import KDTrainer
+from native_sg.training.kd_trainer import KDTrainer
 ...
 kd_trainer = KDTrainer("my_experiment")
 train_dataloader = ...
@@ -44,7 +44,7 @@ Check out our [knowledge distillation tutorial notebook](https://bit.ly/3BLA5oR)
 ## Knowledge Distillation Training: Key Components
 
 
-### [KDModule](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/models/kd_modules/kd_module.py)
+### [KDModule](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/models/kd_modules/kd_module.py)
 
 The most apparent difference in the training flow using knowledge distillation is that it requires two networks: the "teacher" and the "student".
 The relation between the two is also configurable - for example, we may decide that the teacher model should preprocess the inputs differently.
@@ -57,7 +57,7 @@ A high-level example of KD customization:
 
 ```python
 import torch.nn
-from super_gradients.training.kd_trainer import KDTrainer
+from native_sg.training.kd_trainer import KDTrainer
 
 ...
 
@@ -92,7 +92,7 @@ train_params = {'loss': MyKDLoss(),
 kd_trainer.train(model=kd_model, training_params=train_params,
                  train_loader=train_dataloader, valid_loader=valid_dataloader)
 ```
-### [KDOutput](https://github.com/Deci-AI/super-gradients/blob/12a4e53a96e8608409100b5ef83971157518434b/src/super_gradients/training/models/kd_modules/kd_module.py#L7)
+### [KDOutput](https://github.com/Deci-AI/super-gradients/blob/12a4e53a96e8608409100b5ef83971157518434b/src/native_sg/training/models/kd_modules/kd_module.py#L7)
 
 `KDOutput` defines the structure of the output of `KDModule` and has two self-explanatory attributes: student_output and teacher_output.
 `KDTrainer` uses these attributes behind the scenes to perform the usual operations of regular training, such as metrics calculations.
@@ -100,7 +100,7 @@ This means that when customizing KD, it's essential for the custom `KDModule` to
 
 ### KD Losses
 
-Currently, [KDLogitsLoss](https://github.com/Deci-AI/super-gradients/blob/12a4e53a96e8608409100b5ef83971157518434b/src/super_gradients/training/losses/kd_losses.py#L15) is currently the only supported loss function in SGs KD losses bank, but more is to come.
+Currently, [KDLogitsLoss](https://github.com/Deci-AI/super-gradients/blob/12a4e53a96e8608409100b5ef83971157518434b/src/native_sg/training/losses/kd_losses.py#L15) is currently the only supported loss function in SGs KD losses bank, but more is to come.
 Note that during KD training, the `KDModule` outputs (which are of `KDOutput` instance) are passed to the loss's forward method as predictions.
 
 ## Knowledge Distillation Training: Checkpoints
@@ -115,16 +115,16 @@ Nevertheless, there are a few differences worth mentioning:
 
 ## Knowledge Distillation Training with Configuration Files
 
-As done when training without knowledge distillation, to [train with configuration files](configuration_files.md#required-hyper-parameters), we call the [`KDTrainer.train_from_config` method](https://github.com/Deci-AI/super-gradients/blob/9485f1533ff64cecb32a238d4779aafca1f0d199/src/super_gradients/training/kd_trainer/kd_trainer.py#L43), which assumes a specific [configuration structure](configuration_files.md#required-hyper-parameters).
+As done when training without knowledge distillation, to [train with configuration files](configuration_files.md#required-hyper-parameters), we call the [`KDTrainer.train_from_config` method](https://github.com/Deci-AI/super-gradients/blob/9485f1533ff64cecb32a238d4779aafca1f0d199/src/native_sg/training/kd_trainer/kd_trainer.py#L43), which assumes a specific [configuration structure](configuration_files.md#required-hyper-parameters).
 When training with KD, the same structure and required fields hold, but we introduce a few additions:
 
-- `arch_params` are being passed to the `KDModule` constructor. For example, in our [Resnet50 KD training on Imagenet](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/imagenet_resnet50_kd.yaml), we handle the difference in preprocessing of the teacher, which expects different normalization by passing the `KDModule` a normalization adaptor module:
+- `arch_params` are being passed to the `KDModule` constructor. For example, in our [Resnet50 KD training on Imagenet](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/imagenet_resnet50_kd.yaml), we handle the difference in preprocessing of the teacher, which expects different normalization by passing the `KDModule` a normalization adaptor module:
 ```yaml
-# super_gradients/recipes/imagenet_resnet50_kd.yaml
+# native_sg/recipes/imagenet_resnet50_kd.yaml
 ...
 arch_params:
   teacher_input_adapter:
-    _target_: super_gradients.training.utils.kd_trainer_utils.NormalizationAdapter
+    _target_: native_sg.training.utils.kd_trainer_utils.NormalizationAdapter
     mean_original: [0.485, 0.456, 0.406]
     std_original: [0.229, 0.224, 0.225]
     mean_required: [0.5, 0.5, 0.5]
@@ -156,4 +156,4 @@ student_checkpoint_params:
 
 ```
 
-Any KD recipe can be launched with our [train_from_kd_recipe_example](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/examples/train_from_kd_recipe_example/train_from_kd_recipe.py) script.
+Any KD recipe can be launched with our [train_from_kd_recipe_example](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/examples/train_from_kd_recipe_example/train_from_kd_recipe.py) script.

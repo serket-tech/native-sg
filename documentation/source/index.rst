@@ -16,8 +16,8 @@ Welcome to SuperGradients's documentation!
    :maxdepth: 4
    :caption: Technical Documentation
 
-   super_gradients.common
-   super_gradients.training
+   native_sg.common
+   native_sg.training
 
 .. toctree::
 .. :maxdepth: 4

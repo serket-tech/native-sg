@@ -50,8 +50,8 @@ We will use YoloNAS-S model in this example. All models that suports new export 
 
 
 ```python
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
+from native_sg.common.object_names import Models
+from native_sg.training import models
 
 model = models.get(Models.YOLO_NAS_POSE_S, pretrained_weights="coco_pose")
 
@@ -140,7 +140,7 @@ That's it. You can now use the exported model with any ONNX-compatible runtime o
 ```python
 import cv2
 import numpy as np
-from super_gradients.training.utils.media.image import load_image
+from native_sg.training.utils.media.image import load_image
 import onnxruntime
 
 image = load_image("https://deci-pretrained-models.s3.amazonaws.com/sample_images/beatles-abbeyroad.jpg")
@@ -363,7 +363,7 @@ You can use it as a starting point for your own visualization code.
 
 
 ```python
-from super_gradients.training.utils.visualization.pose_estimation import PoseVisualization
+from native_sg.training.utils.visualization.pose_estimation import PoseVisualization
 import matplotlib.pyplot as plt
 
 def show_predictions_from_batch_format(image, predictions):
@@ -400,7 +400,7 @@ You can explicitly specify output format of the predictions by setting the `outp
 
 
 ```python
-from super_gradients.conversion import DetectionOutputFormatMode
+from native_sg.conversion import DetectionOutputFormatMode
 
 export_result = model.export("yolo_nas_s.onnx", output_predictions_format=DetectionOutputFormatMode.FLAT_FORMAT)
 export_result
@@ -567,7 +567,7 @@ Let's see how it works:
 
 
 ```python
-from super_gradients.conversion.conversion_enums import ExportQuantizationMode
+from native_sg.conversion.conversion_enums import ExportQuantizationMode
 
 export_result = model.export(
     "yolo_nas_pose_s_int8.onnx",
@@ -606,7 +606,7 @@ In the example below we use a dummy data-loader for sake of showing how to use t
 ```python
 import torch
 from torch.utils.data import DataLoader
-from super_gradients.conversion import ExportQuantizationMode
+from native_sg.conversion import ExportQuantizationMode
 
 # THIS IS ONLY AN EXAMPLE. YOU SHOULD USE YOUR OWN DATA-LOADER HERE
 dummy_calibration_dataset = [torch.randn((3, 640, 640), dtype=torch.float32) for _ in range(32)]

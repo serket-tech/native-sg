@@ -8,7 +8,7 @@ To use `AMP` in SuperGradients, you simply need to set `mixed_precision=True` in
 
 **In python script**
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 trainer = Trainer("experiment_name")
 model = ...

@@ -13,8 +13,8 @@ SuperGradients allows users to train models on different modes:
 **How to use it**: If you don't have any CUDA device available, your training will automatically be run on CPU.
 Otherwise, the default device will be CUDA, but you can still easily set it to CPU using `setup_device` as follow:
 ```py
-from super_gradients import Trainer
-from super_gradients.training.utils.distributed_training_utils import setup_device
+from native_sg import Trainer
+from native_sg.training.utils.distributed_training_utils import setup_device
 
 setup_device(device='cpu')
 
@@ -58,8 +58,8 @@ The general flow is as below
 
 **How to use it**: All you need to do is to call a magic function `setup_device` before instantiating the Trainer.
 ```py
-from super_gradients import Trainer
-from super_gradients.training.utils.distributed_training_utils import setup_device
+from native_sg import Trainer
+from native_sg.training.utils.distributed_training_utils import setup_device
 
 # Launch DP on 4 GPUs'
 setup_device(multi_gpu='DP', num_gpus=4)
@@ -91,8 +91,8 @@ We highly recommend using DDP over DP whenever possible.
 
 **How to use it**: All you need to do is to call a magic function `setup_device` before instantiating the Trainer.
 ```py
-from super_gradients import Trainer
-from super_gradients.training.utils.distributed_training_utils import setup_device
+from native_sg import Trainer
+from native_sg.training.utils.distributed_training_utils import setup_device
 
 # Launch DDP on 4 GPUs'
 setup_device(num_gpus=4) # Equivalent to: setup_device(multi_gpu='DDP', num_gpus=4)
@@ -115,8 +115,8 @@ that will ensure that only one process will execute a specific function, whether
 
 In the following example, the `print_hello` function will print *Hello world* only once, when it would be printed 4 times without the decorator... 
 ```py
-from super_gradients.training.utils.distributed_training_utils import setup_device
-from super_gradients.common.environment.ddp_utils import multi_process_safe
+from native_sg.training.utils.distributed_training_utils import setup_device
+from native_sg.common.environment.ddp_utils import multi_process_safe
 
 setup_device(num_gpus=4)
 
@@ -229,7 +229,7 @@ That being said, we still recommend to try out different learning rates to see t
 You can run experiments manually or use Hydra sweep syntax to run experiments with custom learning rates as follows:
 
 ```bash
-python -m super_gradients.train_from_recipe -m --config-name=coco2017_yolo_nas_s training_hyperparams.initial_lr=1e-3,5e-3,1e-4
+python -m native_sg.train_from_recipe -m --config-name=coco2017_yolo_nas_s training_hyperparams.initial_lr=1e-3,5e-3,1e-4
 ```
 
 ---

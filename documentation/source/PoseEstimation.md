@@ -16,7 +16,7 @@ In summary, top-down approach starts with detecting an object and then estimates
 
 | Model                                    | Model class                                                                                                                                                          | Target Generator                                                                                                                                                      | Loss Class                                                                                                     | Decoding Callback                                                                                                                                                                        | Visualization Callback                                                                                                                                                            |
 |------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
-| [DEKR](https://arxiv.org/abs/2104.02300) | [DEKRPoseEstimationModel](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.pose_estimation_models.dekr_hrnet.DEKRPoseEstimationModel) | [DEKRTargetsGenerator](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/pose_estimation_datasets/target_generators.py#L8) | [DEKRLoss](https://docs.deci.ai/super-gradients/docstring/training/losses.html#training.losses.dekr_loss.DEKRLoss) | [DEKRPoseEstimationDecodeCallback](https://docs.deci.ai/super-gradients/docstring/training/utils.html#training.utils.pose_estimation.dekr_decode_callbacks.DEKRPoseEstimationDecodeCallback) | [DEKRVisualizationCallback](https://docs.deci.ai/super-gradients/docstring/training/utils.html#training.utils.pose_estimation.dekr_visualization_callbacks.DEKRVisualizationCallback) |
+| [DEKR](https://arxiv.org/abs/2104.02300) | [DEKRPoseEstimationModel](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.pose_estimation_models.dekr_hrnet.DEKRPoseEstimationModel) | [DEKRTargetsGenerator](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/pose_estimation_datasets/target_generators.py#L8) | [DEKRLoss](https://docs.deci.ai/super-gradients/docstring/training/losses.html#training.losses.dekr_loss.DEKRLoss) | [DEKRPoseEstimationDecodeCallback](https://docs.deci.ai/super-gradients/docstring/training/utils.html#training.utils.pose_estimation.dekr_decode_callbacks.DEKRPoseEstimationDecodeCallback) | [DEKRVisualizationCallback](https://docs.deci.ai/super-gradients/docstring/training/utils.html#training.utils.pose_estimation.dekr_visualization_callbacks.DEKRVisualizationCallback) |
 
 ## Training
 
@@ -26,7 +26,7 @@ The easiest way to start training a pose estimation model is to use a recipe fro
 ### Prerequisites
 
 1. You have to install SuperGradients first. Please refer to the [Installation](installation.md) section for more details.
-2. Prepare the COCO dataset as described in the [Computer Vision Datasets Setup](https://docs.deci.ai/super-gradients/src/super_gradients/training/datasets/Dataset_Setup_Instructions/) under Pose Estimation Datasets
+2. Prepare the COCO dataset as described in the [Computer Vision Datasets Setup](https://docs.deci.ai/super-gradients/src/native_sg/training/datasets/Dataset_Setup_Instructions/) under Pose Estimation Datasets
  section. 
 
 After you met the prerequisites, you can start training the model by running from the root of the repository:
@@ -34,11 +34,11 @@ After you met the prerequisites, you can start training the model by running fro
 ### Training from recipe
 
 ```bash
-python -m super_gradients.train_from_recipe --config-name=coco2017_pose_dekr_w32 multi_gpu=Off num_gpus=1
+python -m native_sg.train_from_recipe --config-name=coco2017_pose_dekr_w32 multi_gpu=Off num_gpus=1
 ```
 
 Note, the default configuration for recipe is to use 8 GPUs in DDP mode. This hardware configuration may not be for everyone, so we in the example above we override GPU settings to use single GPU.
-It is highly recommended to read through the [recipe file](https://github.com/Deci-AI/super-gradients/src/super_gradients/recipes/coco2017_pose_dekr_w32.yaml) to get better understanding of the hyperparameters we use here.
+It is highly recommended to read through the [recipe file](https://github.com/Deci-AI/super-gradients/src/native_sg/recipes/coco2017_pose_dekr_w32.yaml) to get better understanding of the hyperparameters we use here.
 If you're unfamiliar with config files, we recommend you to read the [Configuration Files](configuration_files.md) part first.
 
 The start of the config file looks like this:
@@ -54,13 +54,13 @@ defaults:
 
 Here we define the default values for the following parameters:
 * `training_hyperparams` - These are our training hyperparameters. Things learning rate, optimizer, use of mixed precision, EMA and other training parameters are defined here. 
-    You can refer to the [default_train_params.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/training_hyperparams/default_train_params.yaml) for more details.
-   In our example we use  [coco2017_dekr_pose_train_params.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/training_hyperparams/coco2017_dekr_pose_train_params.yaml) that sets
+    You can refer to the [default_train_params.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/training_hyperparams/default_train_params.yaml) for more details.
+   In our example we use  [coco2017_dekr_pose_train_params.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/training_hyperparams/coco2017_dekr_pose_train_params.yaml) that sets
    training parameters as in [DEKR](https://arxiv.org/abs/2104.02300) paper.
 * `dataset_params` - These are the parameters for the training on COCO2017. The dataset configuration sets the dataset transformations (augmentations & preprocessing) and [target generator](https://docs.deci.ai/super-gradients/docstring/training/datasets.html#training.datasets.pose_estimation_datasets.target_generators.DEKRTargetsGenerator) for training the model.
 * `arch_params` - These are the parameters for the model architecture. In our example we use [DEKRPoseEstimationModel](https://docs.deci.ai/super-gradients/docstring/training/models.html#training.models.pose_estimation_models.dekr_hrnet.DEKRPoseEstimationModel) that is a HRNet-based model with DEKR decoder.
 * `checkpoint_params` - These are the default parameters for resuming of training and using pretrained checkpoints. 
-You can refer to the [default_checkpoint_params.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/checkpoint_params/default_checkpoint_params.yaml).
+You can refer to the [default_checkpoint_params.yaml](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/checkpoint_params/default_checkpoint_params.yaml).
  
 ### Datasets
 
@@ -79,7 +79,7 @@ All target generators should implement `KeypointsTargetsGenerator` interface as 
 The goal of this class is to transform ground-truth annotations into a format that is suitable for computing a loss and training a model:
 
 ```py
-# super_gradients.training.datasets.pose_estimation_datasets.target_generators.KeypointsTargetsGenerator
+# native_sg.training.datasets.pose_estimation_datasets.target_generators.KeypointsTargetsGenerator
 
 import abc
 import numpy as np
@@ -137,7 +137,7 @@ training_hyperparams:
           oks_sigmas: ${dataset_params.oks_sigmas}
           max_objects_per_image: 20
           post_prediction_callback:
-            _target_: super_gradients.training.utils.pose_estimation.DEKRPoseEstimationDecodeCallback
+            _target_: native_sg.training.utils.pose_estimation.DEKRPoseEstimationDecodeCallback
             max_num_people: 20
             keypoint_threshold: 0.05
             nms_threshold: 0.05
@@ -164,7 +164,7 @@ training_hyperparams:
   phase_callbacks:
     - DEKRVisualizationCallback:
         phase:
-          _target_: super_gradients.training.utils.callbacks.callbacks.Phase
+          _target_: native_sg.training.utils.callbacks.callbacks.Phase
           value: TRAIN_BATCH_END
         prefix: "train_"
         mean: [ 0.485, 0.456, 0.406 ]
@@ -173,7 +173,7 @@ training_hyperparams:
 
     - DEKRVisualizationCallback:
         phase:
-          _target_: super_gradients.training.utils.callbacks.callbacks.Phase
+          _target_: native_sg.training.utils.callbacks.callbacks.Phase
           value: VALIDATION_BATCH_END
         prefix: "val_"
         mean: [ 0.485, 0.456, 0.406 ]
@@ -206,9 +206,9 @@ It is generally a good idea to subclass from `BaseKeypointsDataset` that gives y
 A minimal implementation of a dataset class should look like this:
 
 ```python
-from super_gradients.training.datasets.pose_estimation_datasets import BaseKeypointsDataset
-from super_gradients.training.datasets.pose_estimation_datasets import KeypointsTargetsGenerator
-from super_gradients.training.transforms.keypoint_transforms import KeypointTransform
+from native_sg.training.datasets.pose_estimation_datasets import BaseKeypointsDataset
+from native_sg.training.datasets.pose_estimation_datasets import KeypointsTargetsGenerator
+from native_sg.training.transforms.keypoint_transforms import KeypointTransform
 from typing import Tuple, Dict, Any, List
 import numpy as np
 import cv2
@@ -252,7 +252,7 @@ class MyNewPoseEstimationDataset(BaseKeypointsDataset):
 ### Implement a new dataloader factory methods
 
 ```python
-from super_gradients.training.dataloaders import get_data_loader
+from native_sg.training.dataloaders import get_data_loader
 
 def my_new_dataset_pose_train(dataset_params: Dict = None, dataloader_params: Dict = None):
     return get_data_loader(
@@ -356,10 +356,10 @@ train_dataloader_params:
   num_workers: 8
   drop_last: True
   worker_init_fn:
-    _target_: super_gradients.training.utils.utils.load_func
-    dotpath: super_gradients.training.datasets.datasets_utils.worker_init_reset_seed
+    _target_: native_sg.training.utils.utils.load_func
+    dotpath: native_sg.training.datasets.datasets_utils.worker_init_reset_seed
   collate_fn:
-    _target_: super_gradients.training.datasets.pose_estimation_datasets.KeypointsCollate
+    _target_: native_sg.training.datasets.pose_estimation_datasets.KeypointsCollate
 
 
 val_dataloader_params:
@@ -367,7 +367,7 @@ val_dataloader_params:
   num_workers: 8
   drop_last: False
   collate_fn:
-    _target_: super_gradients.training.datasets.pose_estimation_datasets.KeypointsCollate
+    _target_: native_sg.training.datasets.pose_estimation_datasets.KeypointsCollate
 
 _convert_: all
 ```
@@ -400,7 +400,7 @@ To implement a new model, you need to add the following parts:
 - (Optional) Visualization Callback
 
 A custom target generator class should inherit from `KeypointsTargetsGenerator` base class which provides a protocol for generating target tensors for the ground-truth keypoints.
-See  [DEKRTargetsGenerator](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/pose_estimation_datasets/target_generators.py#L8) for more details.
+See  [DEKRTargetsGenerator](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/pose_estimation_datasets/target_generators.py#L8) for more details.
 
 A custom postprocessing callback class should have a `forward` method which takes raw model predictions and decode them into a final pose predictions. 
 See [DEKRPoseEstimationDecodeCallback](https://docs.deci.ai/super-gradients/docstring/training/utils.html#training.utils.pose_estimation.dekr_decode_callbacks.DEKRPoseEstimationDecodeCallback) for more details.
@@ -435,7 +435,7 @@ The rescoring model input are poses `[B,J,3]` and the outputs are the rescoring 
 Currently, rescoring is only supported for DEKR architecture. 
 
 ```bash
-python -m super_gradients.script.generate_rescoring_training_data --config-name=script_generate_rescoring_data_dekr_coco2017 rescoring_data_dir=OUTPUT_DATA_DIR  checkpoint=PATH_TO_TRAINED_MODEL_CHECKPOINT`.
+python -m native_sg.script.generate_rescoring_training_data --config-name=script_generate_rescoring_data_dekr_coco2017 rescoring_data_dir=OUTPUT_DATA_DIR  checkpoint=PATH_TO_TRAINED_MODEL_CHECKPOINT`.
 ```
 
 ### 2. Train rescoring model.
@@ -443,7 +443,7 @@ python -m super_gradients.script.generate_rescoring_training_data --config-name=
 The training data will be stored in output folder (In the example we use `OUTPUT_DATA_DIR` placeholder). Once generated you can use this file to train rescoring model:
 
 ```bash
-python -m super_gradients.train_from_recipe --config-name coco2017_pose_dekr_rescoring \
+python -m native_sg.train_from_recipe --config-name coco2017_pose_dekr_rescoring \
   dataset_params.train_dataset_params.pkl_file=OUTPUT_DATA_DIR/rescoring_data_train.pkl \
   dataset_params.val_dataset_params.pkl_file=OUTPUT_DATA_DIR/rescoring_data_valid.pkl
 ```

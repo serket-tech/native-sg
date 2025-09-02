@@ -4,5 +4,5 @@ super\_gradients package
 .. toctree::
    :maxdepth: 4
 
-   super_gradients.common
-   super_gradients.training
+   native_sg.common
+   native_sg.training

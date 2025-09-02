@@ -19,9 +19,9 @@ That's why in SG, multiple checkpoints are saved throughout training:
 
 | Checkpoint Filename | When is it saved?|
 | ------------- |:-------------:|
-| `ckpt_best.pth` | Each time we reach a new best [metric_to_watch](https://github.com/Deci-AI/super-gradients/blob/69d8d19813964022af192a34b6e7853edac34a75/src/super_gradients/recipes/training_hyperparams/default_train_params.yaml#L39) when performing validation. |
+| `ckpt_best.pth` | Each time we reach a new best [metric_to_watch](https://github.com/Deci-AI/super-gradients/blob/69d8d19813964022af192a34b6e7853edac34a75/src/native_sg/recipes/training_hyperparams/default_train_params.yaml#L39) when performing validation. |
 | `ckpt_latest.pth` | At the end of every epoch, constantly overriding. |
-| `average_model.pth` | At the end of training - composed of 10 best models according to  [metric_to_watch](https://github.com/Deci-AI/super-gradients/blob/69d8d19813964022af192a34b6e7853edac34a75/src/super_gradients/recipes/training_hyperparams/default_train_params.yaml#L39) and will only be save when the training_param `average_best_models`=True. |
+| `average_model.pth` | At the end of training - composed of 10 best models according to  [metric_to_watch](https://github.com/Deci-AI/super-gradients/blob/69d8d19813964022af192a34b6e7853edac34a75/src/native_sg/recipes/training_hyperparams/default_train_params.yaml#L39) and will only be save when the training_param `average_best_models`=True. |
 | `ckpt_epoch_{EPOCH_INDEX}.pth` | At the end of a fixed epoch number `EPOCH_INDEX` if it is specified through `save_ckpt_epoch_list` training_param |
 
 #### Where are the checkpoint files saved?
@@ -34,7 +34,7 @@ Trainer(ckpt_root_dir='path/to/ckpt_root_dir', experiment_name="my_experiment")
 ```
 - `run_dir` is unique and automatically generated each time you start a new training, with `trainer.train(...)`
 
-When working with a cloned version of SG, one can leave out the `ckpt_root_dir` arg, and checkpoints will be saved under the `super_gradients/checkpoints` directory.
+When working with a cloned version of SG, one can leave out the `ckpt_root_dir` arg, and checkpoints will be saved under the `native_sg/checkpoints` directory.
 
 ## Checkpoint Structure
 
@@ -44,7 +44,7 @@ They hold additional information about the model's training besides the model we
 The checkpoint keys:
 
 - `net`: The network's state_dict (state_dict).
-- `acc`: The network's achieved metric value on the validation set ([metric_to_watch in training_params](https://github.com/Deci-AI/super-gradients/blob/69d8d19813964022af192a34b6e7853edac34a75/src/super_gradients/recipes/training_hyperparams/default_train_params.yaml#L39) (float).
+- `acc`: The network's achieved metric value on the validation set ([metric_to_watch in training_params](https://github.com/Deci-AI/super-gradients/blob/69d8d19813964022af192a34b6e7853edac34a75/src/native_sg/recipes/training_hyperparams/default_train_params.yaml#L39) (float).
 - `epoch`: The last epoch performed.
 - `optimizer_state_dict`: The state_dict of the optimizer (state_dict).
 - `scaler_state_dict`: Optional - only present when training with [mixed_precision=True](average_mixed_precision.md). The state_dict of Trainer.scaler.
@@ -69,11 +69,11 @@ Loading model weights can be done right after model initialization, using `model
 Suppose we have launched a training experiment with a similar structure to the one below:
 
 ```python
-from super_gradients.training import Trainer
+from native_sg.training import Trainer
 ...
 ...
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg.training import models
+from native_sg.common.object_names import Models
 
 trainer = Trainer("my_resnet18_training_experiment", ckpt_root_dir="/path/to/my_checkpoints_folder")
 train_dataloader = ...
@@ -120,8 +120,8 @@ Then at the end of the training, our `ckpt_root_dir` contents will look similar 
 Suppose we wish to load the weights from `ckpt_best.pth`. We can simply pass its path to the `checkpoint_path` argument in `models.get(...)`:
 
 ```python
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg.training import models
+from native_sg.common.object_names import Models
 
 model = models.get(model_name=Models.RESNET18, num_classes=10, checkpoint_path="/path/to/my_checkpoints_folder/my_resnet18_training_experiment/RUN_20230802_131052_651906/ckpt_best.pth")
 ```
@@ -131,9 +131,9 @@ model = models.get(model_name=Models.RESNET18, num_classes=10, checkpoint_path="
 If we already possess an instance of our model, we can also directly use `load_checkpoint_to_model`:
 
 ```python
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
-from super_gradients.training.utils.checkpoint_utils import load_checkpoint_to_model
+from native_sg.training import models
+from native_sg.common.object_names import Models
+from native_sg.training.utils.checkpoint_utils import load_checkpoint_to_model
 
 model = models.get(model_name=Models.RESNET18, num_classes=10)
 load_checkpoint_to_model(net=model, ckpt_local_path="/path/to/my_checkpoints_folder/my_resnet18_training_experiment/RUN_20230802_131052_651906/ckpt_best.pth")
@@ -193,13 +193,13 @@ Using SG's `no_key_matching` will successfully load a checkpoint from either one
 
 Using `models.get(...)`, you can load any of our pre-trained models in 3 lines of code:
 ```python
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg.training import models
+from native_sg.common.object_names import Models
 
 model = models.get(Models.YOLOX_S, pretrained_weights="coco")
 ```
 
-The `pretrained_weights` argument specifies the dataset on which the pre-trained weights were trained. [Here is the complete list of pre-trained weights](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/Computer_Vision_Models_Pretrained_Checkpoints.md).
+The `pretrained_weights` argument specifies the dataset on which the pre-trained weights were trained. [Here is the complete list of pre-trained weights](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/Computer_Vision_Models_Pretrained_Checkpoints.md).
 
 
 ### Loading Checkpoints: Training with Configuration Files
@@ -209,7 +209,7 @@ Prerequisites: [Training with Configuration Files](configuration_files.md)
 Recall the SGs recipes library structure:
 
 
-The `super_gradients/recipes` include the following subdirectories
+The `native_sg/recipes` include the following subdirectories
 
 - arch_params - containing configuration files for instantiating different models
 - checkpoint_params - containing configuration files that define the loaded and saved checkpoints parameters for the training
@@ -221,7 +221,7 @@ And now, let's take a look at the default parameters in `checkpoint_params`:
 
 ```yaml
 load_backbone: False # whether to load only the backbone part of the checkpoint
-checkpoint_path: # checkpoint path that is located in super_gradients/checkpoints
+checkpoint_path: # checkpoint path that is located in native_sg/checkpoints
 strict_load: True # key matching strictness for loading checkpoint's weights
 pretrained_weights: # a string describing the dataset of the pre-trained weights (for example, "imagenent").
 ```
@@ -277,7 +277,7 @@ Example:
 
 ```shell
 # Continues from the latest run in the cifar_experiment.
-python -m super_gradients.train_from_recipe --config-name=cifar10_resnet experiment_name=cifar_experiment training_hyperparams.resume=True
+python -m native_sg.train_from_recipe --config-name=cifar10_resnet experiment_name=cifar_experiment training_hyperparams.resume=True
 ```
 
 #### 2. Resuming a Specific Run
@@ -288,7 +288,7 @@ Example:
 
 ```shell
 # Continues from a specific run identified by the ID within cifar_experiment.
-python -m super_gradients.train_from_recipe --config-name=cifar10_resnet experiment_name=cifar_experiment run_id=RUN_20230802_131052_651906
+python -m native_sg.train_from_recipe --config-name=cifar10_resnet experiment_name=cifar_experiment run_id=RUN_20230802_131052_651906
 ```
 
 #### 3. Branching off from a specific checkpoint
@@ -301,7 +301,7 @@ Example:
 
 ```shell
 # Branches from a specific checkpoint, creating a new run.
-python -m super_gradients.train_from_recipe --config-name=cifar10_resnet experiment_name=cifar_experiment training_hyperparams.resume_path=/path/to/checkpoint.pth
+python -m native_sg.train_from_recipe --config-name=cifar10_resnet experiment_name=cifar_experiment training_hyperparams.resume_path=/path/to/checkpoint.pth
 ```
 
 #### 4. Resuming with original recipe
@@ -321,15 +321,15 @@ Trainer.resume_experiment(ckpt_root_dir=..., experiment_name=..., run_id=...)
 
 Note that  `Trainer.resume_experiment` can only resume training that were launched with `Trainer.train_from_config`.
 
-See usage in our [resume_experiment_example](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/examples/resume_experiment_example/resume_experiment.py).
+See usage in our [resume_experiment_example](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/examples/resume_experiment_example/resume_experiment.py).
 
 ## Resuming Training from SG Logger's Remote Storage (WandB only)
 
 SG supports saving checkpoints throughout the training process in the remote storage defined by `SG Logger` (more info about this object and it's role during training in SG at [Third-party experiment monitoring](experiment_monitoring.md).)
 Suppose we run an experiment with a `WandB` SG logger, then our `training_hyperparams` should hold:
 ```yaml
-sg_logger: wandb_sg_logger, # Weights&Biases Logger, see class super_gradients.common.sg_loggers.wandb_sg_logger.WandBSGLogger for details
-sg_logger_params:             # Params that will be passes to __init__ of the logger super_gradients.common.sg_loggers.wandb_sg_logger.WandBSGLogger
+sg_logger: wandb_sg_logger, # Weights&Biases Logger, see class native_sg.common.sg_loggers.wandb_sg_logger.WandBSGLogger for details
+sg_logger_params:             # Params that will be passes to __init__ of the logger native_sg.common.sg_loggers.wandb_sg_logger.WandBSGLogger
   project_name: project_name, # W&B project name
   save_checkpoints_remote: True,
   save_tensorboard_remote: True,
@@ -346,8 +346,8 @@ resume_from_remote_sg_logger: True
 ```
 2. Pass `run_id` through  `wandb_id` to `sg_logger_params`:
 ```yaml
-sg_logger: wandb_sg_logger, # Weights&Biases Logger, see class super_gradients.common.sg_loggers.wandb_sg_logger.WandBSGLogger for details
-sg_logger_params:             # Params that will be passes to __init__ of the logger super_gradients.common.sg_loggers.wandb_sg_logger.WandBSGLogger
+sg_logger: wandb_sg_logger, # Weights&Biases Logger, see class native_sg.common.sg_loggers.wandb_sg_logger.WandBSGLogger for details
+sg_logger_params:             # Params that will be passes to __init__ of the logger native_sg.common.sg_loggers.wandb_sg_logger.WandBSGLogger
   wandb_id: <YOUR_RUN_ID>
   project_name: project_name, # W&B project name
   save_checkpoints_remote: True,
@@ -366,4 +366,4 @@ For this reason, SG introduces two methods: `Trainer.evaluate_checkpoint(...)` a
 
 `Trainer.evaluate_checkpoint` is used to evaluate a checkpoint resulting from one of your previous experiments, using the same parameters (dataset, valid_metrics,...) as used during the training of the experiment.
 `Trainer.evaluate_recipe`  is used to evaluate a checkpoint from SGs pre-trained model zoo or to evaluate a checkpoint with different parameters.
-See both usages and documentation in the corresponding scripts [evaluate_checkpoint](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/examples/evaluate_checkpoint_example/evaluate_checkpoint.py) and [evaluate_recipe](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/examples/evaluate_checkpoint_example/evaluate_checkpoint.py).
+See both usages and documentation in the corresponding scripts [evaluate_checkpoint](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/examples/evaluate_checkpoint_example/evaluate_checkpoint.py) and [evaluate_recipe](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/examples/evaluate_checkpoint_example/evaluate_checkpoint.py).

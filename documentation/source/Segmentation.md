@@ -10,25 +10,25 @@ SuperGradients includes a variety of pre-trained models for semantic segmentatio
 
 | Model Name     | Dataset    | IoU   | Training Recipe                                                                                                                                                                   | Resolution    |
 |----------------|------------|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| DDRNet 23      | Cityscapes | 80.26 | [cityscapes_ddrnet.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/super_gradients/recipes/cityscapes_ddrnet.yaml)             | [1024, 2048]  |
-| DDRNet 23 Slim | Cityscapes | 78.01 | [cityscapes_ddrnet.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/super_gradients/recipes/cityscapes_ddrnet.yaml)             | [1024, 2048]  |
-| DDRNet 39      | Cityscapes | 81.32 | [cityscapes_ddrnet.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/super_gradients/recipes/cityscapes_ddrnet.yaml)             | [1024, 2048]  |
-| STDC1 Seg 50   | Cityscapes | 75.11 | [cityscapes_stdc_seg50.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/super_gradients/recipes/cityscapes_stdc_seg50.yaml)     | [512, 1024]   |
-| STDC1 Seg 75   | Cityscapes | 76.87 | [cityscapes_stdc_seg75.yaml](https://github.com/Deci-AI/super-gradients/blob/6e89982649e62e9877a802cd1240464cd3b3b87b/src/super_gradients/recipes/cityscapes_stdc_seg75.yaml)     | [768, 1536]   |
-| STDC2 Seg 50   | Cityscapes | 76.44 | [cityscapes_stdc_seg50.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/super_gradients/recipes/cityscapes_stdc_seg50.yaml)     | [512, 1024]   |
-| STDC2 Seg 75   | Cityscapes | 78.93 | [cityscapes_stdc_seg75.yaml](https://github.com/Deci-AI/super-gradients/blob/6e89982649e62e9877a802cd1240464cd3b3b87b/src/super_gradients/recipes/cityscapes_stdc_seg75.yaml)     | [768, 1536]   |
-| RegSeg 48      | Cityscapes | 78.15 | [cityscapes_regseg48.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/super_gradients/recipes/cityscapes_regseg48.yaml)         | [1024, 2048]  |
-| PP-Lite T 50   | Cityscapes | 74.92 | [cityscapes_pplite_seg50.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/super_gradients/recipes/cityscapes_pplite_seg50.yaml) | [512, 1024]   |
-| PP-Lite T 75   | Cityscapes | 77.56 | [cityscapes_pplite_seg75.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/super_gradients/recipes/cityscapes_pplite_seg75.yaml) | [512, 1024]   |
-| PP-Lite B 50   | Cityscapes | 76.48 | [cityscapes_pplite_seg50.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/super_gradients/recipes/cityscapes_pplite_seg50.yaml) | [512, 1024]   |
-| PP-Lite B 75   | Cityscapes | 78.52 | [cityscapes_pplite_seg75.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/super_gradients/recipes/cityscapes_pplite_seg75.yaml) | [512, 1024]   |
+| DDRNet 23      | Cityscapes | 80.26 | [cityscapes_ddrnet.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/native_sg/recipes/cityscapes_ddrnet.yaml)             | [1024, 2048]  |
+| DDRNet 23 Slim | Cityscapes | 78.01 | [cityscapes_ddrnet.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/native_sg/recipes/cityscapes_ddrnet.yaml)             | [1024, 2048]  |
+| DDRNet 39      | Cityscapes | 81.32 | [cityscapes_ddrnet.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/native_sg/recipes/cityscapes_ddrnet.yaml)             | [1024, 2048]  |
+| STDC1 Seg 50   | Cityscapes | 75.11 | [cityscapes_stdc_seg50.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/native_sg/recipes/cityscapes_stdc_seg50.yaml)     | [512, 1024]   |
+| STDC1 Seg 75   | Cityscapes | 76.87 | [cityscapes_stdc_seg75.yaml](https://github.com/Deci-AI/super-gradients/blob/6e89982649e62e9877a802cd1240464cd3b3b87b/src/native_sg/recipes/cityscapes_stdc_seg75.yaml)     | [768, 1536]   |
+| STDC2 Seg 50   | Cityscapes | 76.44 | [cityscapes_stdc_seg50.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/native_sg/recipes/cityscapes_stdc_seg50.yaml)     | [512, 1024]   |
+| STDC2 Seg 75   | Cityscapes | 78.93 | [cityscapes_stdc_seg75.yaml](https://github.com/Deci-AI/super-gradients/blob/6e89982649e62e9877a802cd1240464cd3b3b87b/src/native_sg/recipes/cityscapes_stdc_seg75.yaml)     | [768, 1536]   |
+| RegSeg 48      | Cityscapes | 78.15 | [cityscapes_regseg48.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/native_sg/recipes/cityscapes_regseg48.yaml)         | [1024, 2048]  |
+| PP-Lite T 50   | Cityscapes | 74.92 | [cityscapes_pplite_seg50.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/native_sg/recipes/cityscapes_pplite_seg50.yaml) | [512, 1024]   |
+| PP-Lite T 75   | Cityscapes | 77.56 | [cityscapes_pplite_seg75.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/native_sg/recipes/cityscapes_pplite_seg75.yaml) | [512, 1024]   |
+| PP-Lite B 50   | Cityscapes | 76.48 | [cityscapes_pplite_seg50.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/native_sg/recipes/cityscapes_pplite_seg50.yaml) | [512, 1024]   |
+| PP-Lite B 75   | Cityscapes | 78.52 | [cityscapes_pplite_seg75.yaml](https://github.com/Deci-AI/super-gradients/blob/95018d602ef7f65b37d5ec62e26a8ebbc5b2a7c8/src/native_sg/recipes/cityscapes_pplite_seg75.yaml) | [512, 1024]   |
 
 Latency and additional details of these models can be found in the [SuperGradients Model Zoo](https://docs.deci.ai/super-gradients/documentation/source/model_zoo.html).
 
 ## Loss functions
 
 SuperGradients provides a variety of loss functions for training semantic segmentation tasks. 
-All loss functions are implemented in PyTorch and can be found in the `super_gradients.training.losses` module. 
+All loss functions are implemented in PyTorch and can be found in the `native_sg.training.losses` module. 
 The following table summarizes the loss functions currently supported by SuperGradients.
 
 | Loss function class                                                                                                                                                                     | Loss name in YAML | Description                                                          |
@@ -75,7 +75,7 @@ You can run the following code in our [google collab](https://colab.research.goo
 ## Load a dataset
 In this example we will work with supervisely-persons. If it's the first time you are using this dataset, or if you want to use another dataset please check out [dataset setup instructions](Data.md)
 ```py
-from super_gradients.training import dataloaders
+from native_sg.training import dataloaders
 
 root_dir = '/path/to/supervisely_dataset_dir'
 
@@ -114,8 +114,8 @@ for i in range(4, 7):
 Create a PPLiteSeg nn.Module, with 1 class segmentation head classifier. For simplicity `use_aux_head` is set as `False`
 and extra Auxiliary heads aren't used for training.
 ```py
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg.training import models
+from native_sg.common.object_names import Models
 
 # The model is a torch.nn.module 
 model = models.get(
@@ -129,17 +129,17 @@ Notes
 
 - SG includes implementations of 
 [many different architectures](https://github.com/Deci-AI/super-gradients#implemented-model-architectures).
-- Most of these architectures have [pretrained checkpoints](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/Computer_Vision_Models_Pretrained_Checkpoints.md) so feel free to experiment!
+- Most of these architectures have [pretrained checkpoints](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/Computer_Vision_Models_Pretrained_Checkpoints.md) so feel free to experiment!
 - You can use any torch.nn.module model with SuperGradients!
 
 
 ### Setup training parameters
 
-The training parameters includes loss, metrics, learning rates and much more. You can check out the [default training parameters](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/training_hyperparams/default_train_params.yaml).
+The training parameters includes loss, metrics, learning rates and much more. You can check out the [default training parameters](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/training_hyperparams/default_train_params.yaml).
 For this task, we will train for 30 epoch, using Binary IoU using the SGD optimizer.
 
 ```py
-from super_gradients.training.metrics.segmentation_metrics import BinaryIOU
+from native_sg.training.metrics.segmentation_metrics import BinaryIOU
 
 train_params = {
     "max_epochs": 30,
@@ -167,7 +167,7 @@ The Trainer in SuperGradient takes care of the entire training and validation pr
 It serves as a convenient and efficient tool to handle all the details of the training process, allowing you to focus on the development of your model.
 
 ```py
-from super_gradients import Trainer
+from native_sg import Trainer
 
 trainer = Trainer(
     experiment_name="segmentation_example",     # Your experiment checkpoints and logs will be saved in a folder names after the experiment_name.

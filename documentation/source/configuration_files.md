@@ -86,12 +86,12 @@ We parse each file into dictionaries, lists, and objects, and pass them to the c
 Let's try running a training session from a configuration file.
  
 ```shell
-python -m super_gradients.train_from_recipe --config-name=cifar10_resnet
+python -m native_sg.train_from_recipe --config-name=cifar10_resnet
 ```
 You can stop the training after a few cycles. 
 
 The recipe you have just used is a configuration file containing everything SG needs to know in order to train
-Resnet18 on Cifar10. The actual YAML file is located in `src/super_gradients/recipes/cifar10_resnet.yaml`. 
+Resnet18 on Cifar10. The actual YAML file is located in `src/native_sg/recipes/cifar10_resnet.yaml`. 
 In the same `recipes` library you can find many more configuration files defining different models, datasets, 
 and training hyper-parameters.
 
@@ -111,7 +111,7 @@ def main(cfg: DictConfig) -> None:
     print(cfg.experiment_name)
 ```
 
-The `@hydra.main` decorator is looking for YAML files in the `super_gradients.recipes` according to the name of the configuration file provided 
+The `@hydra.main` decorator is looking for YAML files in the `native_sg.recipes` according to the name of the configuration file provided 
 in the first arg of the command line. 
 
 In the experiment directory a `.hydra` subdirectory will be created. The configuration files related to this run will be saved by hydra to that subdirectory.  

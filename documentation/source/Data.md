@@ -29,7 +29,7 @@ SuperGradients holds common public `torch.utils.data.Dataset` implementations fo
     Pose Estimation:
         COCOKeypointsDataset
 
-All of which can be imported from the `super_gradients.training.datasets` module. Note that some of the above implementations require following a few simple setup steps, which are all documented [here](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/training/datasets/Dataset_Setup_Instructions.md)
+All of which can be imported from the `native_sg.training.datasets` module. Note that some of the above implementations require following a few simple setup steps, which are all documented [here](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/training/datasets/Dataset_Setup_Instructions.md)
 
 Creating a `torch.utils.data.DataLoader` from a dataset can be tricky, especially when defining some parameters on the fly. For example, in distributed training (i.e., DDP)
 the  `torch.utils.data.DataLoader` must be given a proper `Sampler` such that the dataset indices will be divided among the different processes.
@@ -42,10 +42,10 @@ Once instantiated, any of the above can be passed to the `torch.utils.data.DataL
 ```python
 
 from my_dataset import MyDataset
-from super_gradients.training import dataloaders
+from native_sg.training import dataloaders
 import torchvision.transforms as T
-from super_gradients.training import Trainer
-from super_gradients.training.metrics import Accuracy
+from native_sg.training import Trainer
+from native_sg.training.metrics import Accuracy
 
 trainer = Trainer("my_experiment")
 train_dataset = MyDataset(split="train", transforms=T.ToTensor())
@@ -119,7 +119,7 @@ These are simply the `torch.utils.data.DataLoader` configured by the recipe's `d
     pascal_voc_detection_train
     pascal_voc_detection_val
 
-These DataLoader can be imported from the super_gradients.training.dataloaders module.
+These DataLoader can be imported from the native_sg.training.dataloaders module.
 Please note that these Dataset and DataLoader objects are already pre-defined with parameters required for specific training recipes. You can override these default parameters by passing two named arguments: dataset_params and dataloader_params(both of which are dictionaries), which will override the recipe settings. To learn which parameters you can override for each object, please refer to the YAML file with the same name.
 
 For example, the code below will instantiate the data loader used for training in our `imagenet_resnet50` recipe
@@ -128,8 +128,8 @@ but changing the batch size for our needs.
 We can then, also with a one-liner, instantiate the validation dataloader and call train() as always:
 
 ```python
-from super_gradients.training.dataloaders import imagenet_resnet50_train, imagenet_resnet50_val
-from super_gradients.training import Trainer
+from native_sg.training.dataloaders import imagenet_resnet50_train, imagenet_resnet50_val
+from native_sg.training import Trainer
 
 train_dataloader = imagenet_resnet50_train(dataloader_params={"batch_size": 4, "shuffle": True}, dataset_params={"root": "/my_data_dir/Imagenet/train"})
 valid_dataloader = imagenet_resnet50_val(dataloader_params={"batch_size": 16}, dataset_params={"root": "/my_data_dir/Imagenet/val"})
@@ -234,7 +234,7 @@ the data loaders and call train():
 ```python
 
 from my_dataset import MyCustomDataset
-from super_gradients.training import dataloaders, Trainer
+from native_sg.training import dataloaders, Trainer
 
 train_dataset = MyCustomDataset(train=True, image_size=64)
 valid_dataset = MyCustomDataset(train=False, image_size=128)
@@ -253,7 +253,7 @@ trainer.train(model=model, training_params=train_params, train_loader=train_data
 When using configuration files, for example, training using train_from_recipe (or similar, when the underlying train method that is being called is Trainer.train_from_config(...)),  In your ``my_dataset.py``, register your dataset class by decorating the class with `register_dataset`:
 ```python
 import torch
-from super_gradients.common.registry.registry import register_dataset
+from native_sg.common.registry.registry import register_dataset
 
 @register_dataset("my_custom_dataset")
 class MyCustomDataset(torch.utils.data.Dataset):
@@ -289,10 +289,10 @@ Last, in your ``my_train_from_recipe_script.py`` file, import the newly register
   import hydra
   import pkg_resources
   from my_dataset import MyCustomDataset
-  from super_gradients import Trainer, init_trainer
+  from native_sg import Trainer, init_trainer
   
   
-  @hydra.main(config_path=pkg_resources.resource_filename("super_gradients.recipes", ""), version_base="1.2")
+  @hydra.main(config_path=pkg_resources.resource_filename("native_sg.recipes", ""), version_base="1.2")
   def main(cfg: DictConfig) -> None:
       Trainer.train_from_config(cfg)
   

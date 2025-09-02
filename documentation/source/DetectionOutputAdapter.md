@@ -40,7 +40,7 @@ example_input = [
 The corresponding format definition would look like this:
 
 ```python
-from super_gradients.training.datasets.data_formats import ConcatenatedTensorFormat, BoundingBoxesTensorSliceItem, TensorSliceItem, NormalizedCXCYWHCoordinateFormat
+from native_sg.training.datasets.data_formats import ConcatenatedTensorFormat, BoundingBoxesTensorSliceItem, TensorSliceItem, NormalizedCXCYWHCoordinateFormat
 
 input_format = ConcatenatedTensorFormat(
     layout=(
@@ -72,7 +72,7 @@ For sake of demonstration, let's assume that we want to convert the output to th
 The corresponding format definition would look like this:
 
 ```python
-from super_gradients.training.datasets.data_formats import ConcatenatedTensorFormat, BoundingBoxesTensorSliceItem, TensorSliceItem, XYXYCoordinateFormat
+from native_sg.training.datasets.data_formats import ConcatenatedTensorFormat, BoundingBoxesTensorSliceItem, TensorSliceItem, XYXYCoordinateFormat
 
 output_format = ConcatenatedTensorFormat(
     layout=(
@@ -86,7 +86,7 @@ output_format = ConcatenatedTensorFormat(
 Now we can construct the `DetectionOutputAdapter` and attach it to the model:
 
 ```python
-from super_gradients.training.datasets.data_formats import DetectionOutputAdapter
+from native_sg.training.datasets.data_formats import DetectionOutputAdapter
 
 output_adapter = DetectionOutputAdapter(input_format, output_format, image_shape=(640,640))
 

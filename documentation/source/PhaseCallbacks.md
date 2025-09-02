@@ -4,7 +4,7 @@ Integrating your own code into an already existing training pipeline can draw mu
 To tackle this challenge, a list of callables triggered at specific points of the training code can
 be passed through `training_params.phase_calbacks_list` when calling `Trainer.train(...)`.
 
-SG's `super_gradients.training.utils.callbacks` module implements some common use cases as callbacks:
+SG's `native_sg.training.utils.callbacks` module implements some common use cases as callbacks:
 
     ModelConversionCheckCallback
     LRCallbackBase
@@ -24,7 +24,7 @@ SG's `super_gradients.training.utils.callbacks` module implements some common us
 For example, the YoloX's COCO detection training recipe uses `YoloXTrainingStageSwitchCallback` to turn 
 off augmentations and incorporate L1 loss starting from epoch 285:
 
-`super_gradients/recipes/training_hyperparams/coco2017_yolox_train_params.yaml`:
+`native_sg/recipes/training_hyperparams/coco2017_yolox_train_params.yaml`:
 
 ```yaml
 max_epochs: 300
@@ -49,7 +49,7 @@ during training in the [Segmentation Transfer Learning Notebook](https://bit.ly/
 `Callback` implements the following methods:
 
 ```python
-# super_gradients.training.utils.callbacks.base_callbacks.Callback
+# native_sg.training.utils.callbacks.base_callbacks.Callback
 class Callback:
     def on_training_start(self, context: PhaseContext) -> None: pass
     def on_train_loader_start(self, context: PhaseContext) -> None: pass
@@ -191,8 +191,8 @@ This callback needs to be triggered in 3 places:
 Therefore, the callback will override `Callback`'s `on_training_start`, `on_train_batch_start`, and `on_validation_batch_start` methods:
 
 ```python
-from super_gradients.training.utils.callbacks import Callback, PhaseContext
-from super_gradients.common.environment.ddp_utils import multi_process_safe
+from native_sg.training.utils.callbacks import Callback, PhaseContext
+from native_sg.common.environment.ddp_utils import multi_process_safe
 import os
 from torchvision.utils import save_image
 
@@ -254,11 +254,11 @@ To summarize, you need to register the new callback by decorating it with the `r
 so that SuperGradients would know how to instantiate it from the `.yaml` recipe.
 
 ```python
-from super_gradients.training.utils.callbacks import Callback, PhaseContext
-from super_gradients.common.environment.ddp_utils import multi_process_safe
+from native_sg.training.utils.callbacks import Callback, PhaseContext
+from native_sg.common.environment.ddp_utils import multi_process_safe
 import os
 from torchvision.utils import save_image
-from super_gradients.common.registry.registry import register_callback
+from native_sg.common.registry.registry import register_callback
 
 @register_callback()
 class SaveFirstBatchCallback(Callback):
@@ -306,10 +306,10 @@ Last, make sure to import `SaveFirstBatchCallback` in the script you use to laun
   import hydra
   import pkg_resources
   from my_callbacks import SaveFirstBatchCallback
-  from super_gradients import Trainer, init_trainer
+  from native_sg import Trainer, init_trainer
   
   
-  @hydra.main(config_path=pkg_resources.resource_filename("super_gradients.recipes", ""), version_base="1.2")
+  @hydra.main(config_path=pkg_resources.resource_filename("native_sg.recipes", ""), version_base="1.2")
   def main(cfg: DictConfig) -> None:
       Trainer.train_from_config(cfg)
   

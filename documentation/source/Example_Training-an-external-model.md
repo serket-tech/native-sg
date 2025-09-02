@@ -148,7 +148,7 @@ import os
 from PIL import Image
 import torch
 from torchvision.transforms import transforms as torch_transforms
-from super_gradients.training.transforms.transforms import SegColorJitter, SegRandomFlip, SegResize
+from native_sg.training.transforms.transforms import SegColorJitter, SegRandomFlip, SegResize
 
 
 class AISegmentDataset(torch.utils.data.Dataset):
@@ -577,7 +577,7 @@ To initialize it, you need:
 - **Checkpoint Root Directory (`ckpt_root_dir`):** The directory where checkpoints, logs, and tensorboards are saved. While optional, if unspecified, it assumes the presence of a 'checkpoints' directory in your project's root.
 
 ```python
-from super_gradients import Trainer
+from native_sg import Trainer
 
 experiment_name = "aisegment_example"
 CHECKPOINT_DIR = '/path/to/checkpoints/root/dir'
@@ -654,7 +654,7 @@ train_params = {
 Notice that the training hyperparameters must be defined as a dictionary with the hyperparameter names as keys.
 The dictionary defines the hyperparameters that we want to override. All other hyperparameters retain their default
 values defined by SuperGradients. The list of all training hyperparameters and their default value
-can be found [here](https://github.com/Deci-AI/super-gradients/blob/master/src/super_gradients/recipes/training_hyperparams/default_train_params.yaml).
+can be found [here](https://github.com/Deci-AI/super-gradients/blob/master/src/native_sg/recipes/training_hyperparams/default_train_params.yaml).
 
 The `metric_to_watch` hyperparameter defines the metric used to determine the best model at the end of every epoch.
 We simply set it as a string representing the name of our custom metric `SoftIoU`. Greater IoU is better, therefore we 

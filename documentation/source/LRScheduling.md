@@ -20,7 +20,7 @@ Learning rate scheduling type is controlled by the training parameter `lr_mode`.
 For example, the training code below will start with an initial learning rate of 0.1 and decay by 0.1 at epochs 100,150 and 200:
 
 ```python
-from super_gradients.training import Trainer
+from native_sg.training import Trainer
 
 
 trainer = Trainer("my_custom_scheduler_training_experiment")
@@ -66,7 +66,7 @@ Prerequisites: [phase callbacks](PhaseCallbacks.md), [training with configuratio
 In SG, learning rate schedulers are implemented as [phase callbacks](PhaseCallbacks.md).
 They read the learning rate from the `PhaseContext` in their `__call__` method, calculate the new learning rate according to the current state of training, and update the optimizer's param groups.
 
-For example, the code snippet from the previous section translates "lr_mode":"StepLRScheduler" to a `super_gradients.training.utils.callbacks.callbacks.StepLRScheduler` instance, which is added to the phase callbacks list.
+For example, the code snippet from the previous section translates "lr_mode":"StepLRScheduler" to a `native_sg.training.utils.callbacks.callbacks.StepLRScheduler` instance, which is added to the phase callbacks list.
 
 ### Implementing Your Own Scheduler
 A custom learning rate scheduler should inherit from `LRCallbackBase`, so let's take a look at it:
@@ -126,8 +126,8 @@ So when writing a custom scheduler, we need to override two methods:
 We will demonstrate how this is done by implementing a simple scheduler that decays the learning rate by a user-defined rate at user-defined epoch numbers.
 
 ```python
-from super_gradients.training.utils.callbacks import LRCallbackBase, Phase
-from super_gradients.common.abstractions.abstract_logger import get_logger
+from native_sg.training.utils.callbacks import LRCallbackBase, Phase
+from native_sg.common.abstractions.abstract_logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -154,16 +154,16 @@ class UserStepLRCallback(LRCallbackBase):
 Notes
 
 - We specified that scheduling is enabled only after `lr_warmup_epochs`, this means that during lr warmup no updates will be done, even if such epoch is specifed!
-- Notice the Phase.TRAIN_EPOCH_END which we pass to the constructor, this means that our `__call__` is triggered inside `on_train_loader_end(self, context)` (see [new callbacks API mapping between `Phase` to `Callback` methods](https://github.com/Deci-AI/super-gradients/blob/9d65cbbe5efc80b1db04d0aae081608dd91bce03/src/super_gradients/training/utils/callbacks/base_callbacks.py#L141).)
+- Notice the Phase.TRAIN_EPOCH_END which we pass to the constructor, this means that our `__call__` is triggered inside `on_train_loader_end(self, context)` (see [new callbacks API mapping between `Phase` to `Callback` methods](https://github.com/Deci-AI/super-gradients/blob/9d65cbbe5efc80b1db04d0aae081608dd91bce03/src/native_sg/training/utils/callbacks/base_callbacks.py#L141).)
 
 Now, we need to register our new scheduler so we can pass it through the `lr_mode` training parameter.
 First we decorate our class with the `register_lr_scheduler`.
 ```python
 # myscheduler.py
 
-from super_gradients.training.utils.callbacks import LRCallbackBase, Phase
-from super_gradients.common.abstractions.abstract_logger import get_logger
-from super_gradients.common.registry import register_lr_scheduler
+from native_sg.training.utils.callbacks import LRCallbackBase, Phase
+from native_sg.common.abstractions.abstract_logger import get_logger
+from native_sg.common.registry import register_lr_scheduler
 logger = get_logger(__name__)
 
 @register_lr_scheduler("user_step")
@@ -192,7 +192,7 @@ Next, simply import it (even if the class itself isn't used on the training scri
 ```python
 # my_train_script.py
 
-from super_gradients.training import Trainer
+from native_sg.training import Trainer
 from myscheduler import UserStepLRCallback # triggers registry, now we can pass "lr_mode": "user_step"
 ...
 
@@ -219,7 +219,7 @@ train_params = {
 trainer.train(model=model, training_params=train_params, train_loader=train_dataloader, valid_loader=valid_dataloader)
 ```
 
-Note that internally, Trainer unpacks [training_params to the scheduler callback constructor](https://github.com/Deci-AI/super-gradients/blob/537a0f0afe7bcf28d331fe2c0fa797fa10f54b99/src/super_gradients/training/sg_trainer/sg_trainer.py#L1078), so we pass scheduler related parameters through training_params as well.
+Note that internally, Trainer unpacks [training_params to the scheduler callback constructor](https://github.com/Deci-AI/super-gradients/blob/537a0f0afe7bcf28d331fe2c0fa797fa10f54b99/src/native_sg/training/sg_trainer/sg_trainer.py#L1078), so we pass scheduler related parameters through training_params as well.
 
 
 <details>

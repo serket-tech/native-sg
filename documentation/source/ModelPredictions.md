@@ -31,9 +31,9 @@ Here is the example of **incorrect** code of using `model.predict()`:
 
 ```python
 # Incorrect code example. Do not use it.
-from super_gradients.training import dataloaders
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
+from native_sg.training import dataloaders
+from native_sg.common.object_names import Models
+from native_sg.training import models
 
 val_loader = dataloaders.get("coco2017_val_yolo_nas")
 
@@ -53,8 +53,8 @@ Please keep this in mind when using `model.predict()` with batched inputs.
 First, let's load the pre-trained `Yolo-NAS` model using the `models.get()` function and define a list of image paths or URLs that we want to process:
 
 ```python
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
+from native_sg.common.object_names import Models
+from native_sg.training import models
 
 model = models.get(Models.YOLO_NAS_L, pretrained_weights="coco")
 ```

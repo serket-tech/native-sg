@@ -60,17 +60,17 @@ pip install pytorch-quantization==2.1.2 --extra-index-url https://pypi.ngc.nvidi
 Although this might come as a surprise - the name quantization-aware training needs to be more accurate and be performed on a trained checkpoint rather than from scratch.
 So in practice, we need to train our model on our dataset fully, then after we perform calibration, we fine-tune our model once again, which will be our final step.
 As we discuss in our [Training with configuration files](), we clone the SG repo, then use the repo's configuration files in our training examples.
-We will use the ```src/super_gradients/recipes/roboflow_yolo_nas_s.yaml```configuration to train the small variant of our DeciModel, DeciModel S.
+We will use the ```src/native_sg/recipes/roboflow_yolo_nas_s.yaml```configuration to train the small variant of our DeciModel, DeciModel S.
 
 So we navigate to our ```train_from_recipe``` script:
 
 ```commandline
-cd <YOUR-LOCAL-PATH>/super_gradients/src/super_gradients/examples/train_from_recipe_example
+cd <YOUR-LOCAL-PATH>/native_sg/src/native_sg/examples/train_from_recipe_example
 ```
 
 Then to avoid collisions between our cloned and installed SG:
 ```commandline
-export PYTHONPATH=$PYTHONPATH:<YOUR-LOCAL-PATH>/super_gradients/
+export PYTHONPATH=$PYTHONPATH:<YOUR-LOCAL-PATH>/native_sg/
 ```
 
 To launch training on one of the RF100 datasets, we pass it through the dataset_name argument:
@@ -171,8 +171,8 @@ And so our best checkpoint resides in <YOUR_CHECKPOINTS_ROOT_DIRECTORY>/yolo_nas
 
 Let's visualize some results:
 ```python
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
+from native_sg.common.object_names import Models
+from native_sg.training import models
 
 model = models.get(Models.YOLO_NAS_S,
                   checkpoint_path=<YOUR_CHECKPOINTS_ROOT_DIRECTORY>/yolo_nas_s_soccer_players/ckpt_best.pth>,
@@ -188,7 +188,7 @@ Now, we will take our checkpoint from our previous section and perform post-trai
 To do so, we will need to launch training with our `qat_from_recipe` example script, which simplifies taking any existing training recipe and making it a quantization-aware one with the help of some of our recommended practices.
 So this time, we navigate to the `qat_from_recipe` example directory:
 ```commandline
-cd <YOUR-LOCAL-PATH>/super_gradients/src/super_gradients/examples/qat_from_recipe_example
+cd <YOUR-LOCAL-PATH>/native_sg/src/native_sg/examples/qat_from_recipe_example
 ```
 
 Before we launch, let's see how we can easily create a configuration from our `roboflow_yolo_nas_s` config to get the most out of QAT and PTQ.
@@ -237,22 +237,22 @@ Now we can launch PTQ and QAT from the command line:
 python -m qat_from_recipe --config-name=roboflow_yolo_nas_s_qat experiment_name=soccer_players_qat_yolo_nas_s dataset_name=soccer-players-5fuqs dataset_params.data_dir=<PATH_TO_RF100_ROOT> checkpoint_params.checkpoint_path=<YOUR_CHECKPOINTS_ROOT_DIRECTORY>/yolo_nas_s_soccer_players/ckpt_best.pth ckpt_ckpt_root_dir=<YOUR_CHECKPOINTS_ROOT_DIRECTORY>
 ...
 
-[2023-04-02 11:37:56,848][super_gradients.training.pre_launch_callbacks.pre_launch_callbacks][INFO] - Modifying recipe to suit QAT rules of thumb. Remove QATRecipeModificationCallback to disable.
-[2023-04-02 11:37:56,858][super_gradients.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - New number of epochs: 10
-[2023-04-02 11:37:56,858][super_gradients.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - New learning rate: 5e-06
-[2023-04-02 11:37:56,858][super_gradients.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - New weight decay: 1.0000000000000002e-06
-[2023-04-02 11:37:56,858][super_gradients.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - EMA will be disabled for QAT run.
-[2023-04-02 11:37:56,859][super_gradients.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - SyncBatchNorm will be disabled for QAT run.
-[2023-04-02 11:37:56,859][super_gradients.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - Recipe requests multi_gpu=False and num_gpus=1. Changing to multi_gpu=OFF and num_gpus=1
+[2023-04-02 11:37:56,848][native_sg.training.pre_launch_callbacks.pre_launch_callbacks][INFO] - Modifying recipe to suit QAT rules of thumb. Remove QATRecipeModificationCallback to disable.
+[2023-04-02 11:37:56,858][native_sg.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - New number of epochs: 10
+[2023-04-02 11:37:56,858][native_sg.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - New learning rate: 5e-06
+[2023-04-02 11:37:56,858][native_sg.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - New weight decay: 1.0000000000000002e-06
+[2023-04-02 11:37:56,858][native_sg.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - EMA will be disabled for QAT run.
+[2023-04-02 11:37:56,859][native_sg.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - SyncBatchNorm will be disabled for QAT run.
+[2023-04-02 11:37:56,859][native_sg.training.pre_launch_callbacks.pre_launch_callbacks][WARNING] - Recipe requests multi_gpu=False and num_gpus=1. Changing to multi_gpu=OFF and num_gpus=1
 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 32/32 [00:32<00:00,  1.01s/it]
-[2023-04-02 11:38:34,316][super_gradients.training.qat_trainer.qat_trainer][INFO] - Validating PTQ model...
+[2023-04-02 11:38:34,316][native_sg.training.qat_trainer.qat_trainer][INFO] - Validating PTQ model...
 
   0%|          | 0/3 [00:00<?, ?it/s]
 Test:   0%|          | 0/3 [00:00<?, ?it/s]
 Test:  33%|███▎      | 1/3 [00:00<00:00,  2.87it/s]
 Test:  67%|██████▋   | 2/3 [00:00<00:00,  2.90it/s]
 Test: 100%|██████████| 3/3 [00:00<00:00,  3.86it/s]
-[2023-04-02 11:38:35,106][super_gradients.training.qat_trainer.qat_trainer][INFO] - PTQ Model Validation Results
+[2023-04-02 11:38:35,106][native_sg.training.qat_trainer.qat_trainer][INFO] - PTQ Model Validation Results
    - Precision@0.50: 0.6727069020271301
    - Recall@0.50: 0.95766681432724
    - mAP@0.50  : 0.9465919137001038
