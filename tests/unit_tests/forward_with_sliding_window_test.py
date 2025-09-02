@@ -2,7 +2,7 @@ import torch
 import unittest
 import torch.nn
 
-from super_gradients.training.utils.segmentation_utils import forward_with_sliding_window_wrapper
+from native_sg.training.utils.segmentation_utils import forward_with_sliding_window_wrapper
 
 
 class SlidingWindowTest(unittest.TestCase):

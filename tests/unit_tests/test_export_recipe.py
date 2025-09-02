@@ -5,7 +5,7 @@ import os
 import hydra
 from hydra import initialize_config_dir, compose
 
-from super_gradients.common.environment.cfg_utils import export_recipe
+from native_sg.common.environment.cfg_utils import export_recipe
 
 
 class TestExportRecipe(unittest.TestCase):

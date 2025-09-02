@@ -7,7 +7,7 @@ import onnx
 import onnxruntime as ort
 import torch.jit
 
-from super_gradients.training.datasets.data_formats import (
+from native_sg.training.datasets.data_formats import (
     ConcatenatedTensorFormat,
     BoundingBoxesTensorSliceItem,
     TensorSliceItem,
@@ -20,7 +20,7 @@ from super_gradients.training.datasets.data_formats import (
     LabelTensorSliceItem,
 )
 
-from super_gradients.training.datasets.data_formats.bbox_formats.normalized_cxcywh import xyxy_to_normalized_cxcywh
+from native_sg.training.datasets.data_formats.bbox_formats.normalized_cxcywh import xyxy_to_normalized_cxcywh
 
 NORMALIZED_XYWH_SCORES_LABELS = ConcatenatedTensorFormat(
     layout=(

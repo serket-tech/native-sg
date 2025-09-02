@@ -8,17 +8,17 @@ import numpy as np
 
 from torch.utils.data import DataLoader
 
-from super_gradients import Trainer
-from super_gradients.training import models, dataloaders
-from super_gradients.training.dataloaders import coco2017_train_yolo_nas, get_data_loader
-from super_gradients.training.datasets import COCODetectionDataset, YoloDarknetFormatDetectionDataset
-from super_gradients.training.datasets.data_formats.default_formats import LABEL_CXCYWH
-from super_gradients.training.datasets.datasets_conf import COCO_DETECTION_CLASSES_LIST
-from super_gradients.common.exceptions.dataset_exceptions import DatasetValidationException, ParameterMismatchException
-from super_gradients.training.metrics import DetectionMetrics
-from super_gradients.training.models import YoloXPostPredictionCallback
-from super_gradients.training.transforms import DetectionMosaic, DetectionTargetsFormatTransform, DetectionPaddedRescale
-from super_gradients.training.utils.collate_fn import DetectionCollateFN, CrowdDetectionCollateFN, PPYoloECollateFN
+from native_sg import Trainer
+from native_sg.training import models, dataloaders
+from native_sg.training.dataloaders import coco2017_train_yolo_nas, get_data_loader
+from native_sg.training.datasets import COCODetectionDataset, YoloDarknetFormatDetectionDataset
+from native_sg.training.datasets.data_formats.default_formats import LABEL_CXCYWH
+from native_sg.training.datasets.datasets_conf import COCO_DETECTION_CLASSES_LIST
+from native_sg.common.exceptions.dataset_exceptions import DatasetValidationException, ParameterMismatchException
+from native_sg.training.metrics import DetectionMetrics
+from native_sg.training.models import YoloXPostPredictionCallback
+from native_sg.training.transforms import DetectionMosaic, DetectionTargetsFormatTransform, DetectionPaddedRescale
+from native_sg.training.utils.collate_fn import DetectionCollateFN, CrowdDetectionCollateFN, PPYoloECollateFN
 
 
 class DummyCOCODetectionDatasetInheritor(COCODetectionDataset):

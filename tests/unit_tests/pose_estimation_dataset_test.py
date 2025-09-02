@@ -4,11 +4,11 @@ import unittest
 import numpy as np
 import torch
 
-from super_gradients.common.object_names import Models
-from super_gradients.module_interfaces import HasPredict
-from super_gradients.training import models
-from super_gradients.training.dataloaders import coco2017_pose_val
-from super_gradients.training.datasets.pose_estimation_datasets import DEKRTargetsGenerator
+from native_sg.common.object_names import Models
+from native_sg.module_interfaces import HasPredict
+from native_sg.training import models
+from native_sg.training.dataloaders import coco2017_pose_val
+from native_sg.training.datasets.pose_estimation_datasets import DEKRTargetsGenerator
 
 
 class TestPoseEstimationDataset(unittest.TestCase):

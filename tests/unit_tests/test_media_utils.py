@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 import torch
 
-from super_gradients.training.utils.media.image import load_images
+from native_sg.training.utils.media.image import load_images
 
 
 class TrainingParamsTest(unittest.TestCase):

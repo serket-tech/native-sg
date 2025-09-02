@@ -4,8 +4,8 @@ import torch
 import random
 from typing import List, Optional, Tuple, Dict
 
-from super_gradients.training.metrics.detection_metrics import DetectionMetricsDistanceBased
-from super_gradients.training.utils.detection_utils import EuclideanDistance, ManhattanDistance
+from native_sg.training.metrics.detection_metrics import DetectionMetricsDistanceBased
+from native_sg.training.utils.detection_utils import EuclideanDistance, ManhattanDistance
 
 
 class TestDetectionMetricsDistanceBased(unittest.TestCase):

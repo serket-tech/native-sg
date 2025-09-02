@@ -9,8 +9,8 @@ from data_gradients.managers.segmentation_manager import SegmentationAnalysisMan
 from data_gradients.managers.classification_manager import ClassificationAnalysisManager
 from data_gradients.utils.data_classes.image_channels import ImageChannels
 
-from super_gradients.training.dataloaders.dataloaders import coco2017_val, cityscapes_stdc_seg50_val, cifar10_val
-from super_gradients.training.dataloaders.adapters import (
+from native_sg.training.dataloaders.dataloaders import coco2017_val, cityscapes_stdc_seg50_val, cifar10_val
+from native_sg.training.dataloaders.adapters import (
     DetectionDataloaderAdapterFactory,
     SegmentationDataloaderAdapterFactory,
     ClassificationDataloaderAdapterFactory,

@@ -1,11 +1,11 @@
 import unittest
 import tempfile
 
-from super_gradients import Trainer
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.metrics import Accuracy, Top5
-from super_gradients.training.models import ResNet18
-from super_gradients.training.utils.distributed_training_utils import setup_device
+from native_sg import Trainer
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.metrics import Accuracy, Top5
+from native_sg.training.models import ResNet18
+from native_sg.training.utils.distributed_training_utils import setup_device
 
 
 class TestMixedPrecisionDisabled(unittest.TestCase):

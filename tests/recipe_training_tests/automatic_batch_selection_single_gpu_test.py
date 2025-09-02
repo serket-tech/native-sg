@@ -6,10 +6,10 @@ from hydra import initialize_config_dir
 from hydra.core.global_hydra import GlobalHydra
 from hydra import compose
 from omegaconf import OmegaConf, open_dict, DictConfig
-from super_gradients import Trainer, init_trainer
-from super_gradients.common.registry.registry import register_pre_launch_callback
-from super_gradients.training.pre_launch_callbacks import PreLaunchCallback
-from super_gradients.common.environment.cfg_utils import normalize_path
+from native_sg import Trainer, init_trainer
+from native_sg.common.registry.registry import register_pre_launch_callback
+from native_sg.training.pre_launch_callbacks import PreLaunchCallback
+from native_sg.common.environment.cfg_utils import normalize_path
 
 
 @register_pre_launch_callback()
@@ -37,7 +37,7 @@ class PreLaunchLRVerificationCallback(PreLaunchCallback):
 class TestAutoBatchSelectionSingleGPU(unittest.TestCase):
     def test_auto_batch_size_no_max_no_lr_adaptation(self):
         GlobalHydra.instance().clear()
-        sg_recipes_dir = pkg_resources.resource_filename("super_gradients.recipes", "")
+        sg_recipes_dir = pkg_resources.resource_filename("native_sg.recipes", "")
         init_trainer()
         with initialize_config_dir(config_dir=normalize_path(sg_recipes_dir), version_base="1.2"):
             cfg = compose(config_name="cifar10_resnet")
@@ -56,7 +56,7 @@ class TestAutoBatchSelectionSingleGPU(unittest.TestCase):
 
     def test_auto_batch_size_with_upper_limit_no_lr_adaptation(self):
         GlobalHydra.instance().clear()
-        sg_recipes_dir = pkg_resources.resource_filename("super_gradients.recipes", "")
+        sg_recipes_dir = pkg_resources.resource_filename("native_sg.recipes", "")
         init_trainer()
         with initialize_config_dir(config_dir=normalize_path(sg_recipes_dir), version_base="1.2"):
             cfg = compose(config_name="cifar10_resnet")
@@ -85,7 +85,7 @@ class TestAutoBatchSelectionSingleGPU(unittest.TestCase):
 
     def test_auto_batch_size_no_max_with_lr_adaptation(self):
         GlobalHydra.instance().clear()
-        sg_recipes_dir = pkg_resources.resource_filename("super_gradients.recipes", "")
+        sg_recipes_dir = pkg_resources.resource_filename("native_sg.recipes", "")
         init_trainer()
         with initialize_config_dir(config_dir=normalize_path(sg_recipes_dir), version_base="1.2"):
             cfg = compose(config_name="cifar10_resnet")
@@ -110,7 +110,7 @@ class TestAutoBatchSelectionSingleGPU(unittest.TestCase):
 
     def test_auto_batch_size_with_upper_limit_with_lr_adaptation(self):
         GlobalHydra.instance().clear()
-        sg_recipes_dir = pkg_resources.resource_filename("super_gradients.recipes", "")
+        sg_recipes_dir = pkg_resources.resource_filename("native_sg.recipes", "")
         init_trainer()
         with initialize_config_dir(config_dir=normalize_path(sg_recipes_dir), version_base="1.2"):
             cfg = compose(config_name="cifar10_resnet")

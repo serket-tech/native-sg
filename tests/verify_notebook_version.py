@@ -2,7 +2,7 @@ import re
 import sys
 from typing import Optional
 
-import super_gradients
+import native_sg
 
 
 def get_first_cell_content(notebook_path):
@@ -22,13 +22,13 @@ def get_first_cell_content(notebook_path):
     return first_cell_content
 
 
-def try_extract_super_gradients_version_from_pip_install_command(input: str) -> Optional[str]:
+def try_extract_native_sg_version_from_pip_install_command(input: str) -> Optional[str]:
     """
-    Extracts the version of super_gradients from a string like `!pip install super_gradients=={version}` command.
-    A pip install may contain extra arguments, e.g. `!pip install -q super_gradients=={version} torch=={another version}`.
+    Extracts the version of native_sg from a string like `!pip install native_sg=={version}` command.
+    A pip install may contain extra arguments, e.g. `!pip install -q native_sg=={version} torch=={another version}`.
 
-    :param input: A string that contains a `!pip install super_gradients=={version}` command.
-    :return: The version of super_gradients.
+    :param input: A string that contains a `!pip install native_sg=={version}` command.
+    :return: The version of native_sg.
     """
     pattern = re.compile(r"pip\s+install.*?super[-_]gradients==([0-9]+(?:\.[0-9]+)*(?:\.[0-9]+)?)")
     match = re.search(pattern, input)
@@ -41,27 +41,27 @@ def try_extract_super_gradients_version_from_pip_install_command(input: str) -> 
 def main():
     """
     This script is used to verify that the version of the SG package matches the version of SG installed in the notebook.
-    The script assumes that the first cell of the notebook contains a `!pip install super_gradients=={version}` command.
+    The script assumes that the first cell of the notebook contains a `!pip install native_sg=={version}` command.
     :return: An exit code of 0 if the versions match, 1 otherwise.
     """
     notebook_path = sys.argv[1]
     first_cell_content = get_first_cell_content(notebook_path)
 
-    expected_version = super_gradients.__version__
+    expected_version = native_sg.__version__
     for line in first_cell_content.splitlines():
-        sg_version_in_notebook = try_extract_super_gradients_version_from_pip_install_command(line)
+        sg_version_in_notebook = try_extract_native_sg_version_from_pip_install_command(line)
         if sg_version_in_notebook is not None:
             if sg_version_in_notebook == expected_version:
                 return 0
             else:
                 print(
                     f"Version mismatch detected in {notebook_path}:\n"
-                    f"super_gradients.__version__ is {expected_version}\n"
-                    f"Notebook uses super_gradients  {sg_version_in_notebook} (notebook_path)"
+                    f"native_sg.__version__ is {expected_version}\n"
+                    f"Notebook uses native_sg  {sg_version_in_notebook} (notebook_path)"
                 )
                 return 1
 
-    print(f"First code cell of the notebook {notebook_path} does not contain a `!pip install super_gradients=={expected_version} command`")
+    print(f"First code cell of the notebook {notebook_path} does not contain a `!pip install native_sg=={expected_version} command`")
     print("First code cell content:")
     print(first_cell_content)
     return 1

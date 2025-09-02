@@ -2,7 +2,7 @@ import torch
 import unittest
 import torch.nn.functional as F
 
-from super_gradients.training.losses.ohem_ce_loss import OhemCELoss
+from native_sg.training.losses.ohem_ce_loss import OhemCELoss
 
 
 class OhemLossTest(unittest.TestCase):

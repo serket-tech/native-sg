@@ -1,12 +1,12 @@
 import unittest
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
+from native_sg.common.object_names import Models
+from native_sg.training import models
 
-import super_gradients
+import native_sg
 
-from super_gradients import Trainer
-from super_gradients.training.dataloaders.dataloaders import (
+from native_sg import Trainer
+from native_sg.training.dataloaders.dataloaders import (
     cifar10_train,
     cifar10_val,
     cifar100_train,
@@ -16,7 +16,7 @@ from super_gradients.training.dataloaders.dataloaders import (
 
 class TestCifarTrainer(unittest.TestCase):
     def test_train_cifar10_dataloader(self):
-        super_gradients.init_trainer()
+        native_sg.init_trainer()
         trainer = Trainer("test")
         cifar10_train_dl, cifar10_val_dl = cifar10_train(), cifar10_val()
         model = models.get(Models.RESNET18_CIFAR, arch_params={"num_classes": 10})
@@ -35,7 +35,7 @@ class TestCifarTrainer(unittest.TestCase):
         )
 
     def test_train_cifar100_dataloader(self):
-        super_gradients.init_trainer()
+        native_sg.init_trainer()
         trainer = Trainer("test")
         cifar100_train_dl, cifar100_val_dl = cifar100_train(), cifar100_val()
         model = models.get(Models.RESNET18_CIFAR, arch_params={"num_classes": 100})

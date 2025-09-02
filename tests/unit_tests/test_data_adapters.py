@@ -10,7 +10,7 @@ from data_gradients.managers.segmentation_manager import SegmentationAnalysisMan
 from data_gradients.managers.classification_manager import ClassificationAnalysisManager
 from data_gradients.utils.data_classes.image_channels import ImageChannels
 
-from super_gradients.training.dataloaders.adapters import (
+from native_sg.training.dataloaders.adapters import (
     ClassificationDataloaderAdapterFactory,
     DetectionDataloaderAdapterFactory,
     SegmentationDataloaderAdapterFactory,

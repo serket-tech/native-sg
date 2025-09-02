@@ -1,12 +1,12 @@
 import unittest
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
+from native_sg.common.object_names import Models
+from native_sg.training import models
 
-from super_gradients import Trainer
+from native_sg import Trainer
 import torch
 from torch.utils.data import TensorDataset, DataLoader
-from super_gradients.training.metrics import Accuracy
+from native_sg.training.metrics import Accuracy
 
 
 class InitializeWithDataloadersTest(unittest.TestCase):

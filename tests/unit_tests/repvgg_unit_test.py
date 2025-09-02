@@ -1,7 +1,7 @@
 import unittest
-from super_gradients.common.registry.registry import ARCHITECTURES
-from super_gradients.training.models.classification_models.repvgg import RepVggA1
-from super_gradients.training.utils.utils import HpmStruct
+from native_sg.common.registry.registry import ARCHITECTURES
+from native_sg.training.models.classification_models.repvgg import RepVggA1
+from native_sg.training.utils.utils import HpmStruct
 import torch
 import copy
 import numpy as np

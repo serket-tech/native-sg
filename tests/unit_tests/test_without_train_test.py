@@ -1,14 +1,14 @@
 import shutil
 import unittest
 import os
-from super_gradients import Trainer
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader, detection_test_dataloader, segmentation_test_dataloader
-from super_gradients.training.metrics import Accuracy, Top5
-from super_gradients.training import models
-from super_gradients.training.metrics.detection_metrics import DetectionMetrics
-from super_gradients.training.metrics.segmentation_metrics import PixelAccuracy, IoU
-from super_gradients.training.models.detection_models.yolo_base import YoloXPostPredictionCallback
-from super_gradients.common.object_names import Models
+from native_sg import Trainer
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader, detection_test_dataloader, segmentation_test_dataloader
+from native_sg.training.metrics import Accuracy, Top5
+from native_sg.training import models
+from native_sg.training.metrics.detection_metrics import DetectionMetrics
+from native_sg.training.metrics.segmentation_metrics import PixelAccuracy, IoU
+from native_sg.training.models.detection_models.yolo_base import YoloXPostPredictionCallback
+from native_sg.common.object_names import Models
 
 
 class TestWithoutTrainTest(unittest.TestCase):

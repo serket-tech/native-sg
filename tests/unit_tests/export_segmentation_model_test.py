@@ -8,17 +8,17 @@ import numpy as np
 import onnxruntime
 import torch
 from matplotlib import pyplot as plt
-from super_gradients.common.object_names import Models
-from super_gradients.conversion.conversion_enums import ExportQuantizationMode
-from super_gradients.conversion.gs_utils import import_onnx_graphsurgeon_or_install
-from super_gradients.import_utils import import_pytorch_quantization_or_install
-from super_gradients.module_interfaces import ExportableSegmentationModel, SegmentationModelExportResult
-from super_gradients.training import models
-from super_gradients.training.datasets.datasets_conf import CITYSCAPES_DEFAULT_SEGMENTATION_CLASSES_LIST
-from super_gradients.training.utils.detection_utils import DetectionVisualization
-from super_gradients.training.utils.export_utils import infer_image_shape_from_model, infer_image_input_channels
-from super_gradients.training.utils.media.image import load_image
-from super_gradients.training.utils.visualization.segmentation import overlay_segmentation
+from native_sg.common.object_names import Models
+from native_sg.conversion.conversion_enums import ExportQuantizationMode
+from native_sg.conversion.gs_utils import import_onnx_graphsurgeon_or_install
+from native_sg.import_utils import import_pytorch_quantization_or_install
+from native_sg.module_interfaces import ExportableSegmentationModel, SegmentationModelExportResult
+from native_sg.training import models
+from native_sg.training.datasets.datasets_conf import CITYSCAPES_DEFAULT_SEGMENTATION_CLASSES_LIST
+from native_sg.training.utils.detection_utils import DetectionVisualization
+from native_sg.training.utils.export_utils import infer_image_shape_from_model, infer_image_input_channels
+from native_sg.training.utils.media.image import load_image
+from native_sg.training.utils.visualization.segmentation import overlay_segmentation
 from torch.utils.data import DataLoader
 
 gs = import_onnx_graphsurgeon_or_install()
@@ -157,7 +157,7 @@ class TestSegmentationModelExport(unittest.TestCase):
         return result
 
     def test_export_already_quantized_model(self):
-        from super_gradients.training.utils.quantization import SelectiveQuantizer
+        from native_sg.training.utils.quantization import SelectiveQuantizer
 
         for model_type in self.models_to_test:
             with self.subTest(model_type=model_type):

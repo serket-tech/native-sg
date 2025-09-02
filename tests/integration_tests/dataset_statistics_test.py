@@ -1,11 +1,11 @@
 import unittest
 
-from super_gradients.common.object_names import Models
-from super_gradients.training.dataloaders.dataloaders import coco2017_train, coco2017_val
-from super_gradients.training.metrics.detection_metrics import DetectionMetrics
+from native_sg.common.object_names import Models
+from native_sg.training.dataloaders.dataloaders import coco2017_train, coco2017_val
+from native_sg.training.metrics.detection_metrics import DetectionMetrics
 
-from super_gradients.training import Trainer, models
-from super_gradients.training.models.detection_models.yolo_base import YoloXPostPredictionCallback
+from native_sg.training import Trainer, models
+from native_sg.training.models.detection_models.yolo_base import YoloXPostPredictionCallback
 
 
 class TestDatasetStatisticsTensorboardLogger(unittest.TestCase):

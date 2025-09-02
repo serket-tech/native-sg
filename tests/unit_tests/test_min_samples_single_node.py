@@ -3,7 +3,7 @@ import numpy as np
 import torch
 from torch.utils.data import TensorDataset
 
-from super_gradients.training import dataloaders
+from native_sg.training import dataloaders
 
 
 class TestMinSamplesSingleNode(unittest.TestCase):

@@ -3,9 +3,9 @@ import unittest
 
 import numpy as np
 from pycocotools.coco import COCO
-from super_gradients.training.datasets.data_formats.bbox_formats.xywh import xywh_to_xyxy
-from super_gradients.training.datasets.detection_datasets.coco_format_detection import parse_coco_into_detection_annotations
-from super_gradients.training.datasets.pose_estimation_datasets.coco_utils import parse_coco_into_keypoints_annotations, segmentation2mask
+from native_sg.training.datasets.data_formats.bbox_formats.xywh import xywh_to_xyxy
+from native_sg.training.datasets.detection_datasets.coco_format_detection import parse_coco_into_detection_annotations
+from native_sg.training.datasets.pose_estimation_datasets.coco_utils import parse_coco_into_keypoints_annotations, segmentation2mask
 
 
 class COCOParsingTest(unittest.TestCase):
@@ -14,7 +14,7 @@ class COCOParsingTest(unittest.TestCase):
     """
 
     def setUp(self) -> None:
-        self.data_dir = os.environ.get("SUPER_GRADIENTS_COCO_DATASET_DIR", "/data/coco")
+        self.data_dir = os.environ.get("native_sg_COCO_DATASET_DIR", "/data/coco")
 
         self.keypoint_annotations = [
             "annotations/person_keypoints_val2017.json",

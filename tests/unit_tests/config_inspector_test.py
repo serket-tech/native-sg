@@ -5,12 +5,12 @@ import unittest
 import pkg_resources
 from omegaconf import OmegaConf
 
-from super_gradients.common.object_names import Models
-from super_gradients.training.models import SgModule, get_arch_params
-from super_gradients.training.models.model_factory import get_architecture
-from super_gradients.training.utils import HpmStruct
-from super_gradients.training.utils.config_utils import raise_if_unused_params, UnusedConfigParamException, AccessCounterDict, AccessCounterHpmStruct
-from super_gradients.training.utils.sg_trainer_utils import get_callable_param_names
+from native_sg.common.object_names import Models
+from native_sg.training.models import SgModule, get_arch_params
+from native_sg.training.models.model_factory import get_architecture
+from native_sg.training.utils import HpmStruct
+from native_sg.training.utils.config_utils import raise_if_unused_params, UnusedConfigParamException, AccessCounterDict, AccessCounterHpmStruct
+from native_sg.training.utils.sg_trainer_utils import get_callable_param_names
 
 
 class ConfigInspectTest(unittest.TestCase):
@@ -218,7 +218,7 @@ class ConfigInspectTest(unittest.TestCase):
         )
 
     def get_all_arch_params_configs(self):
-        config_path = pkg_resources.resource_filename("super_gradients.recipes", "arch_params")
+        config_path = pkg_resources.resource_filename("native_sg.recipes", "arch_params")
         configs = [path.replace(".yaml", "") for path in sorted(os.listdir(config_path)) if path.endswith(".yaml")]
         return configs
 

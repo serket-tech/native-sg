@@ -7,8 +7,8 @@ import numpy as np
 import torch
 
 
-from super_gradients.common.factories.bbox_format_factory import BBoxFormatFactory
-from super_gradients.training.datasets.data_formats.bbox_formats import (
+from native_sg.common.factories.bbox_format_factory import BBoxFormatFactory
+from native_sg.training.datasets.data_formats.bbox_formats import (
     CXCYWHCoordinateFormat,
     NormalizedXYXYCoordinateFormat,
     NormalizedXYWHCoordinateFormat,
@@ -20,22 +20,22 @@ from super_gradients.training.datasets.data_formats.bbox_formats import (
     BBOX_FORMATS,
     BoundingBoxFormat,
 )
-from super_gradients.training.datasets.data_formats.bbox_formats.normalized_cxcywh import (
+from native_sg.training.datasets.data_formats.bbox_formats.normalized_cxcywh import (
     normalized_cxcywh_to_xyxy_inplace,
     xyxy_to_normalized_cxcywh_inplace,
     xyxy_to_normalized_cxcywh,
     normalized_cxcywh_to_xyxy,
 )
-from super_gradients.training.datasets.data_formats.bbox_formats.normalized_xywh import (
+from native_sg.training.datasets.data_formats.bbox_formats.normalized_xywh import (
     xyxy_to_normalized_xywh_inplace,
     xyxy_to_normalized_xywh,
     normalized_xywh_to_xyxy_inplace,
     normalized_xywh_to_xyxy,
 )
-from super_gradients.training.datasets.data_formats.bbox_formats.xywh import xyxy_to_xywh, xywh_to_xyxy, xywh_to_xyxy_inplace, xyxy_to_xywh_inplace
-from super_gradients.training.datasets.data_formats.bbox_formats.yxyx import xyxy_to_yxyx, xyxy_to_yxyx_inplace
-from super_gradients.training.datasets.data_formats.output_adapters.detection_adapter import ConvertBoundingBoxes
-from super_gradients.training.datasets.data_formats.bbox_formats.cxcywh import is_floating_point_array
+from native_sg.training.datasets.data_formats.bbox_formats.xywh import xyxy_to_xywh, xywh_to_xyxy, xywh_to_xyxy_inplace, xyxy_to_xywh_inplace
+from native_sg.training.datasets.data_formats.bbox_formats.yxyx import xyxy_to_yxyx, xyxy_to_yxyx_inplace
+from native_sg.training.datasets.data_formats.output_adapters.detection_adapter import ConvertBoundingBoxes
+from native_sg.training.datasets.data_formats.bbox_formats.cxcywh import is_floating_point_array
 
 
 class BBoxFormatsTest(unittest.TestCase):

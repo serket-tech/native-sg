@@ -1,11 +1,11 @@
 import unittest
 from pathlib import Path
 
-from super_gradients.training import models
-from super_gradients.training.dataloaders import coco2017_val_yolo_nas
-from super_gradients.training import Trainer
-from super_gradients.training.models.detection_models.sliding_window_detection_forward_wrapper import SlidingWindowInferenceDetectionWrapper
-from super_gradients.training.metrics import DetectionMetrics
+from native_sg.training import models
+from native_sg.training.dataloaders import coco2017_val_yolo_nas
+from native_sg.training import Trainer
+from native_sg.training.models.detection_models.sliding_window_detection_forward_wrapper import SlidingWindowInferenceDetectionWrapper
+from native_sg.training.metrics import DetectionMetrics
 
 
 class SlidingWindowWrapperTest(unittest.TestCase):

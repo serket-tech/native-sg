@@ -2,19 +2,19 @@ import os
 import unittest
 from copy import deepcopy
 
-from super_gradients.common.object_names import Models
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.kd_trainer.kd_trainer import KDTrainer
+from native_sg.common.object_names import Models
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.kd_trainer.kd_trainer import KDTrainer
 import torch
 
-from super_gradients.training import models
-from super_gradients.training.losses.kd_losses import KDLogitsLoss
-from super_gradients.training.metrics import Accuracy
-from super_gradients.training.models.classification_models.resnet import ResNet50, ResNet18
-from super_gradients.training.models.kd_modules.kd_module import KDModule
-from super_gradients.training.utils.callbacks import PhaseCallback, PhaseContext, Phase
-from super_gradients.modules.utils import NormalizationAdapter
-from super_gradients.training.utils.utils import check_models_have_same_weights
+from native_sg.training import models
+from native_sg.training.losses.kd_losses import KDLogitsLoss
+from native_sg.training.metrics import Accuracy
+from native_sg.training.models.classification_models.resnet import ResNet50, ResNet18
+from native_sg.training.models.kd_modules.kd_module import KDModule
+from native_sg.training.utils.callbacks import PhaseCallback, PhaseContext, Phase
+from native_sg.modules.utils import NormalizationAdapter
+from native_sg.training.utils.utils import check_models_have_same_weights
 
 
 class PreTrainingNetCollector(PhaseCallback):

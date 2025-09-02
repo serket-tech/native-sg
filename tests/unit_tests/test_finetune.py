@@ -1,15 +1,15 @@
 import unittest
 from copy import deepcopy
-from super_gradients import Trainer
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader, detection_test_dataloader, segmentation_test_dataloader
-from super_gradients.training.losses import PPYoloELoss, STDCLoss
-from super_gradients.training.losses.ddrnet_loss import DDRNetLoss
-from super_gradients.training.metrics import Accuracy, DetectionMetrics, DetectionMetrics_050, IoU
-from super_gradients.training.models import YoloXPostPredictionCallback
-from super_gradients.training.models.detection_models.pp_yolo_e import PPYoloEPostPredictionCallback
-from super_gradients.training.utils.utils import check_models_have_same_weights
-from super_gradients.training import models
-from super_gradients.common.object_names import Models
+from native_sg import Trainer
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader, detection_test_dataloader, segmentation_test_dataloader
+from native_sg.training.losses import PPYoloELoss, STDCLoss
+from native_sg.training.losses.ddrnet_loss import DDRNetLoss
+from native_sg.training.metrics import Accuracy, DetectionMetrics, DetectionMetrics_050, IoU
+from native_sg.training.models import YoloXPostPredictionCallback
+from native_sg.training.models.detection_models.pp_yolo_e import PPYoloEPostPredictionCallback
+from native_sg.training.utils.utils import check_models_have_same_weights
+from native_sg.training import models
+from native_sg.common.object_names import Models
 
 
 class TestFineTune(unittest.TestCase):

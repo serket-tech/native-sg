@@ -2,14 +2,14 @@ import unittest
 from enum import Enum
 import re
 
-from super_gradients.training import models
+from native_sg.training import models
 
-from super_gradients import Trainer
-from super_gradients.training.dataloaders.dataloaders import segmentation_test_dataloader, classification_test_dataloader
-from super_gradients.training.utils.callbacks import ModelConversionCheckCallback
-from super_gradients.training.metrics import Accuracy, Top5, IoU
-from super_gradients.training.losses.stdc_loss import STDCLoss
-from super_gradients.training.losses.ddrnet_loss import DDRNetLoss
+from native_sg import Trainer
+from native_sg.training.dataloaders.dataloaders import segmentation_test_dataloader, classification_test_dataloader
+from native_sg.training.utils.callbacks import ModelConversionCheckCallback
+from native_sg.training.metrics import Accuracy, Top5, IoU
+from native_sg.training.losses.stdc_loss import STDCLoss
+from native_sg.training.losses.ddrnet_loss import DDRNetLoss
 
 from deci_lab_client.models import ModelMetadata, HardwareType, FrameworkType
 

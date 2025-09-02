@@ -2,8 +2,8 @@ import unittest
 
 from torch.utils.data import DataLoader, TensorDataset, RandomSampler
 
-from super_gradients.common.registry.registry import register_dataset
-from super_gradients.training.dataloaders.dataloaders import (
+from native_sg.common.registry.registry import register_dataset
+from native_sg.training.dataloaders.dataloaders import (
     classification_test_dataloader,
     detection_test_dataloader,
     segmentation_test_dataloader,
@@ -45,7 +45,7 @@ from super_gradients.training.dataloaders.dataloaders import (
     mapillary_train,
     mapillary_val,
 )
-from super_gradients.training.datasets import (
+from native_sg.training.datasets import (
     COCODetectionDataset,
     ImageNetDataset,
     PascalVOC2012SegmentationDataSet,
@@ -58,9 +58,9 @@ from super_gradients.training.datasets import (
 import torch
 import numpy as np
 
-from super_gradients.training.datasets.detection_datasets.pascal_voc_detection import PascalVOCUnifiedDetectionTrainDataset
-from super_gradients.training.datasets.segmentation_datasets import MapillaryDataset
-from super_gradients import init_trainer
+from native_sg.training.datasets.detection_datasets.pascal_voc_detection import PascalVOCUnifiedDetectionTrainDataset
+from native_sg.training.datasets.segmentation_datasets import MapillaryDataset
+from native_sg import init_trainer
 
 
 @register_dataset("FixedLenDataset")

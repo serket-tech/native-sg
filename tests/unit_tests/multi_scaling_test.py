@@ -1,7 +1,7 @@
 import unittest
 
 import torch
-from super_gradients.training.datasets.datasets_utils import DetectionMultiscalePrePredictionCallback
+from native_sg.training.datasets.datasets_utils import DetectionMultiscalePrePredictionCallback
 
 
 class MultiScaleTest(unittest.TestCase):

@@ -1,8 +1,8 @@
 import unittest
 import numpy as np
 
-from super_gradients.training.processing import SegmentationPadShortToCropSize
-from super_gradients.training.utils.predict.predictions import SegmentationPrediction
+from native_sg.training.processing import SegmentationPadShortToCropSize
+from native_sg.training.utils.predict.predictions import SegmentationPrediction
 
 
 class SegmentationPadShortToCropSizeTest(unittest.TestCase):

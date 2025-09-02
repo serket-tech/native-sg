@@ -1,8 +1,8 @@
 import torch
 import unittest
 import torch.nn as nn
-from super_gradients.training.losses.mask_loss import MaskAttentionLoss
-from super_gradients.training.utils.segmentation_utils import to_one_hot
+from native_sg.training.losses.mask_loss import MaskAttentionLoss
+from native_sg.training.utils.segmentation_utils import to_one_hot
 
 
 class MaskAttentionLossTest(unittest.TestCase):

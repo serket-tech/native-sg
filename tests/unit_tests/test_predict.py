@@ -3,9 +3,9 @@ import unittest
 import tempfile
 from pathlib import Path
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
-from super_gradients.training.datasets import COCODetectionDataset
+from native_sg.common.object_names import Models
+from native_sg.training import models
+from native_sg.training.datasets import COCODetectionDataset
 
 import cv2
 import numpy as np

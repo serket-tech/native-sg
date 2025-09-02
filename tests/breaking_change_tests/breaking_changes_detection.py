@@ -167,7 +167,7 @@ def extract_code_breaking_changes(module_path: str, source_code: str, current_co
         breaking_changes.imports_removed = [
             ImportRemoved(import_name=source_import, line_num=0)
             for source_import in source_imports
-            if (source_import not in current_imports) and ("super_gradients" in source_import)
+            if (source_import not in current_imports) and ("native_sg" in source_import)
         ]
 
     # FUNCTION SIGNATURES
@@ -231,7 +231,7 @@ def analyze_breaking_changes(verbose: bool = 1, source_branch: str = "master") -
     changed_sg_modules = [
         module_path
         for module_path in git_explorer.diff_files(source_branch=source_branch, current_branch="HEAD")
-        if module_path.startswith("src/super_gradients/") and not module_path.startswith("src/super_gradients/examples/")
+        if module_path.startswith("src/native_sg/") and not module_path.startswith("src/native_sg/examples/")
     ]
 
     summary = ""

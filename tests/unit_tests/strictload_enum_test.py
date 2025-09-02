@@ -3,16 +3,16 @@ import shutil
 import tempfile
 import unittest
 
-from super_gradients.common.object_names import Models
-from super_gradients.common.sg_loggers.base_sg_logger import BaseSGLogger
-from super_gradients.training import Trainer
+from native_sg.common.object_names import Models
+from native_sg.common.sg_loggers.base_sg_logger import BaseSGLogger
+from native_sg.training import Trainer
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from super_gradients.training import models
-from super_gradients.training.sg_trainer.sg_trainer import StrictLoad
-from super_gradients.training.utils import HpmStruct
+from native_sg.training import models
+from native_sg.training.sg_trainer.sg_trainer import StrictLoad
+from native_sg.training.utils import HpmStruct
 
 
 class Net(nn.Module):

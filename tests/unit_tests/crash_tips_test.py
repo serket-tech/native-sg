@@ -3,7 +3,7 @@ import unittest
 import dataclasses
 from typing import Type
 import omegaconf
-from super_gradients.common.crash_handler.crash_tips import (
+from native_sg.common.crash_handler.crash_tips import (
     get_relevant_crash_tip_message,
     CrashTip,
     TorchCudaMissingTip,

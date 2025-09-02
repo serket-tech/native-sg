@@ -4,13 +4,13 @@ import unittest
 import torch
 from tqdm import tqdm
 
-from super_gradients.training import models
-from super_gradients.training.dataloaders.dataloaders import get_data_loader
-from super_gradients.training.datasets.pose_estimation_datasets import COCOKeypointsDataset
-from super_gradients.training.metrics import PoseEstimationMetrics
-from super_gradients.training.models.pose_estimation_models.dekr_hrnet import DEKRWrapper, DEKRHorisontalFlipWrapper
-from super_gradients.training.utils import DEKRPoseEstimationDecodeCallback
-from super_gradients.training.utils.pose_estimation import RescoringPoseEstimationDecodeCallback
+from native_sg.training import models
+from native_sg.training.dataloaders.dataloaders import get_data_loader
+from native_sg.training.datasets.pose_estimation_datasets import COCOKeypointsDataset
+from native_sg.training.metrics import PoseEstimationMetrics
+from native_sg.training.models.pose_estimation_models.dekr_hrnet import DEKRWrapper, DEKRHorisontalFlipWrapper
+from native_sg.training.utils import DEKRPoseEstimationDecodeCallback
+from native_sg.training.utils.pose_estimation import RescoringPoseEstimationDecodeCallback
 
 
 class PoseEstimationModelsIntegrationTest(unittest.TestCase):
@@ -18,7 +18,7 @@ class PoseEstimationModelsIntegrationTest(unittest.TestCase):
         self.oks_sigmas = [0.026, 0.025, 0.025, 0.035, 0.035, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107, 0.087, 0.087, 0.089, 0.089]
         self.flip_indexes = [0, 2, 1, 4, 3, 6, 5, 8, 7, 10, 9, 12, 11, 14, 13, 16, 15]
         # This is for easy testing on local machine - you can set this environment variable to your own COCO dataset location
-        self.data_dir = os.environ.get("SUPER_GRADIENTS_COCO_DATASET_DIR", "/data/coco")
+        self.data_dir = os.environ.get("native_sg_COCO_DATASET_DIR", "/data/coco")
 
     def test_dekr_model(self):
         val_loader = get_data_loader(

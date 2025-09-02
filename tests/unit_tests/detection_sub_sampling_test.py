@@ -2,8 +2,8 @@ import unittest
 import numpy as np
 import torch
 
-from super_gradients.training.datasets import DetectionDataset
-from super_gradients.training.datasets.data_formats.default_formats import XYXY_LABEL
+from native_sg.training.datasets import DetectionDataset
+from native_sg.training.datasets.data_formats.default_formats import XYXY_LABEL
 
 
 class DummyDetectionDataset(DetectionDataset):

@@ -4,16 +4,16 @@ import unittest
 import torch
 from torch.utils.data import DataLoader
 
-from super_gradients import setup_device
-from super_gradients.common import MultiGPUMode
-from super_gradients.common.abstractions.abstract_logger import get_logger
-from super_gradients.common.environment.cfg_utils import load_dataset_params
-from super_gradients.common.object_names import Models
-from super_gradients.training import Trainer
-from super_gradients.training import models
-from super_gradients.training.dataloaders import get_data_loader
-from super_gradients.training.datasets import COCOPoseEstimationDataset
-from super_gradients.training.metrics import PoseEstimationMetrics
+from native_sg import setup_device
+from native_sg.common import MultiGPUMode
+from native_sg.common.abstractions.abstract_logger import get_logger
+from native_sg.common.environment.cfg_utils import load_dataset_params
+from native_sg.common.object_names import Models
+from native_sg.training import Trainer
+from native_sg.training import models
+from native_sg.training.dataloaders import get_data_loader
+from native_sg.training.datasets import COCOPoseEstimationDataset
+from native_sg.training.metrics import PoseEstimationMetrics
 
 logger = get_logger(__name__)
 
@@ -44,12 +44,12 @@ class YoloNASPoseIntegrationTest(unittest.TestCase):
     YOLO-NAS POSE M  |         67.87 |             67.90 |
     YOLO-NAS POSE L  |         68.24 |             68.28 |
 
-    For evaluation using COCOEval protocol please refer to src/super_gradients/examples/pose_coco_eval/pose_coco_eval.ipynb
+    For evaluation using COCOEval protocol please refer to src/native_sg/examples/pose_coco_eval/pose_coco_eval.ipynb
     """
 
     def setUp(self):
         # This is for easy testing on local machine - you can set this environment variable to your own COCO dataset location
-        self.data_dir = os.environ.get("SUPER_GRADIENTS_COCO_DATASET_DIR", "/data/coco")
+        self.data_dir = os.environ.get("native_sg_COCO_DATASET_DIR", "/data/coco")
         dataset_params = load_dataset_params("coco_pose_estimation_yolo_nas_dataset_params")
         self.sigmas = dataset_params["oks_sigmas"]
         self.num_joints = dataset_params["num_joints"]

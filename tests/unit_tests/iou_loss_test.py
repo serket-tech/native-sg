@@ -1,7 +1,7 @@
 import torch
 import unittest
 
-from super_gradients.training.losses.iou_loss import IoULoss, GeneralizedIoULoss, BinaryIoULoss
+from native_sg.training.losses.iou_loss import IoULoss, GeneralizedIoULoss, BinaryIoULoss
 
 
 class IoULossTest(unittest.TestCase):

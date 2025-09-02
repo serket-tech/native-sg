@@ -1,8 +1,8 @@
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
-from super_gradients.training import Trainer
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.metrics import Accuracy, Top5
+from native_sg.common.object_names import Models
+from native_sg.training import models
+from native_sg.training import Trainer
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.metrics import Accuracy, Top5
 import unittest
 
 

@@ -3,7 +3,7 @@ import shutil
 import os
 import torch
 
-from super_gradients.common.environment.checkpoints_dir_utils import get_checkpoints_dir_path, get_latest_run_id
+from native_sg.common.environment.checkpoints_dir_utils import get_checkpoints_dir_path, get_latest_run_id
 
 
 class ShortenedRecipesAccuracyTests(unittest.TestCase):

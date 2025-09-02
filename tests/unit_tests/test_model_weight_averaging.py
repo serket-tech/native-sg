@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from torch import nn
 
-from super_gradients.training.utils.weight_averaging_utils import ModelWeightAveraging
+from native_sg.training.utils.weight_averaging_utils import ModelWeightAveraging
 
 
 class TestModelWeightAveraging(unittest.TestCase):

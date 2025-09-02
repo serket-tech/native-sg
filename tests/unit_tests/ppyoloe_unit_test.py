@@ -2,10 +2,10 @@ import unittest
 
 import torch
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
-from super_gradients.training.losses import PPYoloELoss
-from super_gradients.training.models.detection_models.pp_yolo_e.pp_yolo_e import PPYoloE_X, PPYoloE_S, PPYoloE_M, PPYoloE_L
+from native_sg.common.object_names import Models
+from native_sg.training import models
+from native_sg.training.losses import PPYoloELoss
+from native_sg.training.models.detection_models.pp_yolo_e.pp_yolo_e import PPYoloE_X, PPYoloE_S, PPYoloE_M, PPYoloE_L
 
 
 class TestPPYOLOE(unittest.TestCase):

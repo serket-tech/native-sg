@@ -1,7 +1,7 @@
 import unittest
 import torchvision.transforms as transforms
-from super_gradients.training.datasets.auto_augment import RandAugment
-from super_gradients.training.datasets.datasets_utils import get_color_augmentation
+from native_sg.training.datasets.auto_augment import RandAugment
+from native_sg.training.datasets.datasets_utils import get_color_augmentation
 import numpy as np
 from PIL import Image
 

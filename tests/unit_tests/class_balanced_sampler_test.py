@@ -7,9 +7,9 @@ import unittest
 
 from torch.utils.data import Dataset
 
-from super_gradients.dataset_interfaces import HasClassesInformation
-from super_gradients.training import dataloaders
-from super_gradients.training.datasets.samplers.class_balanced_sampler import ClassBalancedSampler
+from native_sg.dataset_interfaces import HasClassesInformation
+from native_sg.training import dataloaders
+from native_sg.training.datasets.samplers.class_balanced_sampler import ClassBalancedSampler
 
 
 class DummyFreqDataset(Dataset, HasClassesInformation):

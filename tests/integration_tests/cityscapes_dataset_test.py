@@ -5,7 +5,7 @@ import pkg_resources
 import yaml
 from torch.utils.data import DataLoader, Dataset
 
-from super_gradients.training.dataloaders.dataloaders import (
+from native_sg.training.dataloaders.dataloaders import (
     cityscapes_train,
     cityscapes_val,
     cityscapes_stdc_seg50_train,
@@ -18,18 +18,18 @@ from super_gradients.training.dataloaders.dataloaders import (
     cityscapes_stdc_seg75_train,
     get,
 )
-from super_gradients.training.datasets.segmentation_datasets.cityscape_segmentation import CityscapesDataset, CityscapesConcatDataset
+from native_sg.training.datasets.segmentation_datasets.cityscape_segmentation import CityscapesDataset, CityscapesConcatDataset
 
 
 class CityscapesDatasetTest(unittest.TestCase):
     def _cityscapes_dataset_params(self):
-        default_config_path = pkg_resources.resource_filename("super_gradients.recipes", "dataset_params/cityscapes_dataset_params.yaml")
+        default_config_path = pkg_resources.resource_filename("native_sg.recipes", "dataset_params/cityscapes_dataset_params.yaml")
         with open(default_config_path, "r") as file:
             dataset_params = yaml.safe_load(file)
         return dataset_params
 
     def _cityscapes_al_dataset_params(self):
-        default_config_path = pkg_resources.resource_filename("super_gradients.recipes", "dataset_params/cityscapes_al_dataset_params.yaml")
+        default_config_path = pkg_resources.resource_filename("native_sg.recipes", "dataset_params/cityscapes_al_dataset_params.yaml")
         with open(default_config_path, "r") as file:
             dataset_params = yaml.safe_load(file)
         return dataset_params

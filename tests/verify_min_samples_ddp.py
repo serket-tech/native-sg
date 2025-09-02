@@ -4,8 +4,8 @@ import numpy as np
 import torch
 from torch.utils.data import TensorDataset
 
-from super_gradients import setup_device
-from super_gradients.training import dataloaders
+from native_sg import setup_device
+from native_sg.training import dataloaders
 
 
 def get_dataset(dataset_size, image_size):

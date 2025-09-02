@@ -4,7 +4,7 @@ import os
 
 import numpy as np
 
-from super_gradients.training.datasets.depth_estimation_datasets import NYUv2DepthEstimationDataset
+from native_sg.training.datasets.depth_estimation_datasets import NYUv2DepthEstimationDataset
 
 
 class DepthEstimationDatasetTest(unittest.TestCase):

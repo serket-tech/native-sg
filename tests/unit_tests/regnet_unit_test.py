@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import unittest
 
-from super_gradients.training.models.classification_models.regnet import (
+from native_sg.training.models.classification_models.regnet import (
     CustomRegNet,
     NASRegNet,
     RegNetY200,
@@ -13,7 +13,7 @@ from super_gradients.training.models.classification_models.regnet import (
     Stage,
     XBlock,
 )
-from super_gradients.training.utils.utils import HpmStruct
+from native_sg.training.utils.utils import HpmStruct
 
 
 class TestRegnet(unittest.TestCase):

@@ -3,9 +3,9 @@ import unittest
 import torch.nn.init
 from torch import nn
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
-from super_gradients.training.utils.checkpoint_utils import transfer_weights
+from native_sg.common.object_names import Models
+from native_sg.training import models
+from native_sg.training.utils.checkpoint_utils import transfer_weights
 
 
 class LoadCheckpointTest(unittest.TestCase):

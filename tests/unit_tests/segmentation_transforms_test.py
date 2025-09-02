@@ -6,8 +6,8 @@ import torch
 from torch.utils.data import DataLoader
 from torchvision.transforms import Compose, ToTensor
 
-from super_gradients.training.datasets import CoCoSegmentationDataSet
-from super_gradients.training.transforms.transforms import SegRescale, SegRandomRescale, SegCropImageAndMask, SegPadShortToCropSize
+from native_sg.training.datasets import CoCoSegmentationDataSet
+from native_sg.training.transforms.transforms import SegRescale, SegRandomRescale, SegCropImageAndMask, SegPadShortToCropSize
 from PIL import Image
 
 

@@ -2,11 +2,11 @@ import unittest
 
 from torchvision.transforms import Normalize, ToTensor, RandomHorizontalFlip, RandomCrop
 
-from super_gradients import Trainer
-from super_gradients.training import modify_params_for_qat
-from super_gradients.training.dataloaders.dataloaders import cifar10_train, cifar10_val
-from super_gradients.training.metrics import Accuracy, Top5
-from super_gradients.training.models import ResNet18
+from native_sg import Trainer
+from native_sg.training import modify_params_for_qat
+from native_sg.training.dataloaders.dataloaders import cifar10_train, cifar10_val
+from native_sg.training.metrics import Accuracy, Top5
+from native_sg.training.models import ResNet18
 
 
 class CodedQATLuanchTest(unittest.TestCase):

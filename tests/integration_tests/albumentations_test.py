@@ -9,10 +9,10 @@ from matplotlib.colors import ListedColormap
 
 from albumentations import Compose, HorizontalFlip, InvertImg
 
-from super_gradients.training.datasets import Cifar10, Cifar100, ImageNetDataset, COCODetectionDataset, CoCoSegmentationDataSet, COCOPoseEstimationDataset
-from super_gradients.training.utils.visualization.pose_estimation import PoseVisualization
-from super_gradients.training.datasets.data_formats.bbox_formats.xywh import xywh_to_xyxy
-from super_gradients.training.datasets.depth_estimation_datasets import NYUv2DepthEstimationDataset
+from native_sg.training.datasets import Cifar10, Cifar100, ImageNetDataset, COCODetectionDataset, CoCoSegmentationDataSet, COCOPoseEstimationDataset
+from native_sg.training.utils.visualization.pose_estimation import PoseVisualization
+from native_sg.training.datasets.data_formats.bbox_formats.xywh import xywh_to_xyxy
+from native_sg.training.datasets.depth_estimation_datasets import NYUv2DepthEstimationDataset
 
 
 def visualize_image(image):
@@ -250,7 +250,7 @@ class AlbumentationsIntegrationTest(unittest.TestCase):
             [148, 103, 189],
         ]
 
-        from super_gradients.training.transforms import KeypointsRescale, KeypointsPadIfNeeded
+        from native_sg.training.transforms import KeypointsRescale, KeypointsPadIfNeeded
 
         transforms = [
             KeypointsRescale(height=320, width=640),

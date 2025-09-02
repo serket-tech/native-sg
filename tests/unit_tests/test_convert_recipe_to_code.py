@@ -4,13 +4,13 @@ import tempfile
 import pkg_resources
 import unittest
 
-from super_gradients.convert_recipe_to_code import convert_recipe_to_code
+from native_sg.convert_recipe_to_code import convert_recipe_to_code
 from pathlib import Path
 
 
 class TestConvertRecipeToCode(unittest.TestCase):
     def setUp(self) -> None:
-        self.recipes_dir: Path = Path(pkg_resources.resource_filename("super_gradients.recipes", ""))
+        self.recipes_dir: Path = Path(pkg_resources.resource_filename("native_sg.recipes", ""))
         self.recipes_that_should_work = [
             "cifar10_resnet.yaml",
             "cityscapes_al_ddrnet.yaml",

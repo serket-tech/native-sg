@@ -9,14 +9,14 @@ from torch.optim import SGD
 from torch.optim.lr_scheduler import ReduceLROnPlateau, MultiStepLR
 from torchmetrics import F1Score
 
-from super_gradients import Trainer
-from super_gradients.common.environment.omegaconf_utils import register_hydra_resolvers
-from super_gradients.common.environment.path_utils import normalize_path
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.metrics import Accuracy, Top5, ToyTestClassificationMetric
-from super_gradients.training.utils.callbacks import LRSchedulerCallback, Phase
+from native_sg import Trainer
+from native_sg.common.environment.omegaconf_utils import register_hydra_resolvers
+from native_sg.common.environment.path_utils import normalize_path
+from native_sg.common.object_names import Models
+from native_sg.training import models
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.metrics import Accuracy, Top5, ToyTestClassificationMetric
+from native_sg.training.utils.callbacks import LRSchedulerCallback, Phase
 
 
 class TrainWithInitializedObjectsTest(unittest.TestCase):

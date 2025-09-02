@@ -4,12 +4,12 @@ from typing import Union
 from omegaconf import DictConfig
 from torch import nn
 
-from super_gradients.common.registry import register_model
-from super_gradients.training import models
-from super_gradients.training.models import CustomizableDetector, get_arch_params
-from super_gradients.training.transforms.transforms import DetectionTargetsFormatTransform, DetectionPaddedRescale
-from super_gradients.training.utils import HpmStruct
-from super_gradients.training.utils.utils import arch_params_deprecated
+from native_sg.common.registry import register_model
+from native_sg.training import models
+from native_sg.training.models import CustomizableDetector, get_arch_params
+from native_sg.training.transforms.transforms import DetectionTargetsFormatTransform, DetectionPaddedRescale
+from native_sg.training.utils import HpmStruct
+from native_sg.training.utils.utils import arch_params_deprecated
 
 
 @register_model("DummyModel")

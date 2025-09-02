@@ -9,13 +9,13 @@ from hydra import initialize_config_dir, compose
 from hydra.core.global_hydra import GlobalHydra
 from pydantic.main import deepcopy
 
-import super_gradients
-from super_gradients.training.dataloaders.dataloaders import _process_dataset_params
-from super_gradients.training.datasets import PascalVOCDetectionDataset, COCODetectionDataset
-from super_gradients.training.transforms import DetectionMosaic, DetectionPaddedRescale, DetectionTargetsFormatTransform
-from super_gradients.training.datasets.data_formats.default_formats import XYXY_LABEL
-from super_gradients.common.exceptions.dataset_exceptions import EmptyDatasetException
-from super_gradients.common.environment.path_utils import normalize_path
+import native_sg
+from native_sg.training.dataloaders.dataloaders import _process_dataset_params
+from native_sg.training.datasets import PascalVOCDetectionDataset, COCODetectionDataset
+from native_sg.training.transforms import DetectionMosaic, DetectionPaddedRescale, DetectionTargetsFormatTransform
+from native_sg.training.datasets.data_formats.default_formats import XYXY_LABEL
+from native_sg.common.exceptions.dataset_exceptions import EmptyDatasetException
+from native_sg.common.environment.path_utils import normalize_path
 
 
 class COCODetectionDataset6Channels(COCODetectionDataset):
@@ -28,7 +28,7 @@ class COCODetectionDataset6Channels(COCODetectionDataset):
 
 class DatasetIntegrationTest(unittest.TestCase):
     def setUp(self) -> None:
-        super_gradients.init_trainer()
+        native_sg.init_trainer()
         self.batch_size = 64
         self.max_samples_per_plot = 16
         self.n_plot = 1
@@ -105,7 +105,7 @@ class DatasetIntegrationTest(unittest.TestCase):
 
     def test_detection_dataset_transforms_with_unique_channel_count(self):
         GlobalHydra.instance().clear()
-        sg_recipes_dir = pkg_resources.resource_filename("super_gradients.recipes", "")
+        sg_recipes_dir = pkg_resources.resource_filename("native_sg.recipes", "")
         dataset_config = os.path.join("dataset_params", "coco_detection_dataset_params")
         with initialize_config_dir(config_dir=normalize_path(sg_recipes_dir), version_base="1.2"):
             # config is relative to a module

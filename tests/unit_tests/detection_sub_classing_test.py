@@ -1,11 +1,11 @@
-from super_gradients.common.exceptions.dataset_exceptions import EmptyDatasetException, DatasetValidationException
+from native_sg.common.exceptions.dataset_exceptions import EmptyDatasetException, DatasetValidationException
 
 import unittest
 import numpy as np
 
-from super_gradients.training.datasets import DetectionDataset
-from super_gradients.training.datasets.data_formats.default_formats import XYXY_LABEL
-from super_gradients.training.datasets.data_formats.formats import ConcatenatedTensorFormat
+from native_sg.training.datasets import DetectionDataset
+from native_sg.training.datasets.data_formats.default_formats import XYXY_LABEL
+from native_sg.training.datasets.data_formats.formats import ConcatenatedTensorFormat
 
 
 class DummyDetectionDataset(DetectionDataset):

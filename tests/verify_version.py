@@ -1,12 +1,12 @@
 import sys
 
-import super_gradients
+import native_sg
 
 if __name__ == "__main__":
 
     ci_version = sys.argv[1]
-    if ci_version == super_gradients.__version__:
+    if ci_version == native_sg.__version__:
         sys.exit(0)
     else:
-        print(f"wrong version definition:\nCI version: {ci_version}\nsuper_gradients.__version__: {super_gradients.__version__}")
+        print(f"wrong version definition:\nCI version: {ci_version}\nnative_sg.__version__: {native_sg.__version__}")
         sys.exit(1)

@@ -2,7 +2,7 @@ import unittest
 
 import torch
 
-from super_gradients.training.metrics import IoU, PixelAccuracy, Dice
+from native_sg.training.metrics import IoU, PixelAccuracy, Dice
 
 
 class TestSegmentationMetricsMultipleIgnored(unittest.TestCase):

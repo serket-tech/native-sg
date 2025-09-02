@@ -2,8 +2,8 @@ import unittest
 
 import numpy as np
 import torch
-from super_gradients.training.losses.dekr_loss import DEKRLoss
-from super_gradients.training.datasets.pose_estimation_datasets.target_generators import DEKRTargetsGenerator
+from native_sg.training.losses.dekr_loss import DEKRLoss
+from native_sg.training.datasets.pose_estimation_datasets.target_generators import DEKRTargetsGenerator
 
 
 class DEKRLossTest(unittest.TestCase):

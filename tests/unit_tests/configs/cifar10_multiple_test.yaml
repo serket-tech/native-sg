@@ -53,4 +53,4 @@ dataset_params:
 
 hydra:
   searchpath:
-    - pkg://super_gradients.recipes
+    - pkg://native_sg.recipes

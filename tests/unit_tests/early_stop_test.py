@@ -2,12 +2,12 @@ import torch
 import torch.nn as nn
 import unittest
 
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.utils.early_stopping import EarlyStop
-from super_gradients.training.utils.callbacks import Phase
-from super_gradients.training.sg_trainer import Trainer
-from super_gradients.training.models.classification_models.resnet import ResNet18
-from super_gradients.training.metrics import Accuracy, Top5
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.utils.early_stopping import EarlyStop
+from native_sg.training.utils.callbacks import Phase
+from native_sg.training.sg_trainer import Trainer
+from native_sg.training.models.classification_models.resnet import ResNet18
+from native_sg.training.metrics import Accuracy, Top5
 from torchmetrics.metric import Metric
 
 

@@ -2,7 +2,7 @@ import unittest
 
 import torch
 
-from super_gradients.modules import RepVGGBlock
+from native_sg.modules import RepVGGBlock
 
 
 class TestRepVGGBlock(unittest.TestCase):

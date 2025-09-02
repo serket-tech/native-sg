@@ -1,10 +1,10 @@
 import unittest
-from super_gradients.training import Trainer
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.metrics import Accuracy, Top5
-from super_gradients.training.utils.callbacks import PhaseCallback, Phase, PhaseContext
-from super_gradients.training.utils.utils import check_models_have_same_weights
-from super_gradients.training.models import LeNet
+from native_sg.training import Trainer
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.metrics import Accuracy, Top5
+from native_sg.training.utils.callbacks import PhaseCallback, Phase, PhaseContext
+from native_sg.training.utils.utils import check_models_have_same_weights
+from native_sg.training.models import LeNet
 from copy import deepcopy
 
 

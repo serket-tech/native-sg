@@ -3,10 +3,10 @@ import unittest
 
 import torch
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import Trainer
-from super_gradients.training.dataloaders import imagenet_val, imagenet_vit_base_val
-from super_gradients.training.dataloaders.dataloaders import (
+from native_sg.common.object_names import Models
+from native_sg.training import Trainer
+from native_sg.training.dataloaders import imagenet_val, imagenet_vit_base_val
+from native_sg.training.dataloaders.dataloaders import (
     classification_test_dataloader,
     coco2017_val_yolox,
     coco2017_val_ssd_lite_mobilenet_v2,
@@ -18,26 +18,26 @@ from super_gradients.training.dataloaders.dataloaders import (
     segmentation_test_dataloader,
     coco2017_val_ppyoloe,
 )
-from super_gradients.training.models.detection_models.pp_yolo_e import PPYoloEPostPredictionCallback
-from super_gradients.training.utils.collate_fn import CrowdDetectionCollateFN, CrowdDetectionPPYoloECollateFN
+from native_sg.training.models.detection_models.pp_yolo_e import PPYoloEPostPredictionCallback
+from native_sg.training.utils.collate_fn import CrowdDetectionCollateFN, CrowdDetectionPPYoloECollateFN
 
-from super_gradients.training.metrics import Accuracy, IoU
+from native_sg.training.metrics import Accuracy, IoU
 import os
 import shutil
-from super_gradients.training.utils.ssd_utils import SSDPostPredictCallback
-from super_gradients.training.models.detection_models.ssd import DEFAULT_SSD_LITE_MOBILENET_V2_ARCH_PARAMS
-from super_gradients.training.losses.ddrnet_loss import DDRNetLoss
-from super_gradients.training.metrics import DetectionMetrics
-from super_gradients.training.losses.stdc_loss import STDCLoss
-from super_gradients.training.models.detection_models.yolo_base import YoloXPostPredictionCallback
-from super_gradients.training import models
-import super_gradients
-from super_gradients.training.utils.callbacks.callbacks import SlidingWindowValidationCallback
+from native_sg.training.utils.ssd_utils import SSDPostPredictCallback
+from native_sg.training.models.detection_models.ssd import DEFAULT_SSD_LITE_MOBILENET_V2_ARCH_PARAMS
+from native_sg.training.losses.ddrnet_loss import DDRNetLoss
+from native_sg.training.metrics import DetectionMetrics
+from native_sg.training.losses.stdc_loss import STDCLoss
+from native_sg.training.models.detection_models.yolo_base import YoloXPostPredictionCallback
+from native_sg.training import models
+import native_sg
+from native_sg.training.utils.callbacks.callbacks import SlidingWindowValidationCallback
 
 
 class PretrainedModelsTest(unittest.TestCase):
     def setUp(self) -> None:
-        super_gradients.init_trainer()
+        native_sg.init_trainer()
         self.imagenet_pretrained_arch_params = {
             "resnet": {},
             "regnet": {},
@@ -1001,14 +1001,14 @@ class PretrainedModelsTest(unittest.TestCase):
         self.assertAlmostEqual(res["IoU"].cpu().item(), self.cityscapes_pretrained_mious[Models.PP_LITE_B_SEG75], delta=0.001)
 
     def test_pretrained_models(self):
-        from super_gradients.training.pretrained_models import MODEL_URLS
+        from native_sg.training.pretrained_models import MODEL_URLS
 
         def get_model_and_dataset_names(pretrained_model_key: str):
             """Extract model and dataset names from the pretrained model key.
             E.g. "shelfnet34_lw_coco_segmentation_subclass" -> ("shelfnet34_lw", "coco_segmentation_subclass")
             """
-            from super_gradients.training.pretrained_models import PRETRAINED_NUM_CLASSES
-            from super_gradients.common.registry.registry import ARCHITECTURES
+            from native_sg.training.pretrained_models import PRETRAINED_NUM_CLASSES
+            from native_sg.common.registry.registry import ARCHITECTURES
 
             for dataset_name in PRETRAINED_NUM_CLASSES.keys():
                 if pretrained_model_key.endswith(f"_{dataset_name}"):

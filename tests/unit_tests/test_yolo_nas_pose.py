@@ -2,13 +2,13 @@ import unittest
 
 import torch
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
-from super_gradients.training.datasets.pose_estimation_datasets.yolo_nas_pose_collate_fn import (
+from native_sg.common.object_names import Models
+from native_sg.training import models
+from native_sg.training.datasets.pose_estimation_datasets.yolo_nas_pose_collate_fn import (
     flat_collate_tensors_with_batch_index,
     undo_flat_collate_tensors_with_batch_index,
 )
-from super_gradients.training.losses import YoloNASPoseLoss
+from native_sg.training.losses import YoloNASPoseLoss
 
 
 class YoloNASPoseTests(unittest.TestCase):

@@ -12,9 +12,9 @@ import torch.cuda
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 
-from super_gradients.common.abstractions.abstract_logger import get_logger
-from super_gradients.module_interfaces import PoseEstimationPredictions
-from super_gradients.training.metrics.pose_estimation_metrics import PoseEstimationMetrics
+from native_sg.common.abstractions.abstract_logger import get_logger
+from native_sg.module_interfaces import PoseEstimationPredictions
+from native_sg.training.metrics.pose_estimation_metrics import PoseEstimationMetrics
 
 logger = get_logger(__name__)
 

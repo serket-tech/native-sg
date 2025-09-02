@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from super_gradients.training.samples import PoseEstimationSample
+from native_sg.training.samples import PoseEstimationSample
 
 
 class PoseEstimationSampleTest(unittest.TestCase):

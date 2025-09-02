@@ -2,8 +2,8 @@ import unittest
 
 import torch
 
-from super_gradients.training import models
-from super_gradients.training.models.detection_models.yolo_base import YoloPostPredictionCallback
+from native_sg.training import models
+from native_sg.training.models.detection_models.yolo_base import YoloPostPredictionCallback
 
 
 class TestPostPredictionCallback(unittest.TestCase):

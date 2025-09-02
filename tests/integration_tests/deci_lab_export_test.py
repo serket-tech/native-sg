@@ -1,11 +1,11 @@
 import unittest
-from super_gradients import Trainer
-from super_gradients.common.plugins.deci_client import DeciClient
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.metrics import Accuracy, Top5
-from super_gradients.training.models import ResNet18
+from native_sg import Trainer
+from native_sg.common.plugins.deci_client import DeciClient
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.metrics import Accuracy, Top5
+from native_sg.training.models import ResNet18
 from torch.optim import SGD
-from super_gradients.training.utils.callbacks import DeciLabUploadCallback, ModelConversionCheckCallback
+from native_sg.training.utils.callbacks import DeciLabUploadCallback, ModelConversionCheckCallback
 from deci_lab_client.models import Metric, QuantizationLevel, ModelMetadata, OptimizationRequestForm
 
 

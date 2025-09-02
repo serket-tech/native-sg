@@ -1,7 +1,7 @@
 import torch
 import unittest
 
-from super_gradients.training.losses.dice_loss import DiceLoss, GeneralizedDiceLoss, BinaryDiceLoss
+from native_sg.training.losses.dice_loss import DiceLoss, GeneralizedDiceLoss, BinaryDiceLoss
 
 
 class DiceLossTest(unittest.TestCase):

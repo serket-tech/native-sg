@@ -1,13 +1,13 @@
 import unittest
-from super_gradients import Trainer
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
-from super_gradients.training.dataloaders.dataloaders import segmentation_test_dataloader, detection_test_dataloader
-from super_gradients.training.losses import PPYoloELoss
-from super_gradients.training.losses.ddrnet_loss import DDRNetLoss
-from super_gradients.training.metrics import IoU, DetectionMetrics_050
-from super_gradients.training.models.detection_models.pp_yolo_e import PPYoloEPostPredictionCallback
-from super_gradients.training.utils.callbacks.callbacks import ExtremeBatchSegVisualizationCallback, ExtremeBatchDetectionVisualizationCallback
+from native_sg import Trainer
+from native_sg.common.object_names import Models
+from native_sg.training import models
+from native_sg.training.dataloaders.dataloaders import segmentation_test_dataloader, detection_test_dataloader
+from native_sg.training.losses import PPYoloELoss
+from native_sg.training.losses.ddrnet_loss import DDRNetLoss
+from native_sg.training.metrics import IoU, DetectionMetrics_050
+from native_sg.training.models.detection_models.pp_yolo_e import PPYoloEPostPredictionCallback
+from native_sg.training.utils.callbacks.callbacks import ExtremeBatchSegVisualizationCallback, ExtremeBatchDetectionVisualizationCallback
 
 
 # Helper method to set up Trainer and model with common parameters

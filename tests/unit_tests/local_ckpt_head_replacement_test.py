@@ -1,10 +1,10 @@
 import unittest
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import Trainer, models
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.metrics import Accuracy, Top5
-from super_gradients.training.utils.utils import check_models_have_same_weights
+from native_sg.common.object_names import Models
+from native_sg.training import Trainer, models
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.metrics import Accuracy, Top5
+from native_sg.training.utils.utils import check_models_have_same_weights
 import os
 
 

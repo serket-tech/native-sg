@@ -6,25 +6,25 @@ import numpy as np
 import torch
 import torchvision as tv
 
-from super_gradients import Trainer
-from super_gradients.common.factories.list_factory import ListFactory
-from super_gradients.common.factories.processing_factory import ProcessingFactory
-from super_gradients.module_interfaces import HasPreprocessingParams
-from super_gradients.training import dataloaders
-from super_gradients.training import models
-from super_gradients.training.datasets import COCODetectionDataset
-from super_gradients.training.datasets.classification_datasets.torchvision_utils import get_torchvision_transforms_equivalent_processing
-from super_gradients.training.metrics import DetectionMetrics
-from super_gradients.training.models import YoloXPostPredictionCallback
-from super_gradients.training.processing import (
+from native_sg import Trainer
+from native_sg.common.factories.list_factory import ListFactory
+from native_sg.common.factories.processing_factory import ProcessingFactory
+from native_sg.module_interfaces import HasPreprocessingParams
+from native_sg.training import dataloaders
+from native_sg.training import models
+from native_sg.training.datasets import COCODetectionDataset
+from native_sg.training.datasets.classification_datasets.torchvision_utils import get_torchvision_transforms_equivalent_processing
+from native_sg.training.metrics import DetectionMetrics
+from native_sg.training.models import YoloXPostPredictionCallback
+from native_sg.training.processing import (
     ReverseImageChannels,
     DetectionLongestMaxSizeRescale,
     DetectionBottomRightPadding,
     ImagePermute,
     ComposeProcessing,
 )
-from super_gradients.training.transforms import DetectionPaddedRescale, DetectionRGB2BGR
-from super_gradients.training.utils.collate_fn import DetectionCollateFN, CrowdDetectionCollateFN
+from native_sg.training.transforms import DetectionPaddedRescale, DetectionRGB2BGR
+from native_sg.training.utils.collate_fn import DetectionCollateFN, CrowdDetectionCollateFN
 
 
 class PreprocessingUnitTest(unittest.TestCase):

@@ -1,6 +1,6 @@
 import torch
 import unittest
-from super_gradients.training.utils.utils import AverageMeter
+from native_sg.training.utils.utils import AverageMeter
 
 
 class TestAverageMeter(unittest.TestCase):

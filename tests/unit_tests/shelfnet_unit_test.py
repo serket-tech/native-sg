@@ -1,7 +1,7 @@
 import torch
 import unittest
 
-from super_gradients.training.models import ShelfNet18_LW, ShelfNet34_LW
+from native_sg.training.models import ShelfNet18_LW, ShelfNet34_LW
 
 
 class TestShelfNet(unittest.TestCase):

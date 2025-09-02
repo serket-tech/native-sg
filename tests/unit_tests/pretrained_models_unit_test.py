@@ -6,19 +6,19 @@ import unittest
 import numpy as np
 import torch
 
-import super_gradients
-from super_gradients.common.object_names import Models
-from super_gradients.training import Trainer
-from super_gradients.training import models
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.metrics import Accuracy
-from super_gradients.training.pretrained_models import MODEL_URLS, PRETRAINED_NUM_CLASSES
-from super_gradients.training.processing.processing import default_yolo_nas_coco_processing_params
+import native_sg
+from native_sg.common.object_names import Models
+from native_sg.training import Trainer
+from native_sg.training import models
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.metrics import Accuracy
+from native_sg.training.pretrained_models import MODEL_URLS, PRETRAINED_NUM_CLASSES
+from native_sg.training.processing.processing import default_yolo_nas_coco_processing_params
 
 
 class PretrainedModelsUnitTest(unittest.TestCase):
     def setUp(self) -> None:
-        super_gradients.init_trainer()
+        native_sg.init_trainer()
         self.imagenet_pretrained_models = [Models.RESNET50, "repvgg_a0", "regnetY800"]
 
     def test_pretrained_resnet50_imagenet(self):

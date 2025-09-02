@@ -2,7 +2,7 @@ import warnings
 import unittest
 from unittest.mock import patch
 
-from super_gradients.common.deprecate import deprecated
+from native_sg.common.deprecate import deprecated
 
 
 class TestDeprecationDecorator(unittest.TestCase):
@@ -138,7 +138,7 @@ class TestDeprecationDecorator(unittest.TestCase):
 
     def test_raise_error_when_library_version_equals_removal_version(self):
         """Ensure that an error is raised when the library's version equals the function's removal version."""
-        with patch("super_gradients.__version__", "10.1.0"):  # Mocking the version to be equal to removal version
+        with patch("native_sg.__version__", "10.1.0"):  # Mocking the version to be equal to removal version
             with self.assertRaises(ImportError):
 
                 @deprecated(deprecated_since="3.2.0", removed_from="10.1.0", target=self.new_func)
@@ -149,7 +149,7 @@ class TestDeprecationDecorator(unittest.TestCase):
 
     def test_no_error_when_library_version_below_removal_version(self):
         """Ensure that no error is raised when the library's version is below the function's removal version."""
-        with patch("super_gradients.__version__", "10.1.0"):  # Mocking the version to be below removal version
+        with patch("native_sg.__version__", "10.1.0"):  # Mocking the version to be below removal version
 
             @deprecated(deprecated_since="3.2.0", removed_from="10.2.0", target=self.new_func)
             def deprecated_func_version_below():

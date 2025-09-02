@@ -1,7 +1,7 @@
 import unittest
 
 import torch
-from super_gradients.training import models
+from native_sg.training import models
 
 # This is a subset of all the models, since some cannot be instantiated with models.get() without explicit arch_params
 MODELS = [

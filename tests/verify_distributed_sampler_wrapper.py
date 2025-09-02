@@ -5,8 +5,8 @@ from itertools import chain
 import torch
 from torch.utils.data import Dataset, DataLoader
 
-from super_gradients import setup_device
-from super_gradients.training.datasets.samplers.distributed_sampler_wrapper import DistributedSamplerWrapper
+from native_sg import setup_device
+from native_sg.training.datasets.samplers.distributed_sampler_wrapper import DistributedSamplerWrapper
 
 
 class DummyDataset(Dataset):

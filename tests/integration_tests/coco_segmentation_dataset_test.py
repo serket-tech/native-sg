@@ -5,13 +5,13 @@ import pkg_resources
 import yaml
 from torch.utils.data import DataLoader
 
-from super_gradients.training.dataloaders.dataloaders import coco_segmentation_train, coco_segmentation_val
-from super_gradients.training.datasets.segmentation_datasets.coco_segmentation import CoCoSegmentationDataSet
+from native_sg.training.dataloaders.dataloaders import coco_segmentation_train, coco_segmentation_val
+from native_sg.training.datasets.segmentation_datasets.coco_segmentation import CoCoSegmentationDataSet
 
 
 class CocoSegmentationDatasetTest(unittest.TestCase):
     def setUp(self) -> None:
-        default_config_path = pkg_resources.resource_filename("super_gradients.recipes", "dataset_params/coco_segmentation_dataset_params.yaml")
+        default_config_path = pkg_resources.resource_filename("native_sg.recipes", "dataset_params/coco_segmentation_dataset_params.yaml")
         with open(default_config_path, "r") as file:
             self.recipe = yaml.safe_load(file)
 

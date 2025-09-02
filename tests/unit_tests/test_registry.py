@@ -1,8 +1,8 @@
 import unittest
 from typing import List
 
-from super_gradients.common.registry.registry import create_register_decorator
-from super_gradients.common.factories.base_factory import BaseFactory, UnknownTypeException
+from native_sg.common.registry.registry import create_register_decorator
+from native_sg.common.factories.base_factory import BaseFactory, UnknownTypeException
 
 
 class RegistryTest(unittest.TestCase):

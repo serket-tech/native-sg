@@ -3,9 +3,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch
 
-from super_gradients.training.utils.optimizer_utils import separate_zero_wd_params_groups_for_optimizer
-from super_gradients.training.utils import HpmStruct
-from super_gradients.training.models.sg_module import SgModule
+from native_sg.training.utils.optimizer_utils import separate_zero_wd_params_groups_for_optimizer
+from native_sg.training.utils import HpmStruct
+from native_sg.training.models.sg_module import SgModule
 
 
 class ToyLinearKernel(nn.Module):

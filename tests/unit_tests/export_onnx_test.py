@@ -4,9 +4,9 @@ import unittest
 
 from torchvision.transforms import Compose, Normalize, Resize
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
-from super_gradients.training.transforms import Standardize
+from native_sg.common.object_names import Models
+from native_sg.training import models
+from native_sg.training.transforms import Standardize
 
 
 class TestModelsONNXExport(unittest.TestCase):

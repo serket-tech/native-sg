@@ -10,14 +10,14 @@ import torch
 from matplotlib import pyplot as plt
 from torch import nn
 
-from super_gradients.common.object_names import Models
-from super_gradients.conversion.conversion_enums import ExportTargetBackend, DetectionOutputFormatMode
-from super_gradients.import_utils import import_onnx_graphsurgeon_or_install, import_pytorch_quantization_or_install
-from super_gradients.module_interfaces import ExportablePoseEstimationModel, PoseEstimationModelExportResult
-from super_gradients.training import models
-from super_gradients.training.dataloaders import coco2017_val  # noqa
-from super_gradients.training.models.pose_estimation_models.yolo_nas_pose.yolo_nas_pose_variants import YoloNASPoseDecodingModule
-from super_gradients.training.processing.processing import (
+from native_sg.common.object_names import Models
+from native_sg.conversion.conversion_enums import ExportTargetBackend, DetectionOutputFormatMode
+from native_sg.import_utils import import_onnx_graphsurgeon_or_install, import_pytorch_quantization_or_install
+from native_sg.module_interfaces import ExportablePoseEstimationModel, PoseEstimationModelExportResult
+from native_sg.training import models
+from native_sg.training.dataloaders import coco2017_val  # noqa
+from native_sg.training.models.pose_estimation_models.yolo_nas_pose.yolo_nas_pose_variants import YoloNASPoseDecodingModule
+from native_sg.training.processing.processing import (
     default_yolo_nas_pose_coco_processing_params,
     ComposeProcessing,
     ReverseImageChannels,
@@ -26,8 +26,8 @@ from super_gradients.training.processing.processing import (
     StandardizeImage,
     ImagePermute,
 )
-from super_gradients.training.utils.media.image import load_image
-from super_gradients.training.utils.visualization.pose_estimation import PoseVisualization
+from native_sg.training.utils.media.image import load_image
+from native_sg.training.utils.visualization.pose_estimation import PoseVisualization
 
 import_onnx_graphsurgeon_or_install()
 import_pytorch_quantization_or_install()

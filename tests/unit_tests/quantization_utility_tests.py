@@ -1,10 +1,10 @@
 import unittest
 
-import super_gradients
+import native_sg
 import torch
 import torchvision
-from super_gradients.common.object_names import Models
-from super_gradients.import_utils import import_pytorch_quantization_or_install
+from native_sg.common.object_names import Models
+from native_sg.import_utils import import_pytorch_quantization_or_install
 from torch import nn
 
 
@@ -13,7 +13,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         import_pytorch_quantization_or_install()
 
     def test_vanilla_replacement(self):
-        from super_gradients.training.utils.quantization import SelectiveQuantizer
+        from native_sg.training.utils.quantization import SelectiveQuantizer
 
         # ARRANGE
         class MyModel(nn.Module):
@@ -40,7 +40,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(isinstance(module.conv1, SelectiveQuantizer.mapping_instructions[nn.Conv2d].quantized_target_class))
 
     def test_module_list_replacement(self):
-        from super_gradients.training.utils.quantization import SelectiveQuantizer
+        from native_sg.training.utils.quantization import SelectiveQuantizer
 
         # ARRANGE
         class MyModel(nn.Module):
@@ -68,7 +68,7 @@ class QuantizationUtilityTest(unittest.TestCase):
             self.assertTrue(isinstance(conv, SelectiveQuantizer.mapping_instructions[nn.Conv2d].quantized_target_class))
 
     def test_sequential_list_replacement(self):
-        from super_gradients.training.utils.quantization import SelectiveQuantizer
+        from native_sg.training.utils.quantization import SelectiveQuantizer
 
         # ARRANGE
         class MyModel(nn.Module):
@@ -99,7 +99,7 @@ class QuantizationUtilityTest(unittest.TestCase):
             self.assertTrue(isinstance(conv, SelectiveQuantizer.mapping_instructions[nn.Conv2d].quantized_target_class))
 
     def test_nested_module_replacement(self):
-        from super_gradients.training.utils.quantization import SelectiveQuantizer
+        from native_sg.training.utils.quantization import SelectiveQuantizer
 
         # ARRANGE
         class MyBlock(nn.Module):
@@ -140,7 +140,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(isinstance(module.my_block.linear, SelectiveQuantizer.mapping_instructions[nn.Linear].quantized_target_class))
 
     def test_static_selective_skip_quantization(self):
-        from super_gradients.training.utils.quantization import SelectiveQuantizer, SkipQuantization
+        from native_sg.training.utils.quantization import SelectiveQuantizer, SkipQuantization
 
         # ARRANGE
         class MyModel(nn.Module):
@@ -169,7 +169,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(isinstance(module.conv2, nn.Conv2d))
 
     def test_dynamic_skip_quantization(self):
-        from super_gradients.training.utils.quantization import SelectiveQuantizer
+        from native_sg.training.utils.quantization import SelectiveQuantizer
 
         # ARRANGE
         class MyModel(nn.Module):
@@ -198,7 +198,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(isinstance(module.conv2, nn.Conv2d))
 
     def test_custom_quantized_mapping_wrapper_explicit_from_float(self):
-        from super_gradients.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, QuantizedMapping
+        from native_sg.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, QuantizedMapping
         from pytorch_quantization import nn as quant_nn
 
         # ARRANGE
@@ -254,7 +254,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(isinstance(module.my_block, MyQuantizedBlock))
 
     def test_custom_quantized_mapping_wrapper_implicit_from_float(self):
-        from super_gradients.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, QuantizedMapping
+        from native_sg.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, QuantizedMapping
         from pytorch_quantization import nn as quant_nn
 
         # ARRANGE
@@ -307,7 +307,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(isinstance(module.my_block, MyQuantizedBlock))
 
     def test_custom_quantized_mapping_register_with_decorator(self):
-        from super_gradients.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, register_quantized_module
+        from native_sg.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, register_quantized_module
         from pytorch_quantization import nn as quant_nn
 
         # ARRANGE
@@ -361,7 +361,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(isinstance(module.my_block, MyQuantizedBlock))
 
     def test_dynamic_quantized_mapping(self):
-        from super_gradients.training.utils.quantization import SGQuantMixin, SelectiveQuantizer
+        from native_sg.training.utils.quantization import SGQuantMixin, SelectiveQuantizer
         from pytorch_quantization import nn as quant_nn
 
         # ARRANGE
@@ -415,7 +415,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(isinstance(module.my_block, MyQuantizedBlock))
 
     def test_non_default_quant_descriptors_are_piped(self):
-        from super_gradients.training.utils.quantization import SelectiveQuantizer
+        from native_sg.training.utils.quantization import SelectiveQuantizer
         from pytorch_quantization.calib import MaxCalibrator
 
         # ARRANGE
@@ -444,7 +444,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(type(module.conv1._weight_quantizer._calibrator) == MaxCalibrator)
 
     def test_different_quant_descriptors_are_piped(self):
-        from super_gradients.training.utils.quantization import SelectiveQuantizer
+        from native_sg.training.utils.quantization import SelectiveQuantizer
         from pytorch_quantization.calib import HistogramCalibrator
         from pytorch_quantization.calib import MaxCalibrator
         from pytorch_quantization.tensor_quant import QuantDescriptor
@@ -494,7 +494,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(type(module.conv2._weight_quantizer._calibrator) == MaxCalibrator)
 
     def test_quant_descriptors_are_piped_to_custom_quant_modules_if_has_kwargs(self):
-        from super_gradients.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, QuantizedMapping
+        from native_sg.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, QuantizedMapping
         from pytorch_quantization import nn as quant_nn
         from pytorch_quantization.tensor_quant import QuantDescriptor
         from pytorch_quantization.calib import MaxCalibrator
@@ -565,7 +565,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(type(module.my_block.linear._weight_quantizer._calibrator) == HistogramCalibrator)
 
     def test_quant_descriptors_are_piped_to_custom_quant_modules_if_expects_in_init(self):
-        from super_gradients.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, QuantizedMapping
+        from native_sg.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, QuantizedMapping
         from pytorch_quantization import nn as quant_nn
         from pytorch_quantization.tensor_quant import QuantDescriptor
         from pytorch_quantization.calib import MaxCalibrator
@@ -636,7 +636,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(type(module.my_block.linear._weight_quantizer._calibrator) == HistogramCalibrator)
 
     def test_quant_descriptors_are_not_piped_if_custom_quant_module_does_not_expect_them(self):
-        from super_gradients.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, QuantizedMapping
+        from native_sg.training.utils.quantization import SGQuantMixin, SelectiveQuantizer, QuantizedMapping
         from pytorch_quantization import nn as quant_nn
 
         # ARRANGE
@@ -691,7 +691,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(isinstance(module.my_block, MyQuantizedBlock))
 
     def test_custom_quantized_mappings_are_recursively_quantized_if_required(self):
-        from super_gradients.training.utils.quantization import SGQuantMixin, QuantizedMetadata, SelectiveQuantizer, QuantizedMapping
+        from native_sg.training.utils.quantization import SGQuantMixin, QuantizedMetadata, SelectiveQuantizer, QuantizedMapping
 
         # ARRANGE
         class MyBlock(nn.Module):
@@ -748,7 +748,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         self.assertTrue(isinstance(module.my_block.linear, SelectiveQuantizer.mapping_instructions[nn.Linear].quantized_target_class))
 
     def test_torchvision_resnet_sg_vanilla_quantization_matches_pytorch_quantization(self):
-        from super_gradients.training.utils.quantization import SelectiveQuantizer, QuantizedMetadata
+        from native_sg.training.utils.quantization import SelectiveQuantizer, QuantizedMetadata
         from pytorch_quantization import nn as quant_nn
         from pytorch_quantization.tensor_quant import QuantDescriptor
         from pytorch_quantization import quant_modules
@@ -804,8 +804,8 @@ class QuantizationUtilityTest(unittest.TestCase):
 
     def test_sg_resnet_sg_vanilla_quantization_matches_pytorch_quantization(self):
         # SG SELECTIVE QUANTIZATION
-        from super_gradients.training.models.classification_models.resnet import Bottleneck
-        from super_gradients.training.utils.quantization import SelectiveQuantizer, QuantizedMetadata
+        from native_sg.training.models.classification_models.resnet import Bottleneck
+        from native_sg.training.utils.quantization import SelectiveQuantizer, QuantizedMetadata
         from pytorch_quantization import nn as quant_nn
         from pytorch_quantization import quant_modules
         from pytorch_quantization.tensor_quant import QuantDescriptor
@@ -840,7 +840,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         if Bottleneck in sq.mapping_instructions:
             sq.mapping_instructions.pop(Bottleneck)
 
-        resnet_sg: nn.Module = super_gradients.training.models.get(Models.RESNET50, pretrained_weights="imagenet", num_classes=1000)
+        resnet_sg: nn.Module = native_sg.training.models.get(Models.RESNET50, pretrained_weights="imagenet", num_classes=1000)
         sq.quantize_module(resnet_sg, preserve_state_dict=True)
 
         # PYTORCH-QUANTIZATION
@@ -856,7 +856,7 @@ class QuantizationUtilityTest(unittest.TestCase):
         quant_nn.QuantAdaptiveAvgPool2d.set_default_quant_desc_input(QuantDescriptor(calib_method="histogram"))
 
         quant_modules.initialize()
-        resnet_pyquant: nn.Module = super_gradients.training.models.get(Models.RESNET50, pretrained_weights="imagenet", num_classes=1000)
+        resnet_pyquant: nn.Module = native_sg.training.models.get(Models.RESNET50, pretrained_weights="imagenet", num_classes=1000)
 
         quant_modules.deactivate()
 

@@ -1,7 +1,7 @@
 import torch
 import unittest
 
-from super_gradients.training.losses.ddrnet_loss import DDRNetLoss
+from native_sg.training.losses.ddrnet_loss import DDRNetLoss
 
 
 class DDRLossTest(unittest.TestCase):

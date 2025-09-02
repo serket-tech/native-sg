@@ -2,15 +2,15 @@ import unittest
 
 import torch
 
-import super_gradients
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
+import native_sg
+from native_sg.common.object_names import Models
+from native_sg.training import models
 
 
 class ReplaceHeadUnitTest(unittest.TestCase):
     def setUp(self) -> None:
         self.device = "cuda" if torch.cuda.is_available() and torch.cuda.device_count() > 0 else "cpu"
-        super_gradients.init_trainer()
+        native_sg.init_trainer()
 
     def test_yolox_replace_head(self):
         input = torch.randn(1, 3, 640, 640).to(self.device)

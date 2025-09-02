@@ -2,8 +2,8 @@ import unittest
 
 import torch
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
+from native_sg.common.object_names import Models
+from native_sg.training import models
 
 
 class TestYOLONAS(unittest.TestCase):

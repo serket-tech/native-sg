@@ -1,5 +1,5 @@
 import unittest
-from super_gradients.training import training_hyperparams
+from native_sg.training import training_hyperparams
 
 
 class TrainingParamsTest(unittest.TestCase):

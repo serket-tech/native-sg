@@ -2,17 +2,17 @@ import unittest
 
 import torch
 
-from super_gradients import Trainer
-from super_gradients.common import StrictLoad
-from super_gradients.common.decorators.factory_decorator import resolve_param
-from super_gradients.common.exceptions import UnknownTypeException
-from super_gradients.common.factories.activations_type_factory import ActivationsTypeFactory
-from super_gradients.common.factories.type_factory import TypeFactory
-from super_gradients.common.object_names import Models
-from super_gradients.training import models
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.losses import CrossEntropyLoss
-from super_gradients.training.metrics import Accuracy, Top5
+from native_sg import Trainer
+from native_sg.common import StrictLoad
+from native_sg.common.decorators.factory_decorator import resolve_param
+from native_sg.common.exceptions import UnknownTypeException
+from native_sg.common.factories.activations_type_factory import ActivationsTypeFactory
+from native_sg.common.factories.type_factory import TypeFactory
+from native_sg.common.object_names import Models
+from native_sg.training import models
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.losses import CrossEntropyLoss
+from native_sg.training.metrics import Accuracy, Top5
 from torch import nn
 
 

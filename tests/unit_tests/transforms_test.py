@@ -7,21 +7,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 from omegaconf import ListConfig
 
-from super_gradients.common.registry import register_transform
-from super_gradients.training.datasets import COCODetectionDataset
-from super_gradients.training.transforms import KeypointsMixup, KeypointsCompose
-from super_gradients.training.transforms.detection import LegacyDetectionTransformMixin
-from super_gradients.training.transforms.keypoint_transforms import (
+from native_sg.common.registry import register_transform
+from native_sg.training.datasets import COCODetectionDataset
+from native_sg.training.transforms import KeypointsMixup, KeypointsCompose
+from native_sg.training.transforms.detection import LegacyDetectionTransformMixin
+from native_sg.training.transforms.keypoint_transforms import (
     KeypointsRandomHorizontalFlip,
     KeypointsRandomVerticalFlip,
     KeypointsRandomAffineTransform,
     KeypointsPadIfNeeded,
     KeypointsLongestMaxSize,
 )
-from super_gradients.training.samples import PoseEstimationSample, DetectionSample
+from native_sg.training.samples import PoseEstimationSample, DetectionSample
 
-from super_gradients.training.transforms.keypoints import KeypointsBrightnessContrast, KeypointsMosaic
-from super_gradients.training.transforms.transforms import (
+from native_sg.training.transforms.keypoints import KeypointsBrightnessContrast, KeypointsMosaic
+from native_sg.training.transforms.transforms import (
     DetectionImagePermute,
     DetectionPadToSize,
     DetectionHorizontalFlip,
@@ -29,7 +29,7 @@ from super_gradients.training.transforms.transforms import (
     DetectionTransform,
 )
 
-from super_gradients.training.transforms.utils import (
+from native_sg.training.transforms.utils import (
     _rescale_image,
     _rescale_bboxes,
     _pad_image,

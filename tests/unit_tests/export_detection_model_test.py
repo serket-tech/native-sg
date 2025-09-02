@@ -10,19 +10,19 @@ import onnx
 import onnxruntime
 import torch
 from matplotlib import pyplot as plt
-from super_gradients.common.object_names import Models
-from super_gradients.conversion.conversion_enums import ExportTargetBackend, ExportQuantizationMode, DetectionOutputFormatMode
-from super_gradients.conversion.onnx.nms import PickNMSPredictionsAndReturnAsFlatResult, PickNMSPredictionsAndReturnAsBatchedResult
-from super_gradients.conversion.tensorrt.nms import ConvertTRTFormatToFlatTensor
-from super_gradients.import_utils import import_pytorch_quantization_or_install, import_onnx_graphsurgeon_or_install
-from super_gradients.module_interfaces import ExportableObjectDetectionModel
-from super_gradients.module_interfaces.exportable_detector import ModelExportResult
-from super_gradients.training import models
-from super_gradients.training.dataloaders import coco2017_val  # noqa
-from super_gradients.training.datasets.datasets_conf import COCO_DETECTION_CLASSES_LIST
-from super_gradients.training.utils.detection_utils import DetectionVisualization
-from super_gradients.training.utils.export_utils import infer_image_shape_from_model, infer_image_input_channels
-from super_gradients.training.utils.media.image import load_image
+from native_sg.common.object_names import Models
+from native_sg.conversion.conversion_enums import ExportTargetBackend, ExportQuantizationMode, DetectionOutputFormatMode
+from native_sg.conversion.onnx.nms import PickNMSPredictionsAndReturnAsFlatResult, PickNMSPredictionsAndReturnAsBatchedResult
+from native_sg.conversion.tensorrt.nms import ConvertTRTFormatToFlatTensor
+from native_sg.import_utils import import_pytorch_quantization_or_install, import_onnx_graphsurgeon_or_install
+from native_sg.module_interfaces import ExportableObjectDetectionModel
+from native_sg.module_interfaces.exportable_detector import ModelExportResult
+from native_sg.training import models
+from native_sg.training.dataloaders import coco2017_val  # noqa
+from native_sg.training.datasets.datasets_conf import COCO_DETECTION_CLASSES_LIST
+from native_sg.training.utils.detection_utils import DetectionVisualization
+from native_sg.training.utils.export_utils import infer_image_shape_from_model, infer_image_input_channels
+from native_sg.training.utils.media.image import load_image
 from torch import nn
 from torch.utils.data import DataLoader
 
@@ -519,7 +519,7 @@ class TestDetectionModelExport(unittest.TestCase):
 
     def test_export_already_quantized_model(self):
 
-        from super_gradients.training.utils.quantization import SelectiveQuantizer
+        from native_sg.training.utils.quantization import SelectiveQuantizer
 
         model = models.get(Models.YOLO_NAS_S, pretrained_weights="coco")
         q_util = SelectiveQuantizer(

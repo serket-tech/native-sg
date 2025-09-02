@@ -1,14 +1,14 @@
 import unittest
 
-from super_gradients.training import models
-from super_gradients.training import Trainer
-from super_gradients.training.dataloaders.dataloaders import classification_test_dataloader
-from super_gradients.training.kd_trainer import KDTrainer
+from native_sg.training import models
+from native_sg.training import Trainer
+from native_sg.training.dataloaders.dataloaders import classification_test_dataloader
+from native_sg.training.kd_trainer import KDTrainer
 import torch
-from super_gradients.training.utils.utils import check_models_have_same_weights, unwrap_model
-from super_gradients.training.metrics import Accuracy
-from super_gradients.training.losses.kd_losses import KDLogitsLoss
-from super_gradients.common.object_names import Models
+from native_sg.training.utils.utils import check_models_have_same_weights, unwrap_model
+from native_sg.training.metrics import Accuracy
+from native_sg.training.losses.kd_losses import KDLogitsLoss
+from native_sg.common.object_names import Models
 
 
 class KDEMATest(unittest.TestCase):

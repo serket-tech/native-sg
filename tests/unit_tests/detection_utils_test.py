@@ -5,14 +5,14 @@ import unittest
 import numpy as np
 import torch.cuda
 
-from super_gradients.common.object_names import Models
-from super_gradients.training import utils as core_utils, models
-from super_gradients.training.dataloaders.dataloaders import coco2017_val
-from super_gradients.training.datasets.datasets_conf import COCO_DETECTION_CLASSES_LIST
-from super_gradients.training.datasets.pose_estimation_datasets.yolo_nas_pose_collate_fn import flat_collate_tensors_with_batch_index
-from super_gradients.training.metrics import DetectionMetrics, DetectionMetrics_050
-from super_gradients.training.models.detection_models.yolo_base import YoloXPostPredictionCallback
-from super_gradients.training.utils.detection_utils import DetectionVisualization, DetectionPostPredictionCallback, xyxy2cxcywh
+from native_sg.common.object_names import Models
+from native_sg.training import utils as core_utils, models
+from native_sg.training.dataloaders.dataloaders import coco2017_val
+from native_sg.training.datasets.datasets_conf import COCO_DETECTION_CLASSES_LIST
+from native_sg.training.datasets.pose_estimation_datasets.yolo_nas_pose_collate_fn import flat_collate_tensors_with_batch_index
+from native_sg.training.metrics import DetectionMetrics, DetectionMetrics_050
+from native_sg.training.models.detection_models.yolo_base import YoloXPostPredictionCallback
+from native_sg.training.utils.detection_utils import DetectionVisualization, DetectionPostPredictionCallback, xyxy2cxcywh
 from tests.core_test_utils import is_data_available
 
 

@@ -1,6 +1,6 @@
 import torch
 import unittest
-from super_gradients.training.datasets.data_augmentation import RandomErase
+from native_sg.training.datasets.data_augmentation import RandomErase
 
 
 class RandomEraseTest(unittest.TestCase):

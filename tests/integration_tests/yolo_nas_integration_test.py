@@ -1,15 +1,15 @@
 import os
 import unittest
-from super_gradients.training import models
-from super_gradients.training.dataloaders import coco2017_val_yolo_nas
-from super_gradients.training import Trainer
-from super_gradients.training.metrics import DetectionMetrics
-from super_gradients.training.models.detection_models.pp_yolo_e import PPYoloEPostPredictionCallback
+from native_sg.training import models
+from native_sg.training.dataloaders import coco2017_val_yolo_nas
+from native_sg.training import Trainer
+from native_sg.training.metrics import DetectionMetrics
+from native_sg.training.models.detection_models.pp_yolo_e import PPYoloEPostPredictionCallback
 
 
 class YoloNASIntegrationTest(unittest.TestCase):
     def setUp(self):
-        self.data_dir = os.environ.get("SUPER_GRADIENTS_COCO_DATASET_DIR", "/data/coco")
+        self.data_dir = os.environ.get("native_sg_COCO_DATASET_DIR", "/data/coco")
 
     def test_yolo_nas_s_coco(self):
         trainer = Trainer("test_yolo_nas_s")
