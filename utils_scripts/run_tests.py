@@ -21,6 +21,7 @@ ARTIFACT_DIRS = [
 PYTEST_ARGS = [
     "--ignore=tests/integration_tests/conversion_callback_test.py",
     "--ignore=tests/integration_tests/deci_lab_export_test.py",
+    # '-k "not imagenet and not cityscapes"'
 ]
 # --- END CONFIGURATION ---
 
