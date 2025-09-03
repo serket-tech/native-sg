@@ -20,7 +20,7 @@ class TestDatasetStatisticsTensorboardLogger(unittest.TestCase):
 
         trainer = Trainer("dataset_statistics_visual_test")
 
-        model = models.get(Models.YOLOX_S)
+        model = models.get(Models.YOLOX_S, num_classes=80)
 
         training_params = {
             "max_epochs": 1,  # we dont really need the actual training to run
