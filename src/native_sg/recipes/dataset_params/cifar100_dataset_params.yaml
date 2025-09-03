@@ -1,5 +1,5 @@
 train_dataset_params:
-  root: /data/cifar100
+  root: ./data/cifar100
   train: True
   transforms:
     - RandomCrop:
@@ -27,7 +27,7 @@ train_dataloader_params:
   pin_memory: True
 
 val_dataset_params:
-  root: /data/cifar100
+  root: ./data/cifar100
   train: False
   transforms:
     - Resize:
