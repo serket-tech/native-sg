@@ -19,9 +19,19 @@ ARTIFACT_DIRS = [
 ]
 
 PYTEST_ARGS = [
-    "--ignore=tests/integration_tests/conversion_callback_test.py",
-    "--ignore=tests/integration_tests/deci_lab_export_test.py",
-    # '-k "not imagenet and not cityscapes"'
+    "--ignore=tests/integration_tests/conversion_callback_test.py",                           # related to deci platform
+    "--ignore=tests/integration_tests/deci_lab_export_test.py",                               # related to deci platform
+    "--ignore=tests/unit_tests/test_version_check.py",                                        # related to "pip install super-gradients"
+    "--ifnore=tests/integration_tests/data_adapter/test_dataloader_adapter.py",               # dataloder test with broken download link
+    "--ignore=tests/integration_tests/dataset_statistics_test.py",                            # related to coco dataset
+    "--ignore=tests/integration_tests/pose_estimation_models_test.py",                        # related to coco dataset
+    "--ignore=tests/integration_tests/export_coreml_test.py",                                 # related to coreml
+    "--ignore=tests/integration_tests/pretrained_models_test.py",                             # related to imagenet dataset
+    "--ignoer=tests/recipe_training_tests/shortened_recipes_accuracy_test.py",                # related to checkpoints trained on coco/imagenet
+    "--ignoretests/unit_tests/detection_utils_test.py",                                       # related to coco dataset
+    "--ignore=tests/unit_tests/export_detection_model_test.py",                               # related to coco dataset and broken http links   
+    "-k", "not imagenet and not cityscapes and not coco and not mapillary and not pascal \
+           and not supervisely and not crowdpose"                                             # ignore tests requiring large datasets at absolute paths
 ]
 # --- END CONFIGURATION ---
 
