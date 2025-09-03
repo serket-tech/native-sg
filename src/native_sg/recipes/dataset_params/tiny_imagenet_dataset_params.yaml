@@ -2,7 +2,7 @@ defaults:
   - imagenet_dataset_params
 
 train_dataset_params:
-  root: /data/TinyImagenet/train
+  root: /media/8TBHDD/sg_test_data/tiny-imagenet-200/train
   transforms:
     - RandomResizedCropAndInterpolation:
         size: 56
@@ -13,7 +13,7 @@ train_dataset_params:
         std: [0.2770, 0.2691, 0.2821]
 
 val_dataset_params:
-  root: /data/TinyImagenet/val
+  root: /media/8TBHDD/sg_test_data/tiny-imagenet-200/val
   transforms:
     - Resize:
         size: 64
