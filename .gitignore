@@ -193,3 +193,7 @@ docs/.doctrees
 
 # pyenv
 .python-version
+
+# data
+data/
+tests/data/
