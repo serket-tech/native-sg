@@ -36,4 +36,17 @@ fonttools>=4.43.0
 # not directly required, pinned by Snyk to avoid a vulnerability
 werkzeug>=2.3.8
 imagesize~=1.4.1
+# dev requirements
+flake8==5.0.4
+black==22.10.0
+pre-commit==2.20.0
+gitpython>=3.1.0
+ipykernel==6.25
+nbconvert==7.8.0
+pycocotools==2.0.10
 pydantic==2.11.7
+pytest==2.4.1
+sphinx~=4.0.2
+sphinx-rtd-theme
+coverage~=5.3.1
+

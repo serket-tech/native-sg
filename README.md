@@ -132,11 +132,8 @@ ________________________________________________________________________________
 
  
 ```bash
-pip install -r requirements.txt -r requirements.dev.txt
+pip install -r requirements.txt
 pip install -e .
-# no clue why but this is the only way the --no-cache-dir installation works
-pip uninstall -y pycocotools
-pip install --no-cache-dir pycocotools
 ```
 
 ## What's New
