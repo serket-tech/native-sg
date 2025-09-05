@@ -136,6 +136,23 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+## Installation within another repo
+__________________________________________________________________________________________________________
+
+```bash
+pip install git+https://github.com/serket-tech/native-sg.git@vX.X.X
+```
+
+## Maintenance
+__________________________________________________________________________________________________________
+
+After committing all new changes:
+```bash
+git tag -a vX.X.X -m "Message"
+git push origin vX.X.X
+```
+
+
 ## What's New
 
 __________________________________________________________________________________________________________
