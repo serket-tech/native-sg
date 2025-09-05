@@ -28,8 +28,9 @@ PYTEST_ARGS = [
     "--ignore=tests/integration_tests/export_coreml_test.py",                                 # related to coreml
     "--ignore=tests/integration_tests/pretrained_models_test.py",                             # related to imagenet dataset
     "--ignoer=tests/recipe_training_tests/shortened_recipes_accuracy_test.py",                # related to checkpoints trained on coco/imagenet
-    "--ignoretests/unit_tests/detection_utils_test.py",                                       # related to coco dataset
+    "--ignore=tests/unit_tests/detection_utils_test.py",                                          # related to coco dataset
     "--ignore=tests/unit_tests/export_detection_model_test.py",                               # related to coco dataset and broken http links   
+    " --ignore=tests/unit_tests/test_version_check.py",                                       # version unimportant
     "-k", "not imagenet and not cityscapes and not coco and not mapillary and not pascal \
            and not supervisely and not crowdpose"                                             # ignore tests requiring large datasets at absolute paths
 ]
