@@ -126,7 +126,7 @@ class PreprocessingUnitTest(unittest.TestCase):
         self.assertEqual(model._default_nms_conf, 0.5)
 
         checkpoint_path = os.path.join(trainer.checkpoints_dir_path, "ckpt_best.pth")
-        checkpoint = torch.load(checkpoint_path, map_location="cpu")
+        checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
         self.assertTrue("processing_params" in checkpoint)
 
     def test_setting_preprocessing_params_from_checkpoint(self):

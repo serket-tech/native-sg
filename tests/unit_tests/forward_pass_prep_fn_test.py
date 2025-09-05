@@ -21,7 +21,7 @@ class TestInputSizesCallback(PhaseCallback):
         self.shapes_placeholder.append(context.inputs.shape)
 
 
-def test_forward_pass_prep_fn(inputs, targets, *args, **kwargs):
+def _forward_pass_prep_fn(inputs, targets, *args, **kwargs):
     inputs = torch.nn.functional.interpolate(inputs, size=(50, 50), mode="bilinear", align_corners=False)
     return inputs, targets
 
@@ -52,7 +52,7 @@ class ForwardpassPrepFNTest(unittest.TestCase):
             "greater_metric_to_watch_is_better": True,
             "ema": False,
             "phase_callbacks": phase_callbacks,
-            "pre_prediction_callback": test_forward_pass_prep_fn,
+            "pre_prediction_callback": _forward_pass_prep_fn,
         }
         trainer.train(model=model, training_params=train_params, train_loader=classification_test_dataloader(), valid_loader=classification_test_dataloader())
 
