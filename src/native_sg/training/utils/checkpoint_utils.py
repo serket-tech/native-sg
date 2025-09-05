@@ -183,7 +183,7 @@ def read_ckpt_state_dict(ckpt_path: str, device="cpu") -> Mapping[str, torch.Ten
         if not os.path.exists(ckpt_path):
             raise FileNotFoundError(f"Incorrect Checkpoint path: {ckpt_path} (This should be an absolute path)")
 
-        state_dict = torch.load(ckpt_path, map_location=device)
+        state_dict = torch.load(ckpt_path, map_location=device, weights_only=False)
         return state_dict
 
 
@@ -1587,7 +1587,7 @@ def load_pretrained_weights(model: torch.nn.Module, architecture: str, pretraine
     # which is a valid URI scheme for local files
     # Supporting local files and file URI allows us modification of pretrained weights dics in unit tests
     if url.startswith("file://") or os.path.exists(url):
-        pretrained_state_dict = torch.load(url.replace("file://", ""), map_location="cpu")
+        pretrained_state_dict = torch.load(url.replace("file://", ""), map_location="cpu", weight_only=False)
     else:
         # unique_filename = url.split("https://sghub.deci.ai/models/")[1].replace("/", "_").replace(" ", "_")
         unique_filename = url.split("/")[-1]
